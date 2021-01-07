@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell_exec.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/07 20:10:36 by kchoi             #+#    #+#             */
+/*   Updated: 2021/01/07 20:28:53 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/exec.h"
 
@@ -11,10 +22,7 @@ void	exec_prompt(void)
 	&& g_pwd_path[0] == '/')
 		dir = "/";
 	else
-	{
-		split_result = ft_split(g_pwd_path, '/');
-		dir = split_result[str_array_length(split_result) - 1];
-	}
+		dir = g_pwd_path;
 	write(1, "\033[38;5;208m", 12);
 	write(1, dir, ft_strlen(dir));
 	write(1, " ", 1);

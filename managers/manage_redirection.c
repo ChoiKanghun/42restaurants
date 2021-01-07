@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manage_redirection.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/07 20:19:13 by kchoi             #+#    #+#             */
+/*   Updated: 2021/01/07 20:38:50 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/exec.h"
 
 int		check_rdo_exec(void)
@@ -21,19 +33,6 @@ int		check_rdo_exec(void)
 
 void	manage_rdo_error(int ret_check)
 {
-/*	int count;
-
-	count = 0;
-	if (g_lst->rdc_filetab)
-	{
-		while (g_lst->rdc_filetab[count] && g_lst->rdc_index[count][0]
-		< g_lst->rdo_index[ret_check][0])
-		{
-			exec_file(count);
-			count++;
-		}
-	}
-*/
 	ft_error('\0', g_lst->rdo_filetab[ret_check]
 	, "No such file or directory", 1);
 }

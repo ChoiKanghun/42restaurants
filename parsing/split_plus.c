@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_plus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/07 20:19:46 by kchoi             #+#    #+#             */
+/*   Updated: 2021/01/07 20:29:44 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
@@ -53,11 +64,6 @@ static char	*finder(char *str, int i, char charset)
 	part[j] = '\0';
 	return (part);
 }
-
-/*
-**	finder 함수는 char **tab에 ';'를 기준으로
-**	하나씩 담는다.
-*/
 
 char		**split_plus(char *str, char charset)
 {

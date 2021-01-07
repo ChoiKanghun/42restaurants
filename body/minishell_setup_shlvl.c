@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell_setup_shlvl.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/07 20:11:00 by kchoi             #+#    #+#             */
+/*   Updated: 2021/01/07 20:26:07 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/exec.h"
 
@@ -16,11 +27,9 @@ void	incr_shlvl(int shlvl_index, int shlvl, char *shlvl_str, char *shlvl_nb)
 	count = 0;
 	if (shlvl_str[count] == '+' || shlvl_str[count] == '-')
 		count++;
-	while (shlvl_str[count] && shlvl_str[count] >= '0'  && shlvl_str[count] <= '9')
-	{
-		shlvl = (shlvl * 10) + (shlvl_str[count] - '0');
-		count++;
-	}
+	while (shlvl_str[count] && shlvl_str[count] >= '0' && \
+			shlvl_str[count] <= '9')
+		shlvl = (shlvl * 10) + (shlvl_str[count++] - '0');
 	if (shlvl_str[count] != '\0')
 		shlvl = 1;
 	else if (shlvl_str[0] == 45)

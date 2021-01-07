@@ -97,7 +97,6 @@ int		search_in_array(char **input_array, char *str, char sep)
 	return (-1);
 }
 
-// 환경변수 중 key=value 꼴을 띠지 않은 환경변수를 걸러냄.
 char	**filter_env(char **input_array, char **free_array)
 {
 	int		from_count;

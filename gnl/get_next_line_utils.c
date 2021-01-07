@@ -1,70 +1,67 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/19 20:07:23 by kchoi             #+#    #+#             */
-/*   Updated: 2020/05/19 20:07:25 by kchoi            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strlen(char *str)
+int		ft_len(char *str)
 {
-	int	i;
+	int cmp;
 
-	i = 0;
 	if (!str)
 		return (0);
-	while (str[i])
-		i++;
-	return (i);
+	cmp = 0;
+	while (str[cmp])
+		cmp++;
+	return (cmp);
 }
 
-char	*ft_strjoin_custom(char *save, char *buff)
+char	*ft_dup(const char *str, int len, char *str_free)
 {
-	int		i;
-	int		save_len;
-	int		buff_len;
-	char	*dest;
-	int		j;
+	char	*new_str;
+	int		cmp;
 
-	i = 0;
-	save_len = ft_strlen(save);
-	buff_len = ft_strlen(buff);
-	if (!(dest = (char *)malloc(save_len + buff_len + 1)))
-		return (NULL);
-	while (i < save_len)
+	if (!str)
 	{
-		dest[i] = save[i];
-		i++;
+		if (!(new_str = (char *)malloc(sizeof(char) * 1)))
+			ft_error('\0', "Malloc", NULL, 1);
+		new_str[0] = '\0';
 	}
-	j = 0;
-	while (j < buff_len)
+	else
 	{
-		dest[i + j] = buff[j];
-		j++;
+		if (!(new_str = (char *)malloc(sizeof(char) * (len + 1))))
+			ft_error('\0', "Malloc", NULL, 1);
+		if (new_str == NULL)
+			return (NULL);
+		cmp = 0;
+		while (cmp < len)
+		{
+			new_str[cmp] = str[cmp];
+			cmp++;
+		}
+		new_str[cmp] = '\0';
 	}
-	dest[i + j] = '\0';
-	free(save);
-	return (dest);
+	free_str(&str_free);
+	return (new_str);
 }
 
-int		if_newline_in_str(char *save)
+int		ft_search(char *str)
 {
-	int	i;
+	int cmp;
 
-	if (!save)
-		return (0);
-	i = 0;
-	while (save[i])
+	cmp = 0;
+	if (!str)
+		return (-1);
+	while (str[cmp])
 	{
-		if (save[i] == '\n')
-			return (1);
-		i++;
+		if (str[cmp] == '\n')
+			return (cmp);
+		cmp++;
 	}
-	return (0);
+	return (-1);
+}
+
+char	*ft_settle(char *str, int pass)
+{
+	(void)pass;
+	free(str);
+	str = NULL;
+	return (str);
 }

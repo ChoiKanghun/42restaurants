@@ -65,6 +65,10 @@ void check_strcpy()
 	printf("%-40s: \"%s\"\n", "libasm", ft_strcpy(buffer, alphabet));
 	clear_buffer(buffer, 30);
 	printf("\n");
+	printf("%-40s: \%s\"\n", "char []", alphabet);
+	printf("%-40s: buffer[50]\n", "copy to");
+	printf("%-40s: \"%p\"\n", "libc", strcpy(buffer, alphabet));
+	printf("%-40s: \"%p\"\n", "libasm", strcpy(buffer, alphabet));
 }
 
 void check_strcmp()

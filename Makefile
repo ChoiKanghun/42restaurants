@@ -20,15 +20,11 @@ all: $(NAME)
 clean:
 	rm -f $(OBJS)
 
-try: all
-	@touch test
-	@echo "Ceci est un test" > test
-	gcc -Wall -Wextra -Werror -I./libasm.h libasm.a main.c -o try_libasm
-	./try_libasm
+go: all
+	gcc -Wall -Wextra -Werror -I./libasm.h libasm.a main.c -o go_libasm
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f try_libasm
-	rm -f test
+	rm -f go_libasm
 
 re: fclean all

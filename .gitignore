@@ -1,0 +1,4 @@
+*/*.plist
+.plist
+*/*/*.plist
+*/*/*/*.plist

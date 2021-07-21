@@ -1,0 +1,6 @@
+framework module Pods_42restaurantsTests {
+  umbrella header "Pods-42restaurantsTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

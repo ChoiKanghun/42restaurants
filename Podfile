@@ -14,6 +14,7 @@ target '42restaurants' do
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
 	pod 'CodableFirebase'
+	pod 'FirebaseUI/Storage'
 
   target '42restaurantsTests' do
     inherit! :search_paths

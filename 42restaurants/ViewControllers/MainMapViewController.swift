@@ -9,6 +9,7 @@ import UIKit
 import NMapsMap
 import CoreLocation
 import Firebase
+import CodableFirebase
 
 class MainMapViewController: UIViewController {
 
@@ -27,7 +28,7 @@ class MainMapViewController: UIViewController {
 
     var ref: DatabaseReference!
     
-    
+    var stores = Dictionary<String, Store>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +40,15 @@ class MainMapViewController: UIViewController {
         
         self.ref.child("stores").getData{ (error, snapshot) in
         
-            if snapshot.exists() {
-                print(snapshot.value)
+            if let error = error {
+                print(error.localizedDescription)
+            } else if snapshot.exists() {
+                guard let value = snapshot.value else {return}
+                do { let store = try FirebaseDecoder().decode(Dictionary<String, Store>.self, from: value)
+                    self.stores = store
+                } catch let err {
+                    print(err.localizedDescription)
+                }
             }
             
         }
@@ -112,6 +120,27 @@ extension MainMapViewController: CLLocationManagerDelegate {
             userMarker.iconImage = overlayImage
         }
         userMarker.iconTintColor = UIColor.systemRed
+        setStores()
+    }
+    
+    func setStores() {
+        var markers: [NMFMarker] = [NMFMarker]()
+        
+        for (index, element) in self.stores.enumerated() {
+            let marker = NMFMarker()
+            marker.position = NMGLatLng(
+                lat: Double(element.value.latitude),
+                lng: Double(element.value.longtitude))
+            markers.append(marker)
+            
+        }
+        
+        for marker in markers {
+            marker.mapView = self.mapView
+        }
+        self.mapView.reloadInputViews()
 
+        
+        
     }
 }

@@ -7,10 +7,12 @@ target '42restaurants' do
 
   # Pods for 42restaurants
 
-
 	pod 'Firebase/Analytics'
+	pod 'Firebase/Auth'
+	pod 'Firebase/Firestore'
 	pod 'NMapsMap', '~>3.13.0'
 	pod 'Firebase/Database'
+	pod 'Firebase/Storage'
 
   target '42restaurantsTests' do
     inherit! :search_paths

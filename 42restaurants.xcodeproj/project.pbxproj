@@ -11,7 +11,6 @@
 		5F1E629B4D2A6614F57B2146 /* Pods_42restaurants_42restaurantsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C58F0847EC9A21030961B146 /* Pods_42restaurants_42restaurantsUITests.framework */; };
 		7A1D23BF26A67BB000F8E7E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D23BE26A67BB000F8E7E2 /* AppDelegate.swift */; };
 		7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D23C026A67BB000F8E7E2 /* SceneDelegate.swift */; };
-		7A1D23C326A67BB000F8E7E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1D23C226A67BB000F8E7E2 /* ViewController.swift */; };
 		7A1D23C626A67BB000F8E7E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D23C426A67BB000F8E7E2 /* Main.storyboard */; };
 		7A1D23C826A67BB300F8E7E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D23C726A67BB300F8E7E2 /* Assets.xcassets */; };
 		7A1D23CB26A67BB300F8E7E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1D23C926A67BB300F8E7E2 /* LaunchScreen.storyboard */; };
@@ -22,6 +21,10 @@
 		7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */; };
 		7A34E4EC26A6B50600254C11 /* PickCoordinateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */; };
 		7A34E4EF26A6C52200254C11 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E4EE26A6C52200254C11 /* UIViewController+Extensions.swift */; };
+		7A34E4F226A7C2AA00254C11 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E4F126A7C2AA00254C11 /* Store.swift */; };
+		7A34E51526A7E27F00254C11 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51426A7E27F00254C11 /* Category.swift */; };
+		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
+		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		90B5FA16283B087FDD41F64E /* Pods_42restaurantsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196D7E9FDF15295C6B5DDCB /* Pods_42restaurantsTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +55,6 @@
 		7A1D23BB26A67BB000F8E7E2 /* 42restaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 42restaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1D23BE26A67BB000F8E7E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A1D23C026A67BB000F8E7E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7A1D23C226A67BB000F8E7E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7A1D23C526A67BB000F8E7E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A1D23C726A67BB300F8E7E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A1D23CA26A67BB300F8E7E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,6 +70,10 @@
 		7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollStoreViewController.swift; sourceTree = "<group>"; };
 		7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCoordinateViewController.swift; sourceTree = "<group>"; };
 		7A34E4EE26A6C52200254C11 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		7A34E4F126A7C2AA00254C11 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		7A34E51426A7E27F00254C11 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		C58F0847EC9A21030961B146 /* Pods_42restaurants_42restaurantsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_42restaurants_42restaurantsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6C077F67706CEBEB5613C8 /* Pods-42restaurants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-42restaurants.release.xcconfig"; path = "Target Support Files/Pods-42restaurants/Pods-42restaurants.release.xcconfig"; sourceTree = "<group>"; };
 		EE4BB1EF5F675270DC04292B /* Pods-42restaurantsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-42restaurantsTests.release.xcconfig"; path = "Target Support Files/Pods-42restaurantsTests/Pods-42restaurantsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,11 +142,12 @@
 		7A1D23BD26A67BB000F8E7E2 /* 42restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				7A34E51326A7E27500254C11 /* Enums */,
+				7A34E4F026A7C2A000254C11 /* Models */,
 				7A34E4ED26A6C51100254C11 /* Extensions */,
 				7A34E4E626A6800A00254C11 /* ViewControllers */,
 				7A1D23BE26A67BB000F8E7E2 /* AppDelegate.swift */,
 				7A1D23C026A67BB000F8E7E2 /* SceneDelegate.swift */,
-				7A1D23C226A67BB000F8E7E2 /* ViewController.swift */,
 				7A1D23C426A67BB000F8E7E2 /* Main.storyboard */,
 				7A1D23C726A67BB300F8E7E2 /* Assets.xcassets */,
 				7A1D23C926A67BB300F8E7E2 /* LaunchScreen.storyboard */,
@@ -182,8 +189,26 @@
 			isa = PBXGroup;
 			children = (
 				7A34E4EE26A6C52200254C11 /* UIViewController+Extensions.swift */,
+				7A34E51626A7FE5800254C11 /* String+Extensions.swift */,
+				7A34E51826A7FEB900254C11 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7A34E4F026A7C2A000254C11 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7A34E4F126A7C2AA00254C11 /* Store.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7A34E51326A7E27500254C11 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				7A34E51426A7E27F00254C11 /* Category.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		EC65CA7C74417DA1819DFE79 /* Pods */ = {
@@ -439,9 +464,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A34E4E826A6808E00254C11 /* MainMapViewController.swift in Sources */,
-				7A1D23C326A67BB000F8E7E2 /* ViewController.swift in Sources */,
 				7A1D23BF26A67BB000F8E7E2 /* AppDelegate.swift in Sources */,
+				7A34E4F226A7C2AA00254C11 /* Store.swift in Sources */,
+				7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */,
 				7A34E4EF26A6C52200254C11 /* UIViewController+Extensions.swift in Sources */,
+				7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */,
+				7A34E51526A7E27F00254C11 /* Category.swift in Sources */,
 				7A34E4EC26A6B50600254C11 /* PickCoordinateViewController.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,

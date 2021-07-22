@@ -13,6 +13,8 @@ class PickCoordinateViewController: UIViewController {
     @IBOutlet weak var coordinateLabel: UILabel!
     @IBOutlet weak var mapView: NMFMapView!
     
+    var naverCoordinate = NMGLatLng()
+    
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -43,7 +45,8 @@ class PickCoordinateViewController: UIViewController {
         
         NotificationCenter.default.post(
             name: Notification.Name("TouchedLatLng"),
-            object: nil)
+            object: nil,
+            userInfo: ["naverCoordinate": self.naverCoordinate])
         
         self.dismiss(animated: true, completion: nil)
         
@@ -106,6 +109,9 @@ extension PickCoordinateViewController: NMFMapViewTouchDelegate {
         locationOverlay.icon = NMF_MARKER_IMAGE_BLUE
         locationOverlay.iconWidth = 40
         locationOverlay.iconHeight = 40
+        
+        
+        self.naverCoordinate = latlng
         
         DispatchQueue.main.async {
             self.coordinateLabel?.text

@@ -20,6 +20,7 @@ class EnrollStoreViewController: UIViewController {
     @IBOutlet weak var telephoneLabel: UITextField!
     
     var ref: DatabaseReference!
+    
     let storage = Storage.storage()
 
     let imagePicker = UIImagePickerController()

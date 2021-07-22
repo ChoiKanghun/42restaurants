@@ -25,6 +25,8 @@ class MainMapViewController: UIViewController {
     
     let userMarker = NMFMarker()
 
+    var ref: DatabaseReference!
+    
     
     
     override func viewDidLoad() {
@@ -33,7 +35,15 @@ class MainMapViewController: UIViewController {
         self.locationManager.requestWhenInUseAuthorization()
         self.mapView.positionMode = .normal
             
-        // Do any additional setup after loading the view.
+        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
+        self.ref.child("stores").getData{ (error, snapshot) in
+        
+            if snapshot.exists() {
+                print(snapshot.value)
+            }
+            
+        }
     }
     
 

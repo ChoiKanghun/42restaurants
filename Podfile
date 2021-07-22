@@ -13,6 +13,7 @@ target '42restaurants' do
 	pod 'NMapsMap', '~>3.13.0'
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
+	pod 'CodableFirebase'
 
   target '42restaurantsTests' do
     inherit! :search_paths

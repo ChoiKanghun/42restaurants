@@ -218,6 +218,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
+  - CodableFirebase (0.2.1)
   - Firebase/Analytics (8.3.0):
     - Firebase/Core
   - Firebase/Auth (8.3.0):
@@ -363,6 +364,7 @@ PODS:
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
+  - CodableFirebase
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
@@ -374,6 +376,7 @@ SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
+    - CodableFirebase
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -397,6 +400,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
+  CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
   Firebase: 817b9171d0d51dccc458b94a5e8edff6b1dd323d
   FirebaseAnalytics: 456f2c51599870a15ded4548d1f1f7b2cabf65a7
   FirebaseAuth: fd12c82de44e7ad3b821610c387b8251f03aa0f9
@@ -417,6 +421,6 @@ SPEC CHECKSUMS:
   NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 84ec951e5ce4ee2427a29fd1d54e8f194f65ecd7
+PODFILE CHECKSUM: bf624f690dd099267946b8e2ae53a622aefe8457
 
 COCOAPODS: 1.10.1

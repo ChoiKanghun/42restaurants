@@ -10,6 +10,7 @@ import NMapsMap
 import CoreLocation
 import Firebase
 import CodableFirebase
+import FirebaseUI
 
 class MainMapViewController: UIViewController {
 
@@ -27,6 +28,8 @@ class MainMapViewController: UIViewController {
     let userMarker = NMFMarker()
 
     var ref: DatabaseReference!
+    let storage = Storage.storage()
+    
     
     var stores = Dictionary<String, Store>()
     
@@ -46,6 +49,7 @@ class MainMapViewController: UIViewController {
                 guard let value = snapshot.value else {return}
                 do { let store = try FirebaseDecoder().decode(Dictionary<String, Store>.self, from: value)
                     self.stores = store
+                    self.setStores()
                 } catch let err {
                     print(err.localizedDescription)
                 }
@@ -120,26 +124,46 @@ extension MainMapViewController: CLLocationManagerDelegate {
             userMarker.iconImage = overlayImage
         }
         userMarker.iconTintColor = UIColor.systemRed
-        setStores()
     }
     
     func setStores() {
         var markers: [NMFMarker] = [NMFMarker]()
+        let storageRef = storage.reference()
+        let placeholderImage = UIImage(named: "placeholder.jpg")
         
         for (index, element) in self.stores.enumerated() {
             let marker = NMFMarker()
+            print(element.value.latitude)
             marker.position = NMGLatLng(
                 lat: Double(element.value.latitude),
                 lng: Double(element.value.longtitude))
             markers.append(marker)
+            marker.width = 40
+            marker.height = 40
+            let reference = storageRef.child("images/\(element.value.image)")
+            DispatchQueue.main.async {
+                var tempImageView = UIImageView()
+                tempImageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
+                if let markerImage = tempImageView.image {
+                    let overlayImage = NMFOverlayImage.init(image: markerImage)
+                    print(reference.fullPath)
+                    marker.iconImage = overlayImage
+                } else { print (" markerImage get Fail "); print("4")}
+                marker.mapView = self.mapView
+            }
+            if index == self.stores.count - 1 {
+                DispatchQueue.main.async {
+                    self.mapView.reloadInputViews()
+                }
+            }
             
         }
         
-        for marker in markers {
-            marker.mapView = self.mapView
-        }
-        self.mapView.reloadInputViews()
-
+//        for marker in markers {
+//            marker.mapView = self.mapView
+//        }
+        
+        
         
         
     }

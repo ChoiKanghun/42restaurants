@@ -18,5 +18,30 @@ enum Category: String {
     case cafe = "카페"
     case fastFood = "패스트푸드"
     case chickenPizza = "치킨/피자"
+    
+    var imageName: String {
+        switch self {
+        case .koreanAsian:
+            return "korean"
+        case .mexican:
+            return "mexican"
+        case .japaneseCutlet:
+            return "japanese"
+        case .chinese:
+            return "chinese"
+        case .western:
+            return "western"
+        case .meat:
+            return "meat"
+        case .cafe:
+            return "cafe"
+        case .chickenPizza:
+            return "chickenPizza"
+        case .fastFood:
+            return "fastFood"
+        case .bunsik:
+            return "bunsik"
+        }
+    }
 }
 

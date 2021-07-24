@@ -96,6 +96,27 @@ class EnrollStoreViewController: UIViewController {
             return
         }
         
+        let location = CLLocation.init(
+            latitude: self.naverCoordinate?.lat ?? 0,
+            longitude: self.naverCoordinate?.lng ?? 0)
+        
+        let geoCoder = CLGeocoder()
+        let locale = Locale(identifier: "Ko-kr")
+        var addressString = ""
+        geoCoder.reverseGeocodeLocation(location, preferredLocale: locale) { address, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            if let address = address {
+                addressString +=
+                    "\(address.last?.administrativeArea ?? "") " +
+                    "\(address.last?.locality ?? "") " +
+                    "\(address.last?.subLocality ?? "")"
+            }
+        }
+        
+        
         guard let uploadImageData = self.imageView.image?.jpegData(compressionQuality: 0.8)
         else {return}
         var data = Data()
@@ -104,6 +125,7 @@ class EnrollStoreViewController: UIViewController {
         let filePath = "images/\(self.userIdLabel.text ?? "userID")\(now.toString()).png"
         let metaData = StorageMetadata()
         metaData.contentType = "image/png"
+        
         self.storage.reference().child(filePath).putData(data, metadata: metaData) { [self] (metadata, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -124,7 +146,8 @@ class EnrollStoreViewController: UIViewController {
                  "createDate": now.toString(),
                  "modifyDate": now.toString(),
                  "category": self.selectedCategory,
-                 "telephone": (self.telephoneLabel.text ?? "")
+                 "telephone": (self.telephoneLabel.text ?? ""),
+                 "address": addressString 
                 ] as [String : Any]
             
             let childUpdates = ["stores/\(key)": store]

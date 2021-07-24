@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 struct Store: Codable {
     let name: String
     let latitude: Double
@@ -20,5 +18,5 @@ struct Store: Codable {
     let category: Category.RawValue
     let enrollUser: String
     let telephone: String?
-    
+    let address: String?
 }

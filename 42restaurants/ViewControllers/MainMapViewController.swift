@@ -128,8 +128,6 @@ extension MainMapViewController: CLLocationManagerDelegate {
     
     func setStores() {
         var markers: [NMFMarker] = [NMFMarker]()
-        let storageRef = storage.reference()
-        let placeholderImage = UIImage(named: "placeholder.jpg")
         
         for (index, element) in self.stores.enumerated() {
             let marker = NMFMarker()
@@ -140,15 +138,11 @@ extension MainMapViewController: CLLocationManagerDelegate {
             markers.append(marker)
             marker.width = 40
             marker.height = 40
-            let reference = storageRef.child("images/\(element.value.image)")
             DispatchQueue.main.async {
-                var tempImageView = UIImageView()
-                tempImageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
-                if let markerImage = tempImageView.image {
-                    let overlayImage = NMFOverlayImage.init(image: markerImage)
-                    print(reference.fullPath)
-                    marker.iconImage = overlayImage
-                } else { print (" markerImage get Fail "); print("4")}
+                if let imageName: String = Category.init(rawValue: element.value.category)?.imageName {
+                    marker.iconImage = NMFOverlayImage(name: "\(imageName)")
+                }
+                
                 marker.mapView = self.mapView
             }
             if index == self.stores.count - 1 {

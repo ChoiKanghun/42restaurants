@@ -14,8 +14,10 @@ class ListStoreViewController: UIViewController {
     @IBOutlet weak var storeTableView: UITableView!
     
     var ref: DatabaseReference!
+    let storage = Storage.storage()
     
-    var stores = Dictionary<String, Store>()
+    
+    var stores = [Store]()
 
     
     override func viewDidLoad() {
@@ -38,8 +40,15 @@ class ListStoreViewController: UIViewController {
                 print(error.localizedDescription)
             } else if snapshot.exists() {
                 guard let value = snapshot.value else {return}
-                do { let store = try FirebaseDecoder().decode(Dictionary<String, Store>.self, from: value)
-                    self.stores = store
+                do {
+                    let storesData = try FirebaseDecoder().decode([String: StoreInfo].self, from: value)
+                    
+                    for storeData in storesData {
+                        let store: Store = Store(storeKey: storeData.key, storeInfo: storeData.value)
+                        self.stores.append(store)
+                    }
+                    self.stores = self.stores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
+                    
                     DispatchQueue.main.async {
                         self.storeTableView.reloadData()
                     }
@@ -72,8 +81,18 @@ extension ListStoreViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = self.storeTableView.dequeueReusableCell(withIdentifier: StoreTableViewCell.reuseIdentifier) as? StoreTableViewCell
         else { return UITableViewCell() }
         
+        let store = self.stores[indexPath.row]
+        
+        cell.nameLabel?.text = store.storeInfo.name
+        cell.addressLabel?.text = store.storeInfo.address
+        cell.rateLabel?.text = "\(store.storeInfo.rating)"
+        cell.categoryLabel?.text = store.storeInfo.category
         
         
+        let storageRef = storage.reference()
+        let reference = storageRef.child("\(store.storeInfo.image)")
+        let placeholderImage = UIImage(named: "placeholder.jpg")
+        cell.storeImageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
         
         return cell
     }

@@ -14,4 +14,8 @@ extension Date {
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         return dateFormatter.string(from: self)
     }
+    
+    func toDouble() -> Double {
+        return self.timeIntervalSince1970
+    }
 }

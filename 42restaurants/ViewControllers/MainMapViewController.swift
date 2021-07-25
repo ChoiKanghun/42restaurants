@@ -31,8 +31,8 @@ class MainMapViewController: UIViewController {
     let storage = Storage.storage()
     
     
-    var stores = Dictionary<String, Store>()
-    
+    var stores = [Store]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,8 +47,13 @@ class MainMapViewController: UIViewController {
                 print(error.localizedDescription)
             } else if snapshot.exists() {
                 guard let value = snapshot.value else {return}
-                do { let store = try FirebaseDecoder().decode(Dictionary<String, Store>.self, from: value)
-                    self.stores = store
+                do {
+                    let storesData = try FirebaseDecoder().decode([String: StoreInfo].self, from: value)
+                    
+                    for storeData in storesData {
+                        let store: Store = Store(storeKey: storeData.key, storeInfo: storeData.value)
+                        self.stores.append(store)
+                    }
                     self.setStores()
                 } catch let err {
                     print(err.localizedDescription)
@@ -131,15 +136,15 @@ extension MainMapViewController: CLLocationManagerDelegate {
         
         for (index, element) in self.stores.enumerated() {
             let marker = NMFMarker()
-            print(element.value.latitude)
+            print(element.storeInfo.latitude)
             marker.position = NMGLatLng(
-                lat: Double(element.value.latitude),
-                lng: Double(element.value.longtitude))
+                lat: Double(element.storeInfo.latitude),
+                lng: Double(element.storeInfo.longtitude))
             markers.append(marker)
             marker.width = 40
             marker.height = 40
             DispatchQueue.main.async {
-                if let imageName: String = Category.init(rawValue: element.value.category)?.imageName {
+                if let imageName: String = Category.init(rawValue: element.storeInfo.category)?.imageName {
                     marker.iconImage = NMFOverlayImage(name: "\(imageName)")
                 }
                 

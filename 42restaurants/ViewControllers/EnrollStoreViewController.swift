@@ -143,8 +143,8 @@ class EnrollStoreViewController: UIViewController {
                  "rating": 0.0,
                  "image": filePath,
                  "enrollUser": (self.userIdLabel.text ?? ""),
-                 "createDate": now.toString(),
-                 "modifyDate": now.toString(),
+                 "createDate": now.toDouble(),
+                 "modifyDate": now.toDouble(),
                  "category": self.selectedCategory,
                  "telephone": (self.telephoneLabel.text ?? ""),
                  "address": addressString 

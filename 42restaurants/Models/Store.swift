@@ -8,13 +8,18 @@
 import Foundation
 
 struct Store: Codable {
+    let storeKey: String
+    let storeInfo: StoreInfo
+}
+
+struct StoreInfo: Codable {
     let name: String
     let latitude: Double
     let longtitude: Double
     let rating: Double
     let image: String
-    let createDate: String
-    let modifyDate: String
+    let createDate: Double
+    let modifyDate: Double
     let category: Category.RawValue
     let enrollUser: String
     let telephone: String?

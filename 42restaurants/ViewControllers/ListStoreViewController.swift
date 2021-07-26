@@ -72,7 +72,7 @@ class ListStoreViewController: UIViewController {
 
 }
 
-extension ListStoreViewController: UITableViewDelegate, UITableViewDataSource {
+extension ListStoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.stores.count
     }
@@ -98,4 +98,17 @@ extension ListStoreViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
+}
+
+extension ListStoreViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        StoreSingleton.shared.store = self.stores[indexPath.row]
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+        else { return }
+
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
 }

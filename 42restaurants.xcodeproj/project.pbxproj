@@ -27,6 +27,9 @@
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		7AE780B926ABB65F00B507DE /* ListStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */; };
 		7AE780BC26ABB7B100B507DE /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780BB26ABB7B100B507DE /* StoreTableViewCell.swift */; };
+		7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */; };
+		7AE780C026AE605A00B507DE /* ReviewDetailSegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */; };
+		7AE780C226AE60B200B507DE /* PhotosDetailSegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780C126AE60B200B507DE /* PhotosDetailSegmentViewController.swift */; };
 		90B5FA16283B087FDD41F64E /* Pods_42restaurantsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196D7E9FDF15295C6B5DDCB /* Pods_42restaurantsTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +81,9 @@
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStoreViewController.swift; sourceTree = "<group>"; };
 		7AE780BB26ABB7B100B507DE /* StoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
+		7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedDetailViewController.swift; sourceTree = "<group>"; };
+		7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailSegmentViewController.swift; sourceTree = "<group>"; };
+		7AE780C126AE60B200B507DE /* PhotosDetailSegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosDetailSegmentViewController.swift; sourceTree = "<group>"; };
 		C58F0847EC9A21030961B146 /* Pods_42restaurants_42restaurantsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_42restaurants_42restaurantsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6C077F67706CEBEB5613C8 /* Pods-42restaurants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-42restaurants.release.xcconfig"; path = "Target Support Files/Pods-42restaurants/Pods-42restaurants.release.xcconfig"; sourceTree = "<group>"; };
 		EE4BB1EF5F675270DC04292B /* Pods-42restaurantsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-42restaurantsTests.release.xcconfig"; path = "Target Support Files/Pods-42restaurantsTests/Pods-42restaurantsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +193,9 @@
 				7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */,
 				7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */,
 				7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */,
+				7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */,
+				7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */,
+				7AE780C126AE60B200B507DE /* PhotosDetailSegmentViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -482,11 +491,14 @@
 				7A1D23BF26A67BB000F8E7E2 /* AppDelegate.swift in Sources */,
 				7AE780BC26ABB7B100B507DE /* StoreTableViewCell.swift in Sources */,
 				7A34E4F226A7C2AA00254C11 /* Store.swift in Sources */,
+				7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */,
 				7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */,
 				7A34E4EF26A6C52200254C11 /* UIViewController+Extensions.swift in Sources */,
+				7AE780C226AE60B200B507DE /* PhotosDetailSegmentViewController.swift in Sources */,
 				7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */,
 				7A34E51526A7E27F00254C11 /* Category.swift in Sources */,
 				7A34E4EC26A6B50600254C11 /* PickCoordinateViewController.swift in Sources */,
+				7AE780C026AE605A00B507DE /* ReviewDetailSegmentViewController.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,
 			);

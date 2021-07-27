@@ -12,7 +12,10 @@ import Photos
 class CommentPostViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-        
+
+    // 키보드 높이
+    @IBOutlet weak var keyHeight: NSLayoutConstraint!
+    
     let imagePicker = OpalImagePickerController()
     var imageSet = [UIImage]()
     let phImageManager = PHImageManager.default()
@@ -24,7 +27,28 @@ class CommentPostViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
     
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+        
         initializeOpalImagePicker()
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        if let userInfo:NSDictionary = sender.userInfo as NSDictionary?,
+           let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            keyHeight.constant = keyboardHeight
+        }
+        
+
+        
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        //우리가 지정한 constaraint
+        keyHeight.constant = 10
     }
     
     private func initializeOpalImagePicker() {
@@ -74,15 +98,7 @@ class CommentPostViewController: UIViewController {
     
 
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
 

@@ -7,6 +7,7 @@ target '42restaurants' do
 
   # Pods for 42restaurants
 
+    # pods of Firebase
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
@@ -15,6 +16,9 @@ target '42restaurants' do
 	pod 'Firebase/Storage'
 	pod 'CodableFirebase'
 	pod 'FirebaseUI/Storage'
+
+    # other pods
+	pod 'OpalImagePicker', '~> 3.0.0'
 
   target '42restaurantsTests' do
     inherit! :search_paths

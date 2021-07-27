@@ -123,40 +123,54 @@
 			<key>orderHint</key>
 			<integer>22</integer>
 		</dict>
-		<key>Pods-42restaurants-42restaurantsUITests.xcscheme</key>
+		<key>OpalImagePicker-OpalImagePickerResources.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>24</integer>
 		</dict>
-		<key>Pods-42restaurants.xcscheme</key>
+		<key>OpalImagePicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>23</integer>
 		</dict>
-		<key>Pods-42restaurantsTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>25</integer>
-		</dict>
-		<key>PromisesObjC.xcscheme</key>
+		<key>Pods-42restaurants-42restaurantsUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>26</integer>
 		</dict>
-		<key>SDWebImage.xcscheme</key>
+		<key>Pods-42restaurants.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>25</integer>
+		</dict>
+		<key>Pods-42restaurantsTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>27</integer>
+		</dict>
+		<key>PromisesObjC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>28</integer>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>29</integer>
 		</dict>
 		<key>abseil.xcscheme</key>
 		<dict>

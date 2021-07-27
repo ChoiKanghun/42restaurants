@@ -364,6 +364,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - NMapsMap (3.13.0)
+  - OpalImagePicker (3.0.0)
   - PromisesObjC (1.2.12)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
@@ -378,6 +379,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseUI/Storage
   - NMapsMap (~> 3.13.0)
+  - OpalImagePicker (~> 3.0.0)
 
 SPEC REPOS:
   trunk:
@@ -403,6 +405,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - NMapsMap
+    - OpalImagePicker
     - PromisesObjC
     - SDWebImage
 
@@ -429,9 +432,10 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
+  OpalImagePicker: 38e772dd93a54431fc516b33e1f337c50f745834
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: 1731a196b26df9c233117ef2824bc46a63b178be
+PODFILE CHECKSUM: b77e4676a5e33e64243a99d2e9305994bb03d827
 
 COCOAPODS: 1.10.1

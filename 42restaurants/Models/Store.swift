@@ -17,11 +17,14 @@ struct StoreInfo: Codable {
     let latitude: Double
     let longtitude: Double
     let rating: Double
-    let image: String
+    let mainImage: String
+    var images: [String: String]
     let createDate: Double
     let modifyDate: Double
     let category: Category.RawValue
     let enrollUser: String
     let telephone: String?
     let address: String?
+    let commentCount: Int
+    var comments: [String: Comment]
 }

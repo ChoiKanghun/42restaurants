@@ -25,6 +25,7 @@
 		7A34E51526A7E27F00254C11 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51426A7E27F00254C11 /* Category.swift */; };
 		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
+		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
 		7AE780B926ABB65F00B507DE /* ListStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */; };
 		7AE780BC26ABB7B100B507DE /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780BB26ABB7B100B507DE /* StoreTableViewCell.swift */; };
 		7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */; };
@@ -34,6 +35,8 @@
 		7AE780C826AECE8C00B507DE /* StoreSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780C726AECE8C00B507DE /* StoreSingleton.swift */; };
 		7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780C926AED58600B507DE /* CommentPostViewController.swift */; };
 		7AE780CD26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */; };
+		7AF6615626AFECC300D405E0 /* StarRatingUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF6615526AFECC300D405E0 /* StarRatingUISlider.swift */; };
+		7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF6615726B0F0F200D405E0 /* Comments.swift */; };
 		90B5FA16283B087FDD41F64E /* Pods_42restaurantsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196D7E9FDF15295C6B5DDCB /* Pods_42restaurantsTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +86,7 @@
 		7A34E51426A7E27F00254C11 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStoreViewController.swift; sourceTree = "<group>"; };
 		7AE780BB26ABB7B100B507DE /* StoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedDetailViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 		7AE780C726AECE8C00B507DE /* StoreSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSingleton.swift; sourceTree = "<group>"; };
 		7AE780C926AED58600B507DE /* CommentPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostViewController.swift; sourceTree = "<group>"; };
 		7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetCollectionViewCell.swift; sourceTree = "<group>"; };
+		7AF6615526AFECC300D405E0 /* StarRatingUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingUISlider.swift; sourceTree = "<group>"; };
+		7AF6615726B0F0F200D405E0 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		C58F0847EC9A21030961B146 /* Pods_42restaurants_42restaurantsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_42restaurants_42restaurantsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6C077F67706CEBEB5613C8 /* Pods-42restaurants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-42restaurants.release.xcconfig"; path = "Target Support Files/Pods-42restaurants/Pods-42restaurants.release.xcconfig"; sourceTree = "<group>"; };
 		EE4BB1EF5F675270DC04292B /* Pods-42restaurantsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-42restaurantsTests.release.xcconfig"; path = "Target Support Files/Pods-42restaurantsTests/Pods-42restaurantsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 		7A1D23BD26A67BB000F8E7E2 /* 42restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				7AF6615426AFEC8600D405E0 /* CustomUIClass */,
 				7AE780C526AECE2200B507DE /* Service */,
 				7AE780CB26AEDB7E00B507DE /* CollectionViewCells */,
 				7AE780BA26ABB79400B507DE /* TableViewCells */,
@@ -226,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				7A34E4F126A7C2AA00254C11 /* Store.swift */,
+				7AF6615726B0F0F200D405E0 /* Comments.swift */,
+				7ADEA98C26B105D200BE32D1 /* Image.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,6 +277,14 @@
 				7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		7AF6615426AFEC8600D405E0 /* CustomUIClass */ = {
+			isa = PBXGroup;
+			children = (
+				7AF6615526AFECC300D405E0 /* StarRatingUISlider.swift */,
+			);
+			path = CustomUIClass;
 			sourceTree = "<group>";
 		};
 		EC65CA7C74417DA1819DFE79 /* Pods */ = {
@@ -531,13 +548,16 @@
 				7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */,
 				7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */,
 				7AE780C426AE6D1300B507DE /* DetailViewController.swift in Sources */,
+				7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */,
 				7A34E4EF26A6C52200254C11 /* UIViewController+Extensions.swift in Sources */,
 				7AE780C226AE60B200B507DE /* PhotosDetailSegmentViewController.swift in Sources */,
+				7AF6615626AFECC300D405E0 /* StarRatingUISlider.swift in Sources */,
 				7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */,
 				7A34E51526A7E27F00254C11 /* Category.swift in Sources */,
 				7A34E4EC26A6B50600254C11 /* PickCoordinateViewController.swift in Sources */,
 				7AE780C026AE605A00B507DE /* ReviewDetailSegmentViewController.swift in Sources */,
 				7AE780C826AECE8C00B507DE /* StoreSingleton.swift in Sources */,
+				7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,

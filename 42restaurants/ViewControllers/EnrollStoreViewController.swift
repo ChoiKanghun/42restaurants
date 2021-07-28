@@ -18,6 +18,9 @@ class EnrollStoreViewController: UIViewController {
     @IBOutlet weak var categoryPickerView: UIPickerView!
     @IBOutlet weak var userIdLabel: UILabel!
     @IBOutlet weak var telephoneLabel: UITextField!
+    @IBOutlet weak var starRatingSlider: UISlider!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var commentTextView: UITextView!
     
     var ref: DatabaseReference!
     
@@ -48,6 +51,7 @@ class EnrollStoreViewController: UIViewController {
         initializeImagePicker()
         initializeCategoryPickerView()
         
+        self.starRatingSlider.value = 5.0
         
         NotificationCenter.default.addObserver(
             self,
@@ -78,6 +82,7 @@ class EnrollStoreViewController: UIViewController {
     
     
     @IBAction func touchUpImageView(_ sender: Any) {
+        print("clicked")
         self.present(self.imagePicker, animated: true)
 
     }
@@ -93,6 +98,9 @@ class EnrollStoreViewController: UIViewController {
             return
         } else if self.latitudeLabel?.text == "위치 선택 시 자동 입력" {
             self.showBasicAlert(title: "가게 위치를 선택해주세요", message: "'클릭하여 가게 위치 선택' 버튼을 클릭하여 좌표를 선택합니다.")
+            return
+        } else if self.commentTextView?.text == "가게에 대한 평가를 적어주세요." {
+            self.showBasicAlert(title: "가게에 대한 평가를 적어주세요", message: "가게평은 필수입니다.")
             return
         }
         
@@ -136,28 +144,61 @@ class EnrollStoreViewController: UIViewController {
             guard let key = self.ref.child("stores").childByAutoId().key
             else { return }
             
+            let ratingFloorValue = Double(floor(self.starRatingSlider.value * 10)) / 10
+            
             let store =
                 ["name": self.storeNameTextField.text ?? "noname",
                  "latitude": (self.naverCoordinate?.lat ?? 0.0),
                  "longtitude": (self.naverCoordinate?.lng ?? 0.0),
-                 "rating": 0.0,
-                 "image": filePath,
+                 "rating": ratingFloorValue,
+                 "mainImage": filePath,
                  "enrollUser": (self.userIdLabel.text ?? ""),
                  "createDate": now.toDouble(),
                  "modifyDate": now.toDouble(),
                  "category": self.selectedCategory,
                  "telephone": (self.telephoneLabel.text ?? ""),
-                 "address": addressString 
+                 "address": addressString,
+                 "commentCount": 1,
+                 "images": ["1": filePath]
                 ] as [String : Any]
             
             let childUpdates = ["stores/\(key)": store]
-            self.ref.updateChildValues(childUpdates)
-            
+            self.ref.updateChildValues(childUpdates) { error, refAfterUpload  in
+                
+                let comments = [
+                    "rating": ratingFloorValue,
+                    "description": self.commentTextView?.text ?? "",
+                    "userId": self.userIdLabel?.text ?? "unknown",
+                    "images": ["1": filePath]
+                ] as [String: Any]
+                
+                let secondChildUpdates = ["stores/\(key)/comments/1": comments]
+                refAfterUpload.updateChildValues(secondChildUpdates)
+                
+            }
         }
     }
     
     
-
+    @IBAction func onDragStarSlider(_ sender: UISlider) {
+        let floatValue = floor(sender.value * 10) / 10
+        
+        for index in 1...5 {
+            if let starImage = view.viewWithTag(index) as? UIImageView {
+                if Float(index) <= floatValue {
+                    starImage.image = UIImage(named: "star_full_48px")
+                } else if Float(index) - floatValue <= 0.5 {
+                    starImage.image = UIImage(named: "star_half_48px")
+                } else {
+                    starImage.image = UIImage(named: "star_empty_48px")
+                }
+            }
+        }
+        DispatchQueue.main.async {
+            self.ratingLabel?.text = "\(floatValue)"
+        }
+    }
+    
 }
 
 extension EnrollStoreViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -182,7 +223,6 @@ extension EnrollStoreViewController: UIImagePickerControllerDelegate, UINavigati
 
 
 extension EnrollStoreViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

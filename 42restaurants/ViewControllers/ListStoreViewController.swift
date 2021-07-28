@@ -41,6 +41,7 @@ class ListStoreViewController: UIViewController {
             } else if snapshot.exists() {
                 guard let value = snapshot.value else {return}
                 do {
+                    print(value)
                     let storesData = try FirebaseDecoder().decode([String: StoreInfo].self, from: value)
                     
                     for storeData in storesData {
@@ -90,7 +91,7 @@ extension ListStoreViewController: UITableViewDelegate {
         
         
         let storageRef = storage.reference()
-        let reference = storageRef.child("\(store.storeInfo.image)")
+        let reference = storageRef.child("\(store.storeInfo.mainImage)")
         let placeholderImage = UIImage(named: "placeholder.jpg")
         cell.storeImageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
         

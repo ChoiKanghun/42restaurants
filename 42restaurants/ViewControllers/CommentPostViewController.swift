@@ -8,11 +8,16 @@
 import UIKit
 import OpalImagePicker
 import Photos
+import Firebase
 
 class CommentPostViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var starRatingSlider: UISlider!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var userIdTextField: UITextField!
+    
     // 키보드 높이
     @IBOutlet weak var keyHeight: NSLayoutConstraint!
     
@@ -21,6 +26,10 @@ class CommentPostViewController: UIViewController {
     let phImageManager = PHImageManager.default()
     let phImageOption = PHImageRequestOptions()
     
+    var ref: DatabaseReference!
+    let storage = Storage.storage()
+    
+    var localCommentImageUrls = [String: String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +105,93 @@ class CommentPostViewController: UIViewController {
             })
     }
     
+    @IBAction func onDragStarSlider(_ sender: UISlider) {
+        let floatValue = floor(sender.value * 10) / 10
+        
+        for index in 1...5 {
+            if let starImage = view.viewWithTag(index) as? UIImageView {
+                if Float(index) <= floatValue {
+                    starImage.image = UIImage(named: "star_full_48px")
+                } else if Float(index) - floatValue <= 0.5 {
+                    starImage.image = UIImage(named: "star_half_48px")
+                } else {
+                    starImage.image = UIImage(named: "star_empty_48px")
+                }
+            }
+        }
+        DispatchQueue.main.async {
+            self.ratingLabel?.text = "\(floatValue)"
+        }
+    }
+    
+    @IBAction func touchUpSubmitButton(_ sender: UIBarButtonItem) {
+        
+        if let target = StoreSingleton.shared.store?.storeKey {
+            // 현재 가게의 comments 대한 ref
+            self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app/stores/\(target)").reference()
+        } else { print(" 리뷰 남기기 실패 "); return }
+        
+        
+        for (index, image) in imageSet.enumerated() {
+            guard let uploadImageData = image.jpegData(compressionQuality: 0.8)
+            else { print("error while converting image"); return }
+            
+            var data = Data()
+            data = uploadImageData
+            let filePath = "images/\(self.userIdTextField.text ?? "defaultUser")\(Date().toString()).png"
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/png"
+            
+            self.storage.reference().child(filePath)
+                .putData(data, metadata: metaData) { [self] (metadata, error) in
+                    
+                    if let error = error {
+                        print(error.localizedDescription)
+                        self.showBasicAlert(title: "에러", message: "이미지 업로드 도중 에러 발생")
+                        return
+                    }
+                    
+                    self.localCommentImageUrls["\(index + 1)"] = filePath
+            }
+            
+            
+            
+        }
 
+        // 현재 ref는 storeKey: storeInfo 형태.
+        self.ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            
+            if var uploadData = currentData.value as? StoreInfo,
+               let userId = self.userIdTextField.text {
+                let commentCount: Int = uploadData.comments.count
+                var comments = uploadData.comments
+                comments["\(commentCount + 1)"] = Comment(
+                    rating: Double(floor(self.starRatingSlider.value * 10) / 10),
+                    description: self.descriptionTextView.text,
+                    userId: userId,
+                    images: self.localCommentImageUrls)
+                uploadData.comments = comments
+                let storeImageCount = uploadData.images.count
+                var storeImages = uploadData.images
+                for (index, imageDict) in self.localCommentImageUrls.enumerated() {
+                    storeImages["\(index + 1 + storeImageCount)"] = imageDict.value
+                }
+                uploadData.images = storeImages
+                
+                currentData.value = uploadData
+                
+                return TransactionResult.success(withValue: currentData)
+            }
+            return TransactionResult.success(withValue: currentData)
+        }) { error, committed, snapshot in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
+        
+        
+    }
     
     
 

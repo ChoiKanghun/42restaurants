@@ -24,7 +24,14 @@ class PhotosDetailSegmentViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
-        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(
+            width: view.frame.size.width / 3 - 1,
+            height: view.frame.size.width / 3 - 1)
+        flowLayout.sectionInset = .zero
+        flowLayout.minimumLineSpacing = 1.5
+        flowLayout.minimumInteritemSpacing = 0
+        self.collectionView.collectionViewLayout = flowLayout
         self.getImagesFromServer()
     }
     
@@ -77,7 +84,8 @@ extension PhotosDetailSegmentViewController: UICollectionViewDelegate, UICollect
         
         return cell
     }
-
+    
+    
 
 }
 

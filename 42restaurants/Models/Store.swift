@@ -18,7 +18,7 @@ struct StoreInfo: Codable {
     let longtitude: Double
     let rating: Double
     let mainImage: String
-    var images: [String: String]
+    var images: [String: Image]
     let createDate: Double
     let modifyDate: Double
     let category: Category.RawValue

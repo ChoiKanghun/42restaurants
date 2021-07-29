@@ -29,7 +29,7 @@ class CommentPostViewController: UIViewController {
     var ref: DatabaseReference!
     let storage = Storage.storage()
     
-    var localCommentImageUrls = [String: String]()
+    var localCommentImageUrls = [String: Image]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +151,7 @@ class CommentPostViewController: UIViewController {
                         return
                     }
                     
-                    self.localCommentImageUrls["\(index + 1)"] = filePath
+//                    self.localCommentImageUrls["\(index + 1)"] = filePath
             }
             
             
@@ -165,11 +165,11 @@ class CommentPostViewController: UIViewController {
                let userId = self.userIdTextField.text {
                 let commentCount: Int = uploadData.comments.count
                 var comments = uploadData.comments
-                comments["\(commentCount + 1)"] = Comment(
-                    rating: Double(floor(self.starRatingSlider.value * 10) / 10),
-                    description: self.descriptionTextView.text,
-                    userId: userId,
-                    images: self.localCommentImageUrls)
+//                comments["\(commentCount + 1)"] = Comment(
+//                    rating: Double(floor(self.starRatingSlider.value * 10) / 10),
+//                    description: self.descriptionTextView.text,
+//                    userId: userId,
+//                    images: )
                 uploadData.comments = comments
                 let storeImageCount = uploadData.images.count
                 var storeImages = uploadData.images

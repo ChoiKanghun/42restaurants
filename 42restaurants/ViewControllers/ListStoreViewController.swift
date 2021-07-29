@@ -41,7 +41,6 @@ class ListStoreViewController: UIViewController {
             } else if snapshot.exists() {
                 guard let value = snapshot.value else {return}
                 do {
-                    print(value)
                     let storesData = try FirebaseDecoder().decode([String: StoreInfo].self, from: value)
                     
                     for storeData in storesData {

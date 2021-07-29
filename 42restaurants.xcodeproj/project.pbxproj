@@ -26,6 +26,8 @@
 		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
+		7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */; };
+		7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */; };
 		7AE780B926ABB65F00B507DE /* ListStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */; };
 		7AE780BC26ABB7B100B507DE /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780BB26ABB7B100B507DE /* StoreTableViewCell.swift */; };
 		7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */; };
@@ -87,6 +89,8 @@
 		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
+		7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStoreViewController.swift; sourceTree = "<group>"; };
 		7AE780BB26ABB7B100B507DE /* StoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedDetailViewController.swift; sourceTree = "<group>"; };
@@ -212,8 +216,9 @@
 				7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */,
 				7AE780C326AE6D1300B507DE /* DetailViewController.swift */,
 				7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */,
-				7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */,
 				7AE780C126AE60B200B507DE /* PhotosDetailSegmentViewController.swift */,
+				7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */,
+				7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */,
 				7AE780C926AED58600B507DE /* CommentPostViewController.swift */,
 			);
 			path = ViewControllers;
@@ -275,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */,
+				7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -555,11 +561,13 @@
 				7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */,
 				7A34E51526A7E27F00254C11 /* Category.swift in Sources */,
 				7A34E4EC26A6B50600254C11 /* PickCoordinateViewController.swift in Sources */,
+				7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */,
 				7AE780C026AE605A00B507DE /* ReviewDetailSegmentViewController.swift in Sources */,
 				7AE780C826AECE8C00B507DE /* StoreSingleton.swift in Sources */,
 				7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
+				7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,7 +674,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -721,7 +729,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

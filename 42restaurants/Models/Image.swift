@@ -7,6 +7,8 @@
 
 import Foundation
 
-struct Images: Codable {
-    let image: [String: String]
+struct Image: Codable {
+    let imageUrl: String
+    let createDate: Double
+    var modifyDate: Double
 }

@@ -130,7 +130,11 @@ class EnrollStoreViewController: UIViewController {
         var data = Data()
         data = uploadImageData
         let now = Date()
-        let filePath = "images/\(self.userIdLabel.text ?? "userID")\(now.toString()).png"
+        
+        guard let key = self.ref.child("stores").childByAutoId().key
+        else { return }
+        
+        let filePath = "images/\(key)/\(self.userIdLabel.text ?? "userID")\(now.toString()).png"
         let metaData = StorageMetadata()
         metaData.contentType = "image/png"
         
@@ -141,10 +145,13 @@ class EnrollStoreViewController: UIViewController {
                 return
             }
             
-            guard let key = self.ref.child("stores").childByAutoId().key
-            else { return }
+
             
             let ratingFloorValue = Double(floor(self.starRatingSlider.value * 10)) / 10
+            
+            guard let imageKey = self.ref.child("images").childByAutoId().key
+            else { print("can't get imageKey"); return }
+            
             
             let store =
                 ["name": self.storeNameTextField.text ?? "noname",
@@ -159,20 +166,32 @@ class EnrollStoreViewController: UIViewController {
                  "telephone": (self.telephoneLabel.text ?? ""),
                  "address": addressString,
                  "commentCount": 1,
-                 "images": ["1": filePath]
+                 "images": [imageKey:
+                                ["imageUrl": filePath,
+                                 "createDate": now.toDouble(),
+                                 "modifyDate": now.toDouble()]]
                 ] as [String : Any]
             
             let childUpdates = ["stores/\(key)": store]
             self.ref.updateChildValues(childUpdates) { error, refAfterUpload  in
                 
+                guard let commentKey = self.ref.child("stores/\(key)/comments").childByAutoId().key
+                else { return }
+                
+                
                 let comments = [
                     "rating": ratingFloorValue,
                     "description": self.commentTextView?.text ?? "",
                     "userId": self.userIdLabel?.text ?? "unknown",
-                    "images": ["1": filePath]
+                    "images": [imageKey:
+                                   ["imageUrl": filePath,
+                                    "createDate": now.toDouble(),
+                                    "modifyDate": now.toDouble()]],
+                    "createDate": Date().toDouble(),
+                    "modifyDate": Date().toDouble()
                 ] as [String: Any]
                 
-                let secondChildUpdates = ["stores/\(key)/comments/1": comments]
+                let secondChildUpdates = ["stores/\(key)/comments/\(commentKey)": comments]
                 refAfterUpload.updateChildValues(secondChildUpdates)
                 
             }

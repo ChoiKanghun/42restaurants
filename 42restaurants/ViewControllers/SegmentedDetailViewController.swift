@@ -11,6 +11,16 @@ class SegmentedDetailViewController: UIViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    lazy var photosViewController: PhotosDetailSegmentViewController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "PhotosVC") as? PhotosDetailSegmentViewController
+        else {return PhotosDetailSegmentViewController()}
+        
+        self.addViewControllerAsChildViewController(viewController)
+        
+        return viewController
+    }()
+    
     lazy var reviewViewController: ReviewDetailSegmentViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let viewController = storyboard.instantiateViewController(withIdentifier: "ReviewVC") as? ReviewDetailSegmentViewController
@@ -21,10 +31,12 @@ class SegmentedDetailViewController: UIViewController {
         return viewController
     }()
     
-    lazy var photosViewController: PhotosDetailSegmentViewController = {
+    
+    
+    lazy var detailMapViewController: DetailMapViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        guard let viewController = storyboard.instantiateViewController(withIdentifier: "PhotosVC") as? PhotosDetailSegmentViewController
-        else {return PhotosDetailSegmentViewController()}
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "detailMapVC") as? DetailMapViewController
+        else { return DetailMapViewController() }
         
         self.addViewControllerAsChildViewController(viewController)
         
@@ -38,14 +50,19 @@ class SegmentedDetailViewController: UIViewController {
     }
     
     private func updateView() {
-        reviewViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 0)
-        photosViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 1)
+        
+        photosViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 0)
+        
+        reviewViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 1)
+        
+        detailMapViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 2)
     }
 
     private func setUpChildViews() {
         self.segmentedControl.removeAllSegments()
-        self.segmentedControl.insertSegment(withTitle: "reviews", at: 0, animated: true)
-        self.segmentedControl.insertSegment(withTitle: "photos", at: 1, animated: true)
+        self.segmentedControl.insertSegment(withTitle: "사진", at: 0, animated: true)
+        self.segmentedControl.insertSegment(withTitle: "리뷰", at: 1, animated: true)
+        self.segmentedControl.insertSegment(withTitle: "지도", at: 2, animated: true)
         segmentedControl.addTarget(self, action: #selector(selectionDidChange(sender:)), for: .valueChanged)
         
         segmentedControl.selectedSegmentIndex = 0

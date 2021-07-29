@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6nF-ni-EWJ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -371,7 +372,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m28-Cy-aOc">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m28-Cy-aOc">
                                                     <rect key="frame" x="20" y="21" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="TC0-Qc-Hyu"/>
@@ -977,6 +978,7 @@
                             <segments>
                                 <segment title="First"/>
                                 <segment title="Second"/>
+                                <segment title=""/>
                             </segments>
                         </segmentedControl>
                     </navigationItem>
@@ -988,6 +990,21 @@
             </objects>
             <point key="canvasLocation" x="5820" y="228"/>
         </scene>
+        <!--Detail Map View Controller-->
+        <scene sceneID="fQT-yJ-O0W">
+            <objects>
+                <viewController storyboardIdentifier="detailMapVC" id="ksT-fJ-Kd1" customClass="DetailMapViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R5D-mY-1Bb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="nni-w0-oxl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CF6-bb-vNu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5819" y="812"/>
+        </scene>
         <!--Photos Detail Segment View Controller-->
         <scene sceneID="eyZ-5S-bjf">
             <objects>
@@ -995,13 +1012,58 @@
                     <view key="view" contentMode="scaleToFill" id="fL3-k1-WT6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="49D-xh-bul">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PDg-Jo-k4E">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="detailPhotosCollectionViewCell" id="vzE-dv-jzI" customClass="DetailPhotosCollectionViewCell" customModule="_2restaurants" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qM5-Fm-bQS">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-IY-lUC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="leJ-IY-lUC" firstAttribute="leading" secondItem="qM5-Fm-bQS" secondAttribute="leading" id="irw-yz-rQJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="leJ-IY-lUC" secondAttribute="trailing" id="jLj-YL-Rt2"/>
+                                                <constraint firstItem="leJ-IY-lUC" firstAttribute="top" secondItem="qM5-Fm-bQS" secondAttribute="top" id="tgo-l2-AhD"/>
+                                                <constraint firstAttribute="bottom" secondItem="leJ-IY-lUC" secondAttribute="bottom" id="v4f-by-TcD"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageView" destination="leJ-IY-lUC" id="cTf-Th-20L"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="5Nc-yi-DB2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5Nc-yi-DB2" firstAttribute="trailing" secondItem="49D-xh-bul" secondAttribute="trailing" id="Aan-Xk-nB4"/>
+                            <constraint firstItem="5Nc-yi-DB2" firstAttribute="bottom" secondItem="49D-xh-bul" secondAttribute="bottom" id="Oid-J6-GhG"/>
+                            <constraint firstItem="49D-xh-bul" firstAttribute="leading" secondItem="5Nc-yi-DB2" secondAttribute="leading" id="hn7-XH-ZEj"/>
+                            <constraint firstItem="49D-xh-bul" firstAttribute="top" secondItem="5Nc-yi-DB2" secondAttribute="top" id="jtP-Jk-IHW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="49D-xh-bul" id="Icu-D7-YcU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWI-oy-g2Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6574" y="676"/>
+            <point key="canvasLocation" x="6476.811594202899" y="-106.47321428571428"/>
         </scene>
         <!--Review Detail Segment View Controller-->
         <scene sceneID="QVf-ly-LWp">
@@ -1029,7 +1091,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUD-Fw-8UV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6600" y="22"/>
+            <point key="canvasLocation" x="6477" y="571"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BGW-0y-MHN">

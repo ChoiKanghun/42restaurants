@@ -16,7 +16,7 @@ struct Comment: Codable {
     let rating: Double
     let description: String
     let userId: String
-    let images: Dictionary<String, String>
+    let images: [String: Image]?
     
 }
 

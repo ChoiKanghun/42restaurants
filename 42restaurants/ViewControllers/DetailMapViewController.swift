@@ -1,18 +1,18 @@
 //
-//  ReviewDetailSegmentViewController.swift
+//  DetailMapViewController.swift
 //  42restaurants
 //
-//  Created by 최강훈 on 2021/07/26.
+//  Created by 최강훈 on 2021/07/29.
 //
 
 import UIKit
 
-class ReviewDetailSegmentViewController: UIViewController {
+class DetailMapViewController: UIViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Do any additional setup after loading the view.
     }
     
 

@@ -16,7 +16,7 @@ struct StoreInfo: Codable {
     let name: String
     let latitude: Double
     let longtitude: Double
-    let rating: Double
+    var rating: Double
     let mainImage: String
     var images: [String: Image]
     let createDate: Double
@@ -25,6 +25,6 @@ struct StoreInfo: Codable {
     let enrollUser: String
     let telephone: String?
     let address: String?
-    let commentCount: Int
+    var commentCount: Int
     var comments: [String: Comment]
 }

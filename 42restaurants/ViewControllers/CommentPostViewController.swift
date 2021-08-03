@@ -23,13 +23,13 @@ class CommentPostViewController: UIViewController {
     
     let imagePicker = OpalImagePickerController()
     var imageSet = [UIImage]()
+    var images = [String]()
     let phImageManager = PHImageManager.default()
     let phImageOption = PHImageRequestOptions()
     
     var ref: DatabaseReference!
     let storage = Storage.storage()
     
-    var localCommentImageUrls = [String: Image]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,74 +126,58 @@ class CommentPostViewController: UIViewController {
     
     @IBAction func touchUpSubmitButton(_ sender: UIBarButtonItem) {
         
-        if let target = StoreSingleton.shared.store?.storeKey {
-            // 현재 가게의 comments 대한 ref
-            self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app/stores/\(target)").reference()
-        } else { print(" 리뷰 남기기 실패 "); return }
+        // 1. 필수 항목 비어 있으면 오류 처리하기.
+        guard let userId = self.userIdTextField.text,
+              let description = self.descriptionTextView.text
+        else { self.showBasicAlert(title: "내용을 입력하세요.", message: "내용은 필수 입력값입니다."); return}
+
+        // 2. db ref 설정.
+        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
+        // 3. 이미지가 있다면 이미지를 먼저 업로드.
+        
+        guard let storeKey = StoreSingleton.shared.store?.storeKey
+        else { fatalError("인터넷 연결 확인 필요") }
         
         
-        for (index, image) in imageSet.enumerated() {
+        for (index, image) in self.imageSet.enumerated() {
             guard let uploadImageData = image.jpegData(compressionQuality: 0.8)
-            else { print("error while converting image"); return }
+            else { self.showBasicAlert(title: "업로드 실패", message: "인터넷 연결 또는 이미지 형식을 확인해주세요"); return}
             
             var data = Data()
             data = uploadImageData
-            let filePath = "images/\(self.userIdTextField.text ?? "defaultUser")\(Date().toString()).png"
+            let filePath = "images/\(storeKey)/\(self.userIdTextField?.text ?? "defaultUser")\(Date().toString()).png"
             let metaData = StorageMetadata()
             metaData.contentType = "image/png"
             
-            self.storage.reference().child(filePath)
-                .putData(data, metadata: metaData) { [self] (metadata, error) in
+            // 올리기 시작
+            let uploadTask =
+                self.storage.reference().child("\(filePath)").putData(data, metadata: metaData) {
+                    [self] (metadata, error) in
                     
                     if let error = error {
                         print(error.localizedDescription)
-                        self.showBasicAlert(title: "에러", message: "이미지 업로드 도중 에러 발생")
+                        showBasicAlert(title: "이미지 업로드 실패", message: "인터넷 연결을 확인하세요")
                         return
                     }
-                    
-//                    self.localCommentImageUrls["\(index + 1)"] = filePath
-            }
-            
-            
-            
-        }
-
-        // 현재 ref는 storeKey: storeInfo 형태.
-        self.ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-            
-            if var uploadData = currentData.value as? StoreInfo,
-               let userId = self.userIdTextField.text {
-                let commentCount: Int = uploadData.comments.count
-                var comments = uploadData.comments
-//                comments["\(commentCount + 1)"] = Comment(
-//                    rating: Double(floor(self.starRatingSlider.value * 10) / 10),
-//                    description: self.descriptionTextView.text,
-//                    userId: userId,
-//                    images: )
-                uploadData.comments = comments
-                let storeImageCount = uploadData.images.count
-                var storeImages = uploadData.images
-                for (index, imageDict) in self.localCommentImageUrls.enumerated() {
-                    storeImages["\(index + 1 + storeImageCount)"] = imageDict.value
                 }
-                uploadData.images = storeImages
+            
+            let image = filePath
+            self.images.append(image)
+            
+            uploadTask.observe(.success) { snapshot in
+            
+                if index == self.imageSet.count {
+                    // 이미지를 모두 storage에 올린 뒤 작업 시작.
+                    
+                    
+                }
                 
-                currentData.value = uploadData
-                
-                return TransactionResult.success(withValue: currentData)
             }
-            return TransactionResult.success(withValue: currentData)
-        }) { error, committed, snapshot in
-            if let error = error {
-                print(error.localizedDescription)
-            }
+        
         }
-        
-        
-        
+    
     }
-    
-    
 
 }
 

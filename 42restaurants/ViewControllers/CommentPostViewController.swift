@@ -126,15 +126,15 @@ class CommentPostViewController: UIViewController {
     
     @IBAction func touchUpSubmitButton(_ sender: UIBarButtonItem) {
         
-        // 1. 필수 항목 비어 있으면 오류 처리하기.
+        // MARK: 1. 필수 항목 비어 있으면 오류 처리하기.
         guard let userId = self.userIdTextField.text,
               let description = self.descriptionTextView.text
         else { self.showBasicAlert(title: "내용을 입력하세요.", message: "내용은 필수 입력값입니다."); return}
 
-        // 2. db ref 설정.
+        // MARK: 2. db ref 설정.
         self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
-        // 3. 이미지가 있다면 이미지를 먼저 업로드.
+        // MARK: 3. 이미지가 있다면 이미지를 먼저 업로드.
         
         guard let storeKey = StoreSingleton.shared.store?.storeKey
         else { fatalError("인터넷 연결 확인 필요") }
@@ -146,7 +146,7 @@ class CommentPostViewController: UIViewController {
             
             var data = Data()
             data = uploadImageData
-            let filePath = "images/\(storeKey)/\(self.userIdTextField?.text ?? "defaultUser")\(Date().toString()).png"
+            let filePath = "images/\(storeKey)/\(UUID().uuidString)\(Date().toString()).png"
             let metaData = StorageMetadata()
             metaData.contentType = "image/png"
             
@@ -167,18 +167,80 @@ class CommentPostViewController: UIViewController {
             
             uploadTask.observe(.success) { snapshot in
             
-                if index == self.imageSet.count {
-                    // 이미지를 모두 storage에 올린 뒤 작업 시작.
+                if index == self.imageSet.count - 1 {
+                    // MARK: 4. 이미지를 모두 storage에 올렸다면 comment올리기 시작.
                     
+                    guard let newCommentKey = self.ref.child("stores/\(storeKey)/comments").childByAutoId().key
+                    else { print("can't get childByAutoId comment"); return }
+                    
+                    self.ref.child("stores/\(storeKey)/comments/\(newCommentKey)").setValue (
+                        ["rating": Double(floor(self.starRatingSlider.value * 10) / 10),
+                         "description": description,
+                         "userId": userId,
+                         "createDate": Date().toDouble(),
+                         "modifyDate": Date().toDouble()
+                        ]
+                    ) {
+                        (error: Error?, ref: DatabaseReference) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            // MARK: 5. comment 후 comment 밑에 images 정보 등록.
+                            var uploadImages = Dictionary<String, Any>()
+                            for image in self.images {
+                                if let autoKey: String = ref.child("images").childByAutoId().key {
+                                    
+                                    uploadImages[autoKey] = [
+                                        "createDate": Date().toDouble(),
+                                        "modifyDate": Date().toDouble(),
+                                        "imageUrl": image
+                                    ]
+                                }
+                            }
+                            ref.child("images").setValue(uploadImages) {
+                                (error: Error?, ref: DatabaseReference) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                }
+                            }
+                            
+                            // MARK: 6. 해당 store/images 정보 등록.
+                            uploadImages = Dictionary<String, String>()
+                            
+                            let storeImageRef = self.ref.child("stores/\(storeKey)/images")
+                            
+                            for image in self.images {
+                                if let autoKey: String = storeImageRef.childByAutoId().key {
+                                    uploadImages[autoKey] = [
+                                        "createDate": Date().toDouble(),
+                                        "modifyDate": Date().toDouble(),
+                                        "imageUrl": image
+                                    ]
+                                }
+                            }
+                            
+                            // 이전의 데이터 + 현재 데이터를 post해야 하므로.
+                            // runTransactionalBlock을 씀.
+                            self.ref.child("stores/\(storeKey)/images").runTransactionBlock ({ (currentData: MutableData) -> TransactionResult in
+                                    
+                                if var post = currentData.value as? [String: Any] {
+                                    for (key, value) in uploadImages {
+                                        post[key] = value
+                                    }
+                                    currentData.value = post
+                                    
+                                    return TransactionResult.success(withValue: currentData)
+                                }
+                                    return TransactionResult.success(withValue: currentData)
+                                })
+                            }
+                        }
+                    }
                     
                 }
                 
             }
-        
-        }
-    
     }
-
 }
 
 

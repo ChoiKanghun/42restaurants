@@ -9,6 +9,7 @@ import UIKit
 import OpalImagePicker
 import Photos
 import Firebase
+import CodableFirebase
 
 class CommentPostViewController: UIViewController {
 
@@ -140,106 +141,145 @@ class CommentPostViewController: UIViewController {
         else { fatalError("인터넷 연결 확인 필요") }
         
         
-        for (index, image) in self.imageSet.enumerated() {
-            guard let uploadImageData = image.jpegData(compressionQuality: 0.8)
-            else { self.showBasicAlert(title: "업로드 실패", message: "인터넷 연결 또는 이미지 형식을 확인해주세요"); return}
+        if self.imageSet.count != 0 {
             
-            var data = Data()
-            data = uploadImageData
-            let filePath = "images/\(storeKey)/\(UUID().uuidString)\(Date().toString()).png"
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/png"
-            
-            // 올리기 시작
-            let uploadTask =
-                self.storage.reference().child("\(filePath)").putData(data, metadata: metaData) {
-                    [self] (metadata, error) in
-                    
-                    if let error = error {
-                        print(error.localizedDescription)
-                        showBasicAlert(title: "이미지 업로드 실패", message: "인터넷 연결을 확인하세요")
-                        return
-                    }
-                }
-            
-            let image = filePath
-            self.images.append(image)
-            
-            uploadTask.observe(.success) { snapshot in
-            
-                if index == self.imageSet.count - 1 {
-                    // MARK: 4. 이미지를 모두 storage에 올렸다면 comment올리기 시작.
-                    
-                    guard let newCommentKey = self.ref.child("stores/\(storeKey)/comments").childByAutoId().key
-                    else { print("can't get childByAutoId comment"); return }
-                    
-                    self.ref.child("stores/\(storeKey)/comments/\(newCommentKey)").setValue (
-                        ["rating": Double(floor(self.starRatingSlider.value * 10) / 10),
-                         "description": description,
-                         "userId": userId,
-                         "createDate": Date().toDouble(),
-                         "modifyDate": Date().toDouble()
-                        ]
-                    ) {
-                        (error: Error?, ref: DatabaseReference) in
+            for (index, image) in self.imageSet.enumerated() {
+                guard let uploadImageData = image.jpegData(compressionQuality: 0.8)
+                else { self.showBasicAlert(title: "업로드 실패", message: "인터넷 연결 또는 이미지 형식을 확인해주세요"); return}
+                
+                var data = Data()
+                data = uploadImageData
+                let filePath = "images/\(storeKey)/\(UUID().uuidString)\(Date().toString()).png"
+                let metaData = StorageMetadata()
+                metaData.contentType = "image/png"
+                
+                // 올리기 시작
+                let uploadTask =
+                    self.storage.reference().child("\(filePath)").putData(data, metadata: metaData) {
+                        [self] (metadata, error) in
+                        
                         if let error = error {
                             print(error.localizedDescription)
-                        } else {
-                            // MARK: 5. comment 후 comment 밑에 images 정보 등록.
-                            var uploadImages = Dictionary<String, Any>()
-                            for image in self.images {
-                                if let autoKey: String = ref.child("images").childByAutoId().key {
-                                    
-                                    uploadImages[autoKey] = [
-                                        "createDate": Date().toDouble(),
-                                        "modifyDate": Date().toDouble(),
-                                        "imageUrl": image
-                                    ]
-                                }
-                            }
-                            ref.child("images").setValue(uploadImages) {
-                                (error: Error?, ref: DatabaseReference) in
-                                if let error = error {
-                                    print(error.localizedDescription)
-                                }
-                            }
-                            
-                            // MARK: 6. 해당 store/images 정보 등록.
-                            uploadImages = Dictionary<String, String>()
-                            
-                            let storeImageRef = self.ref.child("stores/\(storeKey)/images")
-                            
-                            for image in self.images {
-                                if let autoKey: String = storeImageRef.childByAutoId().key {
-                                    uploadImages[autoKey] = [
-                                        "createDate": Date().toDouble(),
-                                        "modifyDate": Date().toDouble(),
-                                        "imageUrl": image
-                                    ]
-                                }
-                            }
-                            
-                            // 이전의 데이터 + 현재 데이터를 post해야 하므로.
-                            // runTransactionalBlock을 씀.
-                            self.ref.child("stores/\(storeKey)/images").runTransactionBlock ({ (currentData: MutableData) -> TransactionResult in
-                                    
-                                if var post = currentData.value as? [String: Any] {
-                                    for (key, value) in uploadImages {
-                                        post[key] = value
+                            showBasicAlert(title: "이미지 업로드 실패", message: "인터넷 연결을 확인하세요")
+                            return
+                        }
+                    }
+                
+                let image = filePath
+                self.images.append(image)
+                
+                uploadTask.observe(.success) { snapshot in
+                
+                    if index == self.imageSet.count - 1 {
+                        // MARK: 4. 이미지를 모두 storage에 올렸다면 comment올리기 시작.
+                        
+                        guard let newCommentKey = self.ref.child("stores/\(storeKey)/comments").childByAutoId().key
+                        else { print("can't get childByAutoId comment"); return }
+                        
+                        self.ref.child("stores/\(storeKey)/comments/\(newCommentKey)").setValue (
+                            ["rating": Double(floor(self.starRatingSlider.value * 10) / 10),
+                             "description": description,
+                             "userId": userId,
+                             "createDate": Date().toDouble(),
+                             "modifyDate": Date().toDouble()
+                            ]
+                        ) {
+                            (error: Error?, ref: DatabaseReference) in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            } else {
+                                // MARK: 5. comment 후 comment 밑에 images 정보 등록.
+                                var uploadImages = Dictionary<String, Any>()
+                                for image in self.images {
+                                    if let autoKey: String = ref.child("images").childByAutoId().key {
+                                        
+                                        uploadImages[autoKey] = [
+                                            "createDate": Date().toDouble(),
+                                            "modifyDate": Date().toDouble(),
+                                            "imageUrl": image
+                                        ]
                                     }
-                                    currentData.value = post
-                                    
-                                    return TransactionResult.success(withValue: currentData)
                                 }
-                                    return TransactionResult.success(withValue: currentData)
-                                })
+                                ref.child("images").setValue(uploadImages) {
+                                    (error: Error?, ref: DatabaseReference) in
+                                    if let error = error {
+                                        print(error.localizedDescription)
+                                    }
+                                }
+                                
+                                // MARK: 6. 해당 store/images 정보 등록.
+                                uploadImages = Dictionary<String, String>()
+                                
+                                let storeImageRef = self.ref.child("stores/\(storeKey)/images")
+                                
+                                for image in self.images {
+                                    if let autoKey: String = storeImageRef.childByAutoId().key {
+                                        uploadImages[autoKey] = [
+                                            "createDate": Date().toDouble(),
+                                            "modifyDate": Date().toDouble(),
+                                            "imageUrl": image
+                                        ]
+                                    }
+                                }
+                                
+                                // 이전의 데이터 + 현재 데이터를 post해야 하므로.
+                                // runTransactionalBlock을 씀.
+                                self.ref.child("stores/\(storeKey)/images").runTransactionBlock ({ (currentData: MutableData) -> TransactionResult in
+                                        
+                                    if var post = currentData.value as? [String: Any] {
+                                        for (key, value) in uploadImages {
+                                            post[key] = value
+                                        }
+                                        currentData.value = post
+                                        
+                                        return TransactionResult.success(withValue: currentData)
+                                    }
+                                        return TransactionResult.success(withValue: currentData)
+                                    })
+                                }
                             }
                         }
+                        
                     }
                     
                 }
-                
+        } else { // if there's no image
+            guard let newCommentKey = self.ref.child("stores/\(storeKey)/comments").childByAutoId().key
+            else { print("can't get childByAutoId comment"); return }
+            
+            self.ref.child("stores/\(storeKey)/comments/\(newCommentKey)").setValue (
+                ["rating": Double(floor(self.starRatingSlider.value * 10) / 10),
+                 "description": description,
+                 "userId": userId,
+                 "createDate": Date().toDouble(),
+                 "modifyDate": Date().toDouble()
+                ]
+            )
+        }
+        
+        self.ref.child("stores/\(storeKey)").getData { (error, snapshot) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            } else if snapshot.exists() {
+                guard let value = snapshot.value else { return }
+                do {
+                    let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
+                    let commentCount = storeData.comments.count
+                    var sumOfRatings: Double = 0
+                    for comment in storeData.comments {
+                        sumOfRatings += comment.value.rating
+                    }
+                    let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10) / 10)
+                    self.ref.child("stores/\(storeKey)/rating").setValue(rating)
+                    self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
+                    
+                } catch let err {
+                    print(err.localizedDescription)
+                }
             }
+            
+        }
     }
 }
 

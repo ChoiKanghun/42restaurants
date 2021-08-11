@@ -37,6 +37,8 @@
 		7AE780C826AECE8C00B507DE /* StoreSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780C726AECE8C00B507DE /* StoreSingleton.swift */; };
 		7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780C926AED58600B507DE /* CommentPostViewController.swift */; };
 		7AE780CD26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */; };
+		7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7E12926C2943A002536E1 /* ReviewTableViewCell.swift */; };
+		7AE7E12C26C295BB002536E1 /* ReviewImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */; };
 		7AF6615626AFECC300D405E0 /* StarRatingUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF6615526AFECC300D405E0 /* StarRatingUISlider.swift */; };
 		7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF6615726B0F0F200D405E0 /* Comments.swift */; };
 		90B5FA16283B087FDD41F64E /* Pods_42restaurantsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196D7E9FDF15295C6B5DDCB /* Pods_42restaurantsTests.framework */; };
@@ -100,6 +102,8 @@
 		7AE780C726AECE8C00B507DE /* StoreSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSingleton.swift; sourceTree = "<group>"; };
 		7AE780C926AED58600B507DE /* CommentPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostViewController.swift; sourceTree = "<group>"; };
 		7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetCollectionViewCell.swift; sourceTree = "<group>"; };
+		7AE7E12926C2943A002536E1 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		7AF6615526AFECC300D405E0 /* StarRatingUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingUISlider.swift; sourceTree = "<group>"; };
 		7AF6615726B0F0F200D405E0 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		C58F0847EC9A21030961B146 /* Pods_42restaurants_42restaurantsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_42restaurants_42restaurantsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				7AE780BB26ABB7B100B507DE /* StoreTableViewCell.swift */,
+				7AE7E12926C2943A002536E1 /* ReviewTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			children = (
 				7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */,
 				7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */,
+				7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -563,10 +569,12 @@
 				7A34E4EC26A6B50600254C11 /* PickCoordinateViewController.swift in Sources */,
 				7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */,
 				7AE780C026AE605A00B507DE /* ReviewDetailSegmentViewController.swift in Sources */,
+				7AE7E12C26C295BB002536E1 /* ReviewImageCollectionViewCell.swift in Sources */,
 				7AE780C826AECE8C00B507DE /* StoreSingleton.swift in Sources */,
 				7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
+				7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */,
 				7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,
 			);

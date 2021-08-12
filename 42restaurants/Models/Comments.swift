@@ -17,6 +17,7 @@ struct Comment: Codable {
     let description: String
     let userId: String
     let images: [String: Image]?
-    
+    let createDate: Double
+    var modifyDate: Double
 }
 

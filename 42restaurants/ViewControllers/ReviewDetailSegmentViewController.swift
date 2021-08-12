@@ -12,9 +12,10 @@ import CodableFirebase
 class ReviewDetailSegmentViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
 
-    private var _comments = [String: Comment]()
-    var comments: [String: Comment] {
+    private var _comments = [Comment]()
+    var comments: [Comment] {
         get {
             return _comments
         }
@@ -52,7 +53,7 @@ class ReviewDetailSegmentViewController: UIViewController {
                     guard let value = snapshot.value else { return }
                     do {
                         let commentsData = try FirebaseDecoder().decode([String: Comment].self, from: value)
-                        self.comments = commentsData
+                        self.comments = commentsData.values.sorted(by:  { $0.createDate < $1.createDate } )
                     } catch let err {
                         print(err.localizedDescription)
                     }
@@ -78,8 +79,16 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.reuseIdentifier, for: indexPath) as? ReviewTableViewCell
         else { return UITableViewCell() }
 
+        if let imageDictionary = self.comments[indexPath.row].images {
+            let images = imageDictionary.map { $0.value }
+            cell.images = images
+        } else {
+            cell.images = []
+        }
         
-        
+        cell.userIdLabel?.text = self.comments[indexPath.row].userId
+        cell.descriptionLabel?.text = self.comments[indexPath.row].description
+        cell.ratingLabel?.text = "\(self.comments[indexPath.row].rating)"
         
         return cell
     }

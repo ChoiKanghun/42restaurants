@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ReviewTableViewCell: UITableViewCell {
 
@@ -13,9 +14,17 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var userIdLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     
-    private var _images = [UIImage]()
-    var images: [UIImage] {
+    @IBOutlet weak var toLeftImageView: UIImageView!
+    @IBOutlet weak var toRightImageView: UIImageView!
+    
+    let storage = Storage.storage()
+    
+    private var _images = [Image]()
+    var images: [Image] {
         get {
             return _images
         }
@@ -24,19 +33,30 @@ class ReviewTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 if self._images.count == 0 {
                     self.collectionViewHeight.constant = 0
+                    self.toLeftImageView.isHidden = true
+                    self.toRightImageView.isHidden = true
                 } else {
                     self.collectionViewHeight.constant = 200
+                    print(self._images.count)
+                    if self._images.count > 1 {
+                        self.toLeftImageView.isHidden = false
+                        self.toRightImageView.isHidden = false
+                    } else {
+                        self.toLeftImageView.isHidden = true
+                        self.toRightImageView.isHidden = true
+                    }
                 }
                 self.collectionView.reloadData()
             }
         }
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+    override func awakeFromNib() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        self.toLeftImageView.isHidden = true
+        self.toRightImageView.isHidden = true
         
         self.collectionView.collectionViewLayout = createLayout()
     }
@@ -56,10 +76,6 @@ class ReviewTableViewCell: UITableViewCell {
         }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
 
 extension ReviewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -73,8 +89,10 @@ extension ReviewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
 
         let image = self.images[indexPath.row]
         
-        cell.imageView?.image = image
-        
+        let storageRef = storage.reference()
+        let reference = storageRef.child("\(image.imageUrl)")
+        cell.imageView.sd_setImage(with: reference, placeholderImage:
+                                    UIImage(named: "placeholder.jpg"))
         return cell
     }
     

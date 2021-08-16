@@ -16,6 +16,13 @@ class MainMapViewController: UIViewController {
 
     @IBOutlet weak var mapView: NMFMapView!
     
+    // pop up view IBOutlets
+    @IBOutlet weak var popUpImageView: UIImageView!
+    @IBOutlet weak var popUpStoreNameLabel: UILabel!
+    @IBOutlet weak var popUpRatingLabel: UILabel!
+    @IBOutlet weak var popUpCommentCountLabel: UILabel!
+    @IBOutlet weak var popUpView: UIView!
+    
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -32,7 +39,10 @@ class MainMapViewController: UIViewController {
     
     var stores = [Store]()
 
-    // 특정 객체를 지도에서 선택했을 때 
+    // 특정 객체를 지도에서 선택했을 때 이벤트
+    var handler: NMFOverlayTouchHandler = { overlay -> Bool in
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +51,30 @@ class MainMapViewController: UIViewController {
         self.mapView.positionMode = .normal
             
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
+        self.mapView.touchDelegate = self
+        self.popUpView.isHidden = true
+        self.handler = { (overlay) -> Bool in
+            
+            self.popUpView.isHidden = false
+            if let storeName = overlay.userInfo["storeName"] as? String,
+               let rating = overlay.userInfo["rating"] as? String,
+               let commentCount = overlay.userInfo["commentCount"] as? String,
+               let imageUrl = overlay.userInfo["imageUrl"] as? String {
+                
+                let storageRef = self.storage.reference()
+                let imageRef = storageRef.child("\(imageUrl)")
+                DispatchQueue.main.async {
+                    self.popUpStoreNameLabel.text = storeName
+                    self.popUpRatingLabel.text = rating
+                    self.popUpCommentCountLabel.text = "방문자리뷰 \(commentCount)"
+                    self.popUpImageView.sd_setImage(with: imageRef)
+                }
+            } else {
+                print("coverting error")
+            }
+            return true
+        }
         
         self.ref.child("stores").getData{ (error, snapshot) in
         
@@ -62,9 +96,10 @@ class MainMapViewController: UIViewController {
             }
             
         }
+        
+        
     }
     
-
 
 
 }
@@ -137,10 +172,11 @@ extension MainMapViewController: CLLocationManagerDelegate {
             markers.append(marker)
             marker.width = 40
             marker.height = 40
-            marker.touchHandler = { (overlay: NMFOverlay) -> Bool in
-                print("마커 터치")
-                return true
-            }
+            marker.userInfo = ["storeName": element.storeInfo.name,
+                               "rating": "\(element.storeInfo.rating)",
+                               "commentCount": "\(element.storeInfo.commentCount)",
+                               "imageUrl": element.storeInfo.mainImage]
+            marker.touchHandler = self.handler
             DispatchQueue.main.async {
                 if let imageName: String = Category.init(rawValue: element.storeInfo.category)?.imageName {
                     marker.iconImage = NMFOverlayImage(name: "\(imageName)")
@@ -162,4 +198,10 @@ extension MainMapViewController: CLLocationManagerDelegate {
 }
 
 
-
+extension MainMapViewController: NMFMapViewTouchDelegate {
+    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
+        DispatchQueue.main.async {
+            self.popUpView.isHidden = true
+        }
+    }
+}

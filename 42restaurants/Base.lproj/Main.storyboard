@@ -997,9 +997,24 @@
                     <view key="view" contentMode="scaleToFill" id="R5D-mY-1Bb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHT-BD-Pf0" customClass="NMFMapView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="nni-w0-oxl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nni-w0-oxl" firstAttribute="trailing" secondItem="eHT-BD-Pf0" secondAttribute="trailing" id="0Tq-Lf-nyC"/>
+                            <constraint firstItem="eHT-BD-Pf0" firstAttribute="leading" secondItem="nni-w0-oxl" secondAttribute="leading" id="31Z-gS-nLD"/>
+                            <constraint firstItem="nni-w0-oxl" firstAttribute="bottom" secondItem="eHT-BD-Pf0" secondAttribute="bottom" id="Jni-I0-c3L"/>
+                            <constraint firstItem="eHT-BD-Pf0" firstAttribute="top" secondItem="nni-w0-oxl" secondAttribute="top" id="nBH-bw-3KI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="eHT-BD-Pf0" id="J0i-ff-KUo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CF6-bb-vNu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1145,8 +1160,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowtriangle.right.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zc7-MP-pja">
-                                                    <rect key="frame" x="364" y="86" width="30" height="27.5"/>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swipe" translatesAutoresizingMaskIntoConstraints="NO" id="Zc7-MP-pja">
+                                                    <rect key="frame" x="364" y="85" width="30" height="30"/>
                                                     <color key="tintColor" systemColor="systemTealColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="HGI-XM-kfH"/>
@@ -1241,11 +1256,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowtriangle.right.square.fill" catalog="system" width="128" height="114"/>
         <image name="camera.on.rectangle.fill" catalog="system" width="128" height="96"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="star16px" width="32" height="32"/>
         <image name="star_full_48px" width="48" height="48"/>
+        <image name="swipe" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

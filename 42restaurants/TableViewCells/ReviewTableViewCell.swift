@@ -18,7 +18,6 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     
-    @IBOutlet weak var toLeftImageView: UIImageView!
     @IBOutlet weak var toRightImageView: UIImageView!
     
     let storage = Storage.storage()
@@ -33,16 +32,12 @@ class ReviewTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 if self._images.count == 0 {
                     self.collectionViewHeight.constant = 0
-                    self.toLeftImageView.isHidden = true
                     self.toRightImageView.isHidden = true
                 } else {
                     self.collectionViewHeight.constant = 200
-                    print(self._images.count)
                     if self._images.count > 1 {
-                        self.toLeftImageView.isHidden = false
                         self.toRightImageView.isHidden = false
                     } else {
-                        self.toLeftImageView.isHidden = true
                         self.toRightImageView.isHidden = true
                     }
                 }
@@ -54,9 +49,6 @@ class ReviewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
-        self.toLeftImageView.isHidden = true
-        self.toRightImageView.isHidden = true
         
         self.collectionView.collectionViewLayout = createLayout()
     }
@@ -95,7 +87,6 @@ extension ReviewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
                                     UIImage(named: "placeholder.jpg"))
         return cell
     }
-    
     
 }
 

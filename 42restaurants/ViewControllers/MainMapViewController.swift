@@ -30,9 +30,10 @@ class MainMapViewController: UIViewController {
     var ref: DatabaseReference!
     let storage = Storage.storage()
     
-    
     var stores = [Store]()
 
+    // 특정 객체를 지도에서 선택했을 때 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,13 +103,6 @@ extension MainMapViewController: CLLocationManagerDelegate {
 
         
         
-//        let infoWindow = NMFInfoWindow()
-//        let dataSource = NMFInfoWindowDefaultTextSource.data()
-//        dataSource.title = "test"
-//        infoWindow.dataSource = dataSource
-//        infoWindow.open(with: marker)
-//
-
 
     }
     
@@ -143,6 +137,10 @@ extension MainMapViewController: CLLocationManagerDelegate {
             markers.append(marker)
             marker.width = 40
             marker.height = 40
+            marker.touchHandler = { (overlay: NMFOverlay) -> Bool in
+                print("마커 터치")
+                return true
+            }
             DispatchQueue.main.async {
                 if let imageName: String = Category.init(rawValue: element.storeInfo.category)?.imageName {
                     marker.iconImage = NMFOverlayImage(name: "\(imageName)")
@@ -157,13 +155,11 @@ extension MainMapViewController: CLLocationManagerDelegate {
             }
             
         }
-        
-//        for marker in markers {
-//            marker.mapView = self.mapView
-//        }
-        
-        
-        
+
         
     }
+    
 }
+
+
+

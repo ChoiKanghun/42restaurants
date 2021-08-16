@@ -93,5 +93,4 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
         return cell
     }
     
-    
 }

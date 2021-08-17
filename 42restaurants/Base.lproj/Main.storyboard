@@ -31,27 +31,31 @@
                                                     <constraint firstAttribute="height" constant="130" id="ytL-4A-52F"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-Q8-d8P">
-                                                <rect key="frame" x="160" y="10" width="234" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="textColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="store" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-Q8-d8P">
+                                                <rect key="frame" x="160" y="10" width="234" height="26.5"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                <color key="textColor" systemColor="linkColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Zti-3Q-31P" appends="YES" id="zGI-fH-0Nj"/>
+                                                </connections>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="방문자리뷰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIA-81-bDk">
-                                                <rect key="frame" x="160" y="75" width="234" height="19.5"/>
+                                                <rect key="frame" x="160" y="77.5" width="234" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star16px" translatesAutoresizingMaskIntoConstraints="NO" id="DJK-yc-LtL">
-                                                <rect key="frame" x="160" y="45" width="20" height="20"/>
+                                                <rect key="frame" x="160" y="47.5" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="myh-kJ-nPC"/>
                                                     <constraint firstAttribute="height" constant="20" id="saq-s9-cnl"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYD-8K-KMq">
-                                                <rect key="frame" x="190" y="44" width="204" height="21"/>
+                                                <rect key="frame" x="190" y="46.5" width="204" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -95,11 +99,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="apJ-Wj-edM">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="zVq-yj-77s">
-                            <connections>
-                                <segue destination="J4k-3u-aEz" kind="show" id="Xk7-tm-V08"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="zVq-yj-77s"/>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="5Yb-Zp-yqK" id="Lgw-LH-DTd"/>
@@ -111,8 +111,30 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GQ2-c1-iP7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Zti-3Q-31P">
+                    <connections>
+                        <action selector="touchUpPopView:" destination="llJ-eM-Owg" id="GCI-28-5gG"/>
+                        <segue destination="e6o-kx-O68" kind="show" id="ytu-aC-gG0"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1849.2753623188407" y="-1083.4821428571429"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="0bM-eF-ycg">
+            <objects>
+                <viewController id="e6o-kx-O68" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZBQ-nX-lrD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="VzK-jc-b7c"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="O4j-5t-liA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bw4-Uf-fXp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2687" y="-1083"/>
         </scene>
         <!--Enroll Store View Controller-->
         <scene sceneID="l5O-tQ-5gf">
@@ -123,7 +145,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b00-9O-L70">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oyX-rK-5pd">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -401,7 +423,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2828.985507246377" y="-1083.4821428571429"/>
+            <point key="canvasLocation" x="1564" y="364"/>
         </scene>
         <!--Item-->
         <scene sceneID="omD-Ud-rAd">
@@ -417,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Clh-Hd-Pq9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="270"/>
+            <point key="canvasLocation" x="771" y="350"/>
         </scene>
         <!--List Store View Controller-->
         <scene sceneID="x3B-9b-iLm">
@@ -539,7 +561,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74n-ui-gCx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847.826086956522" y="-417.1875"/>
+            <point key="canvasLocation" x="1849" y="-417"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="k0c-hx-RNV">
@@ -946,37 +968,37 @@
             <objects>
                 <viewController id="Abn-wF-OzR" customClass="PickCoordinateViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A4y-Ki-pxD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위, 경도 좌표" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmw-Vg-FST">
-                                <rect key="frame" x="0.0" y="138" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1I-tb-oO0">
-                                <rect key="frame" x="374" y="98" width="30" height="30"/>
+                                <rect key="frame" x="374" y="10" width="30" height="30"/>
                                 <state key="normal" title="확인"/>
                                 <connections>
                                     <action selector="touchUpSubmitButton:" destination="Abn-wF-OzR" eventType="touchUpInside" id="fxH-vF-fuQ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가게 위치 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oG-MU-Q3D">
-                                <rect key="frame" x="152.5" y="98" width="109" height="23"/>
+                                <rect key="frame" x="152.5" y="10" width="109" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24s-4Q-TAR">
-                                <rect key="frame" x="10" y="98" width="30" height="30"/>
+                                <rect key="frame" x="10" y="10" width="30" height="30"/>
                                 <state key="normal" title="취소"/>
                                 <connections>
                                     <action selector="touchUpCancelButton:" destination="Abn-wF-OzR" eventType="touchUpInside" id="O6C-p4-cw2"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNb-Ko-xno" customClass="NMFMapView">
-                                <rect key="frame" x="0.0" y="159" width="414" height="654"/>
+                                <rect key="frame" x="0.0" y="71" width="414" height="737"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                             </view>
                         </subviews>
@@ -1006,7 +1028,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbj-kR-NHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3629" y="-1083"/>
+            <point key="canvasLocation" x="2364" y="364"/>
         </scene>
         <!--Item-->
         <scene sceneID="O2f-2H-SEz">
@@ -1330,6 +1352,9 @@
         <image name="swipe" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -57,10 +57,14 @@ class MainMapViewController: UIViewController {
         self.handler = { (overlay) -> Bool in
             
             self.popUpView.isHidden = false
+            
             if let storeName = overlay.userInfo["storeName"] as? String,
                let rating = overlay.userInfo["rating"] as? String,
                let commentCount = overlay.userInfo["commentCount"] as? String,
-               let imageUrl = overlay.userInfo["imageUrl"] as? String {
+               let imageUrl = overlay.userInfo["imageUrl"] as? String,
+               let store = overlay.userInfo["store"] as? Store {
+                
+                MainTabStoreSingleton.shared.store = store
                 
                 let storageRef = self.storage.reference()
                 let imageRef = storageRef.child("\(imageUrl)")
@@ -100,7 +104,10 @@ class MainMapViewController: UIViewController {
         
     }
     
-
+    @IBAction func touchUpPopView(_ sender: Any) {
+        print("u and iII~~~")
+    }
+    
 
 }
 
@@ -175,7 +182,8 @@ extension MainMapViewController: CLLocationManagerDelegate {
             marker.userInfo = ["storeName": element.storeInfo.name,
                                "rating": "\(element.storeInfo.rating)",
                                "commentCount": "\(element.storeInfo.commentCount)",
-                               "imageUrl": element.storeInfo.mainImage]
+                               "imageUrl": element.storeInfo.mainImage,
+                               "store": element]
             marker.touchHandler = self.handler
             DispatchQueue.main.async {
                 if let imageName: String = Category.init(rawValue: element.storeInfo.category)?.imageName {

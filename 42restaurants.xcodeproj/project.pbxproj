@@ -39,6 +39,8 @@
 		7AE780CD26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */; };
 		7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7E12926C2943A002536E1 /* ReviewTableViewCell.swift */; };
 		7AE7E12C26C295BB002536E1 /* ReviewImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */; };
+		7AE7E13226CB33EA002536E1 /* MainListStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7E13126CB33EA002536E1 /* MainListStoreViewController.swift */; };
+		7AE7E13626CB35FD002536E1 /* MainTabStoreSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7E13526CB35FD002536E1 /* MainTabStoreSingleton.swift */; };
 		7AF6615626AFECC300D405E0 /* StarRatingUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF6615526AFECC300D405E0 /* StarRatingUISlider.swift */; };
 		7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF6615726B0F0F200D405E0 /* Comments.swift */; };
 		90B5FA16283B087FDD41F64E /* Pods_42restaurantsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196D7E9FDF15295C6B5DDCB /* Pods_42restaurantsTests.framework */; };
@@ -104,6 +106,8 @@
 		7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetCollectionViewCell.swift; sourceTree = "<group>"; };
 		7AE7E12926C2943A002536E1 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		7AE7E13126CB33EA002536E1 /* MainListStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListStoreViewController.swift; sourceTree = "<group>"; };
+		7AE7E13526CB35FD002536E1 /* MainTabStoreSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabStoreSingleton.swift; sourceTree = "<group>"; };
 		7AF6615526AFECC300D405E0 /* StarRatingUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingUISlider.swift; sourceTree = "<group>"; };
 		7AF6615726B0F0F200D405E0 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		C58F0847EC9A21030961B146 /* Pods_42restaurants_42restaurantsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_42restaurants_42restaurantsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				7A34E4E726A6808E00254C11 /* MainMapViewController.swift */,
+				7AE7E13126CB33EA002536E1 /* MainListStoreViewController.swift */,
 				7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */,
 				7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */,
 				7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */,
@@ -277,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				7AE780C726AECE8C00B507DE /* StoreSingleton.swift */,
+				7AE7E13526CB35FD002536E1 /* MainTabStoreSingleton.swift */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -553,6 +559,7 @@
 			files = (
 				7AE780B926ABB65F00B507DE /* ListStoreViewController.swift in Sources */,
 				7A34E4E826A6808E00254C11 /* MainMapViewController.swift in Sources */,
+				7AE7E13226CB33EA002536E1 /* MainListStoreViewController.swift in Sources */,
 				7AE780CD26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift in Sources */,
 				7A1D23BF26A67BB000F8E7E2 /* AppDelegate.swift in Sources */,
 				7AE780BC26ABB7B100B507DE /* StoreTableViewCell.swift in Sources */,
@@ -576,6 +583,7 @@
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
 				7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */,
 				7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */,
+				7AE7E13626CB35FD002536E1 /* MainTabStoreSingleton.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

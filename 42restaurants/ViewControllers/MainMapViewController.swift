@@ -23,6 +23,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var popUpCommentCountLabel: UILabel!
     @IBOutlet weak var popUpView: UIView!
     
+    
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -104,8 +105,10 @@ class MainMapViewController: UIViewController {
         
     }
     
-    @IBAction func touchUpPopView(_ sender: Any) {
-        print("u and iII~~~")
+    @IBAction func touchUpPopUpViewLabel(_ sender: UITapGestureRecognizer) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MainStoreDetailViewController")
+        present(viewController, animated: true)
     }
     
 

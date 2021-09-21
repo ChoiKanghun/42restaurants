@@ -220,17 +220,10 @@
 		7A34E4E626A6800A00254C11 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7A34E4E726A6808E00254C11 /* MainMapViewController.swift */,
-				7AE7E13126CB33EA002536E1 /* MainListStoreViewController.swift */,
+				7A73EF1D26F9AAD600BC3A09 /* SecondTabBar */,
+				7A73EF1C26F9AAB200BC3A09 /* MainTabBar */,
 				7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */,
 				7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */,
-				7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */,
-				7AE780C326AE6D1300B507DE /* DetailViewController.swift */,
-				7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */,
-				7AE780C126AE60B200B507DE /* PhotosDetailSegmentViewController.swift */,
-				7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */,
-				7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */,
-				7AE780C926AED58600B507DE /* CommentPostViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -261,6 +254,29 @@
 				7A34E51426A7E27F00254C11 /* Category.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		7A73EF1C26F9AAB200BC3A09 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7A34E4E726A6808E00254C11 /* MainMapViewController.swift */,
+				7AE7E13126CB33EA002536E1 /* MainListStoreViewController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		7A73EF1D26F9AAD600BC3A09 /* SecondTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7AE780B826ABB65F00B507DE /* ListStoreViewController.swift */,
+				7AE780C326AE6D1300B507DE /* DetailViewController.swift */,
+				7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */,
+				7AE780C126AE60B200B507DE /* PhotosDetailSegmentViewController.swift */,
+				7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */,
+				7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */,
+				7AE780C926AED58600B507DE /* CommentPostViewController.swift */,
+			);
+			path = SecondTabBar;
 			sourceTree = "<group>";
 		};
 		7AE780BA26ABB79400B507DE /* TableViewCells */ = {

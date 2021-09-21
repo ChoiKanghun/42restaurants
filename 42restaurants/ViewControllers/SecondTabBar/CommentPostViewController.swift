@@ -137,7 +137,9 @@ class CommentPostViewController: UIViewController {
         
         // MARK: 3. 이미지가 있다면 이미지를 먼저 업로드.
         
-        guard let storeKey = StoreSingleton.shared.store?.storeKey
+        guard let tabBarIndex = self.tabBarController?.selectedIndex,
+              let storeKey = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey
+                : StoreSingleton.shared.store?.storeKey
         else { fatalError("인터넷 연결 확인 필요") }
         
         

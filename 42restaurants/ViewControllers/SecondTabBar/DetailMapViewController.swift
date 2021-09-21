@@ -34,7 +34,8 @@ class DetailMapViewController: UIViewController {
         
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     
-        if let storeInfo = StoreSingleton.shared.store?.storeInfo {
+        if let tabBarIndex = self.tabBarController?.selectedIndex,
+           let storeInfo = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeInfo : StoreSingleton.shared.store?.storeInfo {
             let location = CLLocationCoordinate2DMake(
                 storeInfo.latitude,
                 storeInfo.longtitude)
@@ -45,9 +46,6 @@ class DetailMapViewController: UIViewController {
         }
     }
     
-    private func getStoreLocation() {
-        
-    }
 
 
 }

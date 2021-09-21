@@ -17,18 +17,22 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupUI()
     }
     
     private func setupUI() {
-        if let store = StoreSingleton.shared.store {
-            self.storeNameLabel?.text = store.storeInfo.name
-            self.addressLabel?.text = store.storeInfo.address
-            self.categoryLabel?.text = store.storeInfo.category
-            self.ratingLabel?.text = "\(store.storeInfo.rating) / 5"
-            
-        }
+        guard let currentTabBarIndex = self.tabBarController?.selectedIndex
+        else { return }
+        
+        guard let store = currentTabBarIndex == 0 ? MainTabStoreSingleton.shared.store : StoreSingleton.shared.store
+        else { print("can't get store Singleton"); return }
+        
+        self.storeNameLabel?.text = store.storeInfo.name
+        self.addressLabel?.text = store.storeInfo.address
+        self.categoryLabel?.text = store.storeInfo.category
+        self.ratingLabel?.text = "\(store.storeInfo.rating) / 5"
+       
     }
 
     /*o

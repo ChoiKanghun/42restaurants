@@ -57,7 +57,6 @@
                                         <state key="normal" title="이름"/>
                                         <connections>
                                             <action selector="touchUpStoreNameButton:" destination="llJ-eM-Owg" eventType="touchUpInside" id="Y9Q-f0-vMH"/>
-                                            <segue destination="e6o-kx-O68" kind="show" id="awD-7Z-cRZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -247,6 +246,17 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIw-Po-pvJ">
+                                                <rect key="frame" x="334" y="8" width="60" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="5Ng-sD-CwC"/>
+                                                    <constraint firstAttribute="width" constant="60" id="JM4-8F-IEI"/>
+                                                </constraints>
+                                                <state key="normal" title="등록"/>
+                                                <connections>
+                                                    <action selector="touchUpEnrollButton:" destination="J4k-3u-aEz" eventType="touchUpInside" id="qv9-dR-ueI"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -258,6 +268,8 @@
                                             <constraint firstItem="5gp-I4-HEW" firstAttribute="leading" secondItem="NYc-IU-39s" secondAttribute="trailing" constant="5" id="6SH-di-anz"/>
                                             <constraint firstItem="8Sj-HM-e9Z" firstAttribute="top" secondItem="doW-ow-tOW" secondAttribute="bottom" constant="20" id="985-ar-Lje"/>
                                             <constraint firstItem="45J-aR-Zih" firstAttribute="leading" secondItem="oyX-rK-5pd" secondAttribute="leading" constant="20" id="A6P-jF-uxD"/>
+                                            <constraint firstItem="KIw-Po-pvJ" firstAttribute="top" secondItem="oyX-rK-5pd" secondAttribute="topMargin" id="AUP-IH-d7P"/>
+                                            <constraint firstAttribute="trailing" secondItem="KIw-Po-pvJ" secondAttribute="trailing" constant="20" id="C2Y-qj-4fj"/>
                                             <constraint firstItem="wxn-WP-Svi" firstAttribute="top" secondItem="NYc-IU-39s" secondAttribute="top" id="EwD-bb-tnA"/>
                                             <constraint firstItem="jpO-um-Ojc" firstAttribute="trailing" secondItem="nnc-zf-CBv" secondAttribute="trailing" id="J11-Yz-i3C"/>
                                             <constraint firstItem="B1c-ef-618" firstAttribute="top" secondItem="RnW-FJ-IbL" secondAttribute="bottom" constant="20" id="Lya-Xo-xXg"/>
@@ -389,11 +401,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="shw-fE-f0T">
-                        <barButtonItem key="rightBarButtonItem" title="등록" id="aHY-cn-EIp">
-                            <connections>
-                                <action selector="touchUpEnrollButton:" destination="J4k-3u-aEz" id="Xas-zV-5z1"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="등록" id="aHY-cn-EIp"/>
                     </navigationItem>
                     <connections>
                         <outlet property="categoryPickerView" destination="iVe-1T-md7" id="bdM-7W-OrO"/>
@@ -415,7 +423,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2483" y="364"/>
+            <point key="canvasLocation" x="2482.608695652174" y="363.61607142857139"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="omD-Ud-rAd">

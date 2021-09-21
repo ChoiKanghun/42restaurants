@@ -39,7 +39,8 @@ class PhotosDetailSegmentViewController: UIViewController {
         
         self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
-        guard let storeKey = StoreSingleton.shared.store?.storeKey
+        guard let currentTabBarIndex = self.tabBarController?.selectedIndex,
+              let storeKey = currentTabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey :  StoreSingleton.shared.store?.storeKey
         else { fatalError("can't get storeKey") }
         
         self.ref.child("stores/\(storeKey)/images").getData{ (error, snapshot) in

@@ -114,9 +114,9 @@ class MainMapViewController: UIViewController {
 
     
     @IBAction func touchUpStoreNameButton(_ sender: Any) {
-        print("in")
+
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MainStoreDetailViewController")
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

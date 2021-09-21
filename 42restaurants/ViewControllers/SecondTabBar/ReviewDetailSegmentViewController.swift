@@ -43,7 +43,8 @@ class ReviewDetailSegmentViewController: UIViewController {
     }
     
     private func updateTableView() {
-        if let storeKey = StoreSingleton.shared.store?.storeKey {
+        if let tabBarIndex = self.tabBarController?.selectedIndex,
+           let storeKey = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey : StoreSingleton.shared.store?.storeKey {
             self.ref.child("stores/\(storeKey)/comments").getData {
                 (error, snapshot) in
                 

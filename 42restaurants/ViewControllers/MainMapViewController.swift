@@ -12,13 +12,15 @@ import Firebase
 import CodableFirebase
 import FirebaseUI
 
+import FirebaseMessaging
+
 class MainMapViewController: UIViewController {
 
     @IBOutlet weak var mapView: NMFMapView!
     
     // pop up view IBOutlets
     @IBOutlet weak var popUpImageView: UIImageView!
-    @IBOutlet weak var popUpStoreNameLabel: UILabel!
+    @IBOutlet weak var popUpStoreNameButton: UIButton!
     @IBOutlet weak var popUpRatingLabel: UILabel!
     @IBOutlet weak var popUpCommentCountLabel: UILabel!
     @IBOutlet weak var popUpView: UIView!
@@ -48,6 +50,8 @@ class MainMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        callMessaging()
+        
         self.locationManager.requestWhenInUseAuthorization()
         self.mapView.positionMode = .normal
             
@@ -70,7 +74,8 @@ class MainMapViewController: UIViewController {
                 let storageRef = self.storage.reference()
                 let imageRef = storageRef.child("\(imageUrl)")
                 DispatchQueue.main.async {
-                    self.popUpStoreNameLabel.text = storeName
+                    let buttonText = NSAttributedString(string: storeName)
+                    self.popUpStoreNameButton.setAttributedTitle(buttonText, for: .normal)
                     self.popUpRatingLabel.text = rating
                     self.popUpCommentCountLabel.text = "방문자리뷰 \(commentCount)"
                     self.popUpImageView.sd_setImage(with: imageRef)
@@ -104,14 +109,17 @@ class MainMapViewController: UIViewController {
         
         
     }
-    
-    @IBAction func touchUpPopUpViewLabel(_ sender: UITapGestureRecognizer) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MainStoreDetailViewController")
-        present(viewController, animated: true)
-    }
+
     
 
+    
+    @IBAction func touchUpStoreNameButton(_ sender: Any) {
+        print("in")
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MainStoreDetailViewController")
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 extension MainMapViewController: CLLocationManagerDelegate {
@@ -216,3 +224,53 @@ extension MainMapViewController: NMFMapViewTouchDelegate {
         }
     }
 }
+
+// delete this method later.
+// this method is just to test node.js server works fine.
+extension MainMapViewController: MessagingDelegate {
+    
+    func callMessaging() {
+        Messaging.messaging().delegate = self
+        Messaging.messaging().token { token, error in
+            
+            
+            if let error = error {
+                print("error fetching FCM Regsier token: \(error)")
+            } else if let token = token {
+                print("FCM reg token: \(token)")
+                
+            }
+            self.deleteThisMethodLater(token: token)
+        }
+    }
+    
+    func deleteThisMethodLater(token: String?) {
+
+        guard let token = token
+        else { print("error on getting token "); return}
+        let userName = "kchoi"
+        let queryString = "?" + "registrationToken=" + token + "&userName=" + userName
+        
+        let url: URL = URL(string: "http://192.168.0.25:3000/\(queryString)")!
+        
+        
+        
+        httpGet(url: url, completionHandler: { d, r, e in
+            
+            guard let data = d else { return }
+            print(String(data: data, encoding: .utf8)!)
+        
+        })
+    }
+    
+    func httpGet(url: URL, completionHandler: @escaping( Data?, URLResponse?, Error?) -> Void) {
+        var request: URLRequest = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        URLSession.shared.dataTask(with:request, completionHandler: completionHandler).resume()
+    }
+    
+    
+    
+}
+

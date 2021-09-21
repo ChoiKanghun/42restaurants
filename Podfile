@@ -16,6 +16,7 @@ target '42restaurants' do
 	pod 'Firebase/Storage'
 	pod 'CodableFirebase'
 	pod 'FirebaseUI/Storage'
+	pod 'Firebase/Messaging'
 
     # other pods
 	pod 'OpalImagePicker', '~> 3.0.0'

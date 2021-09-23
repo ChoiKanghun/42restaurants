@@ -89,18 +89,22 @@ class EnrollStoreViewController: UIViewController {
     
     
     @IBAction func touchUpEnrollButton(_ sender: Any) {
-        
+        LoadingService.showLoading()
         if self.imageView?.image == nil {
             self.showBasicAlert(title: "이미지를 선택해주세요", message: "이미지 선택은 필수입니다.")
+            LoadingService.hideLoading()
             return
         } else if self.storeNameTextField?.text == "" {
             self.showBasicAlert(title: "가게 이름을 입력하세요", message: "가게 이름 입력값은 필수입니다.")
+            LoadingService.hideLoading()
             return
         } else if self.latitudeLabel?.text == "위치 선택 시 자동 입력" {
             self.showBasicAlert(title: "가게 위치를 선택해주세요", message: "'클릭하여 가게 위치 선택' 버튼을 클릭하여 좌표를 선택합니다.")
+            LoadingService.hideLoading()
             return
         } else if self.commentTextView?.text == "가게에 대한 평가를 적어주세요." {
             self.showBasicAlert(title: "가게에 대한 평가를 적어주세요", message: "가게평은 필수입니다.")
+            LoadingService.hideLoading()
             return
         }
         
@@ -114,6 +118,7 @@ class EnrollStoreViewController: UIViewController {
         geoCoder.reverseGeocodeLocation(location, preferredLocale: locale) { address, error in
             if let error = error {
                 print(error.localizedDescription)
+                LoadingService.hideLoading()
                 return
             }
             if let address = address {
@@ -126,13 +131,13 @@ class EnrollStoreViewController: UIViewController {
         
         
         guard let uploadImageData = self.imageView.image?.jpegData(compressionQuality: 0.8)
-        else {return}
+        else {LoadingService.hideLoading(); return}
         var data = Data()
         data = uploadImageData
         let now = Date()
         
         guard let key = self.ref.child("stores").childByAutoId().key
-        else { return }
+        else { LoadingService.hideLoading();return }
         
         let filePath = "images/\(key)/\(self.userIdLabel.text ?? "userID")\(now.toString()).png"
         let metaData = StorageMetadata()
@@ -141,6 +146,7 @@ class EnrollStoreViewController: UIViewController {
         self.storage.reference().child(filePath).putData(data, metadata: metaData) { [self] (metadata, error) in
             if let error = error {
                 print(error.localizedDescription)
+                LoadingService.hideLoading()
                 self.showBasicAlert(title: "에러", message: "알 수 없는 오류가 발생하여 업로드에 실패하였습니다.")
                 return
             }
@@ -150,7 +156,11 @@ class EnrollStoreViewController: UIViewController {
             let ratingFloorValue = Double(floor(self.starRatingSlider.value * 10)) / 10
             
             guard let imageKey = self.ref.child("images").childByAutoId().key
-            else { print("can't get imageKey"); return }
+            else {
+                LoadingService.hideLoading();
+                print("can't get imageKey");
+                return
+            }
             
             
             let store =
@@ -176,7 +186,7 @@ class EnrollStoreViewController: UIViewController {
             self.ref.updateChildValues(childUpdates) { error, refAfterUpload  in
                 
                 guard let commentKey = self.ref.child("stores/\(key)/comments").childByAutoId().key
-                else { return }
+                else {LoadingService.hideLoading();return }
                 
                 
                 let comments = [
@@ -192,7 +202,13 @@ class EnrollStoreViewController: UIViewController {
                 ] as [String: Any]
                 
                 let secondChildUpdates = ["stores/\(key)/comments/\(commentKey)": comments]
-                refAfterUpload.updateChildValues(secondChildUpdates)
+                refAfterUpload.updateChildValues(secondChildUpdates) {
+                    (error, snapshot) in
+                    DispatchQueue.main.async {
+                        LoadingService.hideLoading()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
                 
             }
         }

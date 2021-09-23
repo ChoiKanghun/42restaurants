@@ -43,10 +43,8 @@ class PhotosDetailSegmentViewController: UIViewController {
               let storeKey = currentTabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey :  StoreSingleton.shared.store?.storeKey
         else { fatalError("can't get storeKey") }
         
-        self.ref.child("stores/\(storeKey)/images").getData{ (error, snapshot) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if snapshot.exists() {
+        self.ref.child("stores/\(storeKey)/images").observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.exists() {
                 guard let value = snapshot.value else { return }
                 do {
                     let imageData = try FirebaseDecoder().decode([String: Image].self, from: value)
@@ -63,7 +61,7 @@ class PhotosDetailSegmentViewController: UIViewController {
                     print(err.localizedDescription)
                 }
             }
-        }
+        })
     }
     
 }

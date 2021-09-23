@@ -90,6 +90,9 @@ class CommentPostViewController: UIViewController {
                         resultHandler: { (result, info) in
                             if let result = result {
                                 self.imageSet.append(result)
+                                DispatchQueue.main.async {
+                                    
+                                }
                             }
                         })
                 }
@@ -126,11 +129,15 @@ class CommentPostViewController: UIViewController {
     }
     
     @IBAction func touchUpSubmitButton(_ sender: UIBarButtonItem) {
-        
+        LoadingService.showLoading()
         // MARK: 1. 필수 항목 비어 있으면 오류 처리하기.
         guard let userId = self.userIdTextField.text,
               let description = self.descriptionTextView.text
-        else { self.showBasicAlert(title: "내용을 입력하세요.", message: "내용은 필수 입력값입니다."); return}
+        else {
+            LoadingService.hideLoading()
+            self.showBasicAlert(title: "내용을 입력하세요.", message: "내용은 필수 입력값입니다.");
+            return
+        }
 
         // MARK: 2. db ref 설정.
         self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
@@ -147,7 +154,11 @@ class CommentPostViewController: UIViewController {
             
             for (index, image) in self.imageSet.enumerated() {
                 guard let uploadImageData = image.jpegData(compressionQuality: 0.8)
-                else { self.showBasicAlert(title: "업로드 실패", message: "인터넷 연결 또는 이미지 형식을 확인해주세요"); return}
+                else {
+                    LoadingService.hideLoading()
+                    self.showBasicAlert(title: "업로드 실패", message: "인터넷 연결 또는 이미지 형식을 확인해주세요");
+                    return
+                }
                 
                 var data = Data()
                 data = uploadImageData
@@ -162,6 +173,7 @@ class CommentPostViewController: UIViewController {
                         
                         if let error = error {
                             print(error.localizedDescription)
+                            LoadingService.hideLoading()
                             showBasicAlert(title: "이미지 업로드 실패", message: "인터넷 연결을 확인하세요")
                             return
                         }
@@ -176,7 +188,11 @@ class CommentPostViewController: UIViewController {
                         // MARK: 4. 이미지를 모두 storage에 올렸다면 comment올리기 시작.
                         
                         guard let newCommentKey = self.ref.child("stores/\(storeKey)/comments").childByAutoId().key
-                        else { print("can't get childByAutoId comment"); return }
+                        else {
+                            LoadingService.hideLoading()
+                            print("can't get childByAutoId comment");
+                            return
+                        }
                         
                         self.ref.child("stores/\(storeKey)/comments/\(newCommentKey)").setValue (
                             ["rating": Double(floor(self.starRatingSlider.value * 10) / 10),
@@ -188,6 +204,8 @@ class CommentPostViewController: UIViewController {
                         ) {
                             (error: Error?, ref: DatabaseReference) in
                             if let error = error {
+                                LoadingService.hideLoading()
+                                print("flag1")
                                 print(error.localizedDescription)
                             } else {
                                 // MARK: 5. comment 후 comment 밑에 images 정보 등록.
@@ -205,6 +223,8 @@ class CommentPostViewController: UIViewController {
                                 ref.child("images").setValue(uploadImages) {
                                     (error: Error?, ref: DatabaseReference) in
                                     if let error = error {
+                                        print("flag2")
+                                        LoadingService.hideLoading()
                                         print(error.localizedDescription)
                                     }
                                 }
@@ -227,16 +247,19 @@ class CommentPostViewController: UIViewController {
                                 // 이전의 데이터 + 현재 데이터를 post해야 하므로.
                                 // runTransactionalBlock을 씀.
                                 self.ref.child("stores/\(storeKey)/images").runTransactionBlock ({ (currentData: MutableData) -> TransactionResult in
-                                        
+                                    
                                     if var post = currentData.value as? [String: Any] {
                                         for (key, value) in uploadImages {
                                             post[key] = value
                                         }
                                         currentData.value = post
-                                        
+                                        LoadingService.hideLoading()
+
                                         return TransactionResult.success(withValue: currentData)
                                     }
+                                        LoadingService.hideLoading()
                                         return TransactionResult.success(withValue: currentData)
+                                    
                                     })
                                 }
                             }
@@ -247,7 +270,11 @@ class CommentPostViewController: UIViewController {
                 }
         } else { // if there's no image
             guard let newCommentKey = self.ref.child("stores/\(storeKey)/comments").childByAutoId().key
-            else { print("can't get childByAutoId comment"); return }
+            else {
+                LoadingService.hideLoading();
+                print("can't get childByAutoId comment");
+                return
+            }
             
             self.ref.child("stores/\(storeKey)/comments/\(newCommentKey)").setValue (
                 ["rating": Double(floor(self.starRatingSlider.value * 10) / 10),
@@ -263,6 +290,7 @@ class CommentPostViewController: UIViewController {
             
             if let error = error {
                 print(error.localizedDescription)
+                LoadingService.hideLoading()
             } else if snapshot.exists() {
                 guard let value = snapshot.value else { return }
                 do {
@@ -275,8 +303,13 @@ class CommentPostViewController: UIViewController {
                     let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10) / 10)
                     self.ref.child("stores/\(storeKey)/rating").setValue(rating)
                     self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
-                    
+                    LoadingService.hideLoading()
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+
                 } catch let err {
+                    LoadingService.hideLoading()
                     print(err.localizedDescription)
                 }
             }

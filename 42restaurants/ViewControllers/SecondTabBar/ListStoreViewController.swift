@@ -34,11 +34,10 @@ class ListStoreViewController: UIViewController {
     
 
     func getStoresInfoFromDatabase() {
-        self.ref.child("stores").getData{ (error, snapshot) in
-        
-            if let error = error {
-                print(error.localizedDescription)
-            } else if snapshot.exists() {
+        self.ref.child("stores").observe(DataEventType.value, with: { (snapshot) in
+            
+            if snapshot.exists() {
+                self.stores = []
                 guard let value = snapshot.value else {return}
                 do {
                     let storesData = try FirebaseDecoder().decode([String: StoreInfo].self, from: value)
@@ -56,7 +55,7 @@ class ListStoreViewController: UIViewController {
                     print(err.localizedDescription)
                 }
             }
-        }
+        })
         
     }
     

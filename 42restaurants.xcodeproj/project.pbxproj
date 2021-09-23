@@ -25,6 +25,7 @@
 		7A34E51526A7E27F00254C11 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51426A7E27F00254C11 /* Category.swift */; };
 		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
+		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
 		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
 		7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */; };
 		7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */; };
@@ -92,6 +93,7 @@
 		7A34E51426A7E27F00254C11 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				7AE780C626AECE7400B507DE /* Singletons */,
+				7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				7AE780C026AE605A00B507DE /* ReviewDetailSegmentViewController.swift in Sources */,
 				7AE7E12C26C295BB002536E1 /* ReviewImageCollectionViewCell.swift in Sources */,
 				7AE780C826AECE8C00B507DE /* StoreSingleton.swift in Sources */,
+				7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */,
 				7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,

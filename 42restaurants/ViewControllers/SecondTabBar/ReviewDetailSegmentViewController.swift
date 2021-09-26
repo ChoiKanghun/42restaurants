@@ -47,7 +47,9 @@ class ReviewDetailSegmentViewController: UIViewController {
            let storeKey = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey : StoreSingleton.shared.store?.storeKey {
             self.ref.child("stores/\(storeKey)/comments").observe(DataEventType.value, with: {
                 (snapshot) in
+
                 if snapshot.exists() {
+                    
                     guard let value = snapshot.value else { return }
                     do {
                         let commentsData = try FirebaseDecoder().decode([String: Comment].self, from: value)

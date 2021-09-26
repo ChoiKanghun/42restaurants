@@ -89,6 +89,7 @@ class MainMapViewController: UIViewController {
         self.ref.child("stores").observe(DataEventType.value, with: { snapshot in
             
             if snapshot.exists() {
+                self.stores = []
                 guard let value = snapshot.value else {return}
                 do {
                     let storesData = try FirebaseDecoder().decode([String: StoreInfo].self, from: value)

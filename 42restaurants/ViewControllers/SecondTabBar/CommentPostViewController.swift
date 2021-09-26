@@ -40,7 +40,7 @@ class CommentPostViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
-        
+        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         initializeOpalImagePicker()
     }
     
@@ -140,7 +140,7 @@ class CommentPostViewController: UIViewController {
         }
 
         // MARK: 2. db ref 설정.
-        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+//        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         // MARK: 3. 이미지가 있다면 이미지를 먼저 업로드.
         
@@ -149,6 +149,7 @@ class CommentPostViewController: UIViewController {
                 : StoreSingleton.shared.store?.storeKey
         else { fatalError("인터넷 연결 확인 필요") }
         
+        print(storeKey)
         
         if self.imageSet.count != 0 {
             
@@ -286,35 +287,33 @@ class CommentPostViewController: UIViewController {
             )
         }
         
-        self.ref.child("stores/\(storeKey)").getData { (error, snapshot) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-                LoadingService.hideLoading()
-            } else if snapshot.exists() {
-                guard let value = snapshot.value else { return }
-                do {
-                    let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
-                    let commentCount = storeData.comments.count
-                    var sumOfRatings: Double = 0
-                    for comment in storeData.comments {
-                        sumOfRatings += comment.value.rating
-                    }
-                    let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10) / 10)
-                    self.ref.child("stores/\(storeKey)/rating").setValue(rating)
-                    self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
-                    LoadingService.hideLoading()
-                    DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
-                    }
+        
+        self.ref.child("stores").child("\(storeKey)").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+               guard let value = snapshot.value else { return }
+               do {
+                   print(value)
+                   let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
+                   let commentCount = storeData.comments.count
+                   var sumOfRatings: Double = 0
+                   for comment in storeData.comments {
+                       sumOfRatings += comment.value.rating
+                   }
+                   let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10) / 10)
+                   self.ref.child("stores/\(storeKey)/rating").setValue(rating)
+                   self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
+                   LoadingService.hideLoading()
+                   DispatchQueue.main.async {
+                       self.navigationController?.popViewController(animated: true)
+                   }
 
-                } catch let err {
-                    LoadingService.hideLoading()
-                    print(err.localizedDescription)
-                }
-            }
+               } catch let err {
+                   LoadingService.hideLoading()
+                   print(err.localizedDescription)
+               }
+           }
             
-        }
+        })
     }
 }
 

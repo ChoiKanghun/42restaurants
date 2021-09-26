@@ -45,6 +45,7 @@ class PhotosDetailSegmentViewController: UIViewController {
         
         self.ref.child("stores/\(storeKey)/images").observe(DataEventType.value, with: { (snapshot) in
             if snapshot.exists() {
+                self.imageDatas = []
                 guard let value = snapshot.value else { return }
                 do {
                     let imageData = try FirebaseDecoder().decode([String: Image].self, from: value)

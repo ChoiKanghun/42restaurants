@@ -83,8 +83,7 @@ extension ReviewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         
         let storageRef = storage.reference()
         let reference = storageRef.child("\(image.imageUrl)")
-        cell.imageView.sd_setImage(with: reference, placeholderImage:
-                                    UIImage(named: "placeholder.jpg"))
+        cell.imageView.sd_setImage(with: reference, placeholderImage: UIImage(named: "placeholder.jpg"))
         return cell
     }
     

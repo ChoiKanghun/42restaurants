@@ -26,6 +26,9 @@
 		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
+		7AB9CB8B270D6C7B000E9A28 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */; };
+		7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */; };
+		7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */; };
 		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
 		7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */; };
 		7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */; };
@@ -94,6 +97,9 @@
 		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
+		7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -222,10 +228,9 @@
 		7A34E4E626A6800A00254C11 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7AB9CB89270D6BC0000E9A28 /* ThirdTabBar */,
 				7A73EF1D26F9AAD600BC3A09 /* SecondTabBar */,
 				7A73EF1C26F9AAB200BC3A09 /* MainTabBar */,
-				7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */,
-				7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -281,6 +286,17 @@
 			path = SecondTabBar;
 			sourceTree = "<group>";
 		};
+		7AB9CB89270D6BC0000E9A28 /* ThirdTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */,
+				7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */,
+				7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */,
+				7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */,
+			);
+			path = ThirdTabBar;
+			sourceTree = "<group>";
+		};
 		7AE780BA26ABB79400B507DE /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +311,7 @@
 			children = (
 				7AE780C626AECE7400B507DE /* Singletons */,
 				7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */,
+				7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -591,6 +608,7 @@
 				7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */,
 				7A34E4EF26A6C52200254C11 /* UIViewController+Extensions.swift in Sources */,
 				7AE780C226AE60B200B507DE /* PhotosDetailSegmentViewController.swift in Sources */,
+				7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */,
 				7AF6615626AFECC300D405E0 /* StarRatingUISlider.swift in Sources */,
 				7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */,
 				7A34E51526A7E27F00254C11 /* Category.swift in Sources */,
@@ -600,6 +618,8 @@
 				7AE7E12C26C295BB002536E1 /* ReviewImageCollectionViewCell.swift in Sources */,
 				7AE780C826AECE8C00B507DE /* StoreSingleton.swift in Sources */,
 				7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */,
+				7AB9CB8B270D6C7B000E9A28 /* MyInfoViewController.swift in Sources */,
+				7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */,
 				7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,

@@ -404,42 +404,66 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2482.608695652174" y="363.61607142857139"/>
+            <point key="canvasLocation" x="3210" y="1065"/>
         </scene>
-        <!--View Controller-->
+        <!--My Info View Controller-->
         <scene sceneID="omD-Ud-rAd">
             <objects>
-                <viewController id="eQv-Yk-7Aq" sceneMemberID="viewController">
+                <viewController id="eQv-Yk-7Aq" customClass="MyInfoViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ySU-CY-HBJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gv-K2-jot">
-                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="iaL-xX-M1h"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gv-K2-jot">
+                                <rect key="frame" x="84" y="237" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="가게 등록하기">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" systemColor="linkColor"/>
                                 </state>
                                 <connections>
                                     <segue destination="J4k-3u-aEz" kind="presentation" id="q47-Xn-EDr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인이 필요합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jA6-zR-dSp">
+                                <rect key="frame" x="10" y="98" width="354" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SS9-65-72B"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDv-8M-9Jd">
+                                <rect key="frame" x="364" y="98" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="PWs-xn-UmP"/>
+                                    <constraint firstAttribute="height" constant="40" id="Thg-ze-gFW"/>
+                                </constraints>
+                                <state key="normal" title="로그인"/>
+                                <connections>
+                                    <action selector="touchUpLogOutButton:" destination="eQv-Yk-7Aq" eventType="touchUpInside" id="5Sn-Qk-Pdc"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qe2-1Y-tk6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4gv-K2-jot" firstAttribute="leading" secondItem="qe2-1Y-tk6" secondAttribute="leading" id="Kmn-xM-5aN"/>
-                            <constraint firstItem="4gv-K2-jot" firstAttribute="top" secondItem="qe2-1Y-tk6" secondAttribute="top" id="MfI-qb-QyJ"/>
-                            <constraint firstItem="qe2-1Y-tk6" firstAttribute="trailing" secondItem="4gv-K2-jot" secondAttribute="trailing" id="sFv-Tm-4cf"/>
+                            <constraint firstItem="qe2-1Y-tk6" firstAttribute="trailing" secondItem="WDv-8M-9Jd" secondAttribute="trailing" constant="10" id="0YO-Yy-QzT"/>
+                            <constraint firstItem="jA6-zR-dSp" firstAttribute="leading" secondItem="qe2-1Y-tk6" secondAttribute="leading" constant="10" id="FZk-PC-KKN"/>
+                            <constraint firstItem="WDv-8M-9Jd" firstAttribute="top" secondItem="qe2-1Y-tk6" secondAttribute="top" constant="10" id="IvE-Xb-tyo"/>
+                            <constraint firstItem="jA6-zR-dSp" firstAttribute="top" secondItem="qe2-1Y-tk6" secondAttribute="top" constant="10" id="kO6-ZW-OPM"/>
+                            <constraint firstItem="WDv-8M-9Jd" firstAttribute="leading" secondItem="jA6-zR-dSp" secondAttribute="trailing" id="umT-sa-72Z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nEH-Qe-FWv"/>
+                    <connections>
+                        <outlet property="isLoggedInLabel" destination="jA6-zR-dSp" id="Ftd-eh-S2d"/>
+                        <outlet property="loginLogoutButton" destination="WDv-8M-9Jd" id="R99-j4-gGI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Clh-Hd-Pq9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679.7101449275362" y="349.55357142857139"/>
+            <point key="canvasLocation" x="1718.840579710145" y="582.58928571428567"/>
         </scene>
         <!--List Store View Controller-->
         <scene sceneID="x3B-9b-iLm">
@@ -963,6 +987,44 @@
             </objects>
             <point key="canvasLocation" x="939.13043478260875" y="-1083.4821428571429"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="PSm-e3-hft">
+            <objects>
+                <viewController storyboardIdentifier="LogInViewController" id="F38-DP-j9e" customClass="LoginViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uNb-uG-yYB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appleSignInImage" translatesAutoresizingMaskIntoConstraints="NO" id="0sf-O5-oLd">
+                                <rect key="frame" x="67" y="398" width="280" height="100"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="3p7-SX-4ho"/>
+                                    <constraint firstAttribute="height" constant="100" id="R9b-Bj-Wmm"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="1Vy-Jz-6UO" appends="YES" id="EFS-aj-bEM"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Y4-Tk-gK8"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0sf-O5-oLd" firstAttribute="centerX" secondItem="uNb-uG-yYB" secondAttribute="centerX" id="1GW-wr-ufz"/>
+                            <constraint firstItem="0sf-O5-oLd" firstAttribute="centerY" secondItem="uNb-uG-yYB" secondAttribute="centerY" id="J0n-fZ-X2d"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ldo-5F-HZQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mbh-EY-aDD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1Vy-Jz-6UO">
+                    <connections>
+                        <action selector="touchUpSignInWithApple:" destination="F38-DP-j9e" id="7d3-mp-USL"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3244.9275362318845" y="306.69642857142856"/>
+        </scene>
         <!--Pick Coordinate View Controller-->
         <scene sceneID="1HG-2Z-UMT">
             <objects>
@@ -1028,7 +1090,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbj-kR-NHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3273.913043478261" y="363.61607142857139"/>
+            <point key="canvasLocation" x="4019" y="1065"/>
         </scene>
         <!--Item-->
         <scene sceneID="O2f-2H-SEz">
@@ -1360,10 +1422,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ma3-q1-0PA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="939" y="350"/>
+            <point key="canvasLocation" x="938" y="583"/>
         </scene>
     </scenes>
     <resources>
+        <image name="appleSignInImage" width="560" height="200"/>
         <image name="camera.on.rectangle.fill" catalog="system" width="128" height="96"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="star16px" width="32" height="32"/>
@@ -1371,6 +1434,9 @@
         <image name="swipe" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

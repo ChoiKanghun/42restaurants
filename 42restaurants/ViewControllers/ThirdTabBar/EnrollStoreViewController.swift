@@ -151,8 +151,6 @@ class EnrollStoreViewController: UIViewController {
                 return
             }
             
-
-            
             let ratingFloorValue = Double(floor(self.starRatingSlider.value * 10)) / 10
             
             guard let imageKey = self.ref.child("images").childByAutoId().key

@@ -13,9 +13,12 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(dismissThisView), name: FirebaseAuthenticationNotification.signInSuccess.notificationName, object: nil)
-
+        
     }
+    
+    
     
     @objc func dismissThisView() {
         self.dismiss(animated: true, completion: nil)

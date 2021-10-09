@@ -108,7 +108,15 @@ class MainMapViewController: UIViewController {
         
     }
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setNavigationBarHidden(isHidden: true)
+        self.setStatusBarBackgroundColor()
+        self.popUpView.backgroundColor = Config.shared.applicationThemeColor
+
+
+    }
 
     
     @IBAction func touchUpStoreNameButton(_ sender: Any) {

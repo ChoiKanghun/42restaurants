@@ -26,6 +26,8 @@
 		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
+		7A9AEECE2711AE2800DCE2C3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AEECD2711AE2800DCE2C3 /* Config.swift */; };
+		7A9AEED12711B14F00DCE2C3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */; };
 		7AB9CB8B270D6C7B000E9A28 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */; };
 		7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */; };
 		7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */; };
@@ -97,6 +99,8 @@
 		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
+		7A9AEECD2711AE2800DCE2C3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				7A1D23C926A67BB300F8E7E2 /* LaunchScreen.storyboard */,
 				7A1D23CC26A67BB300F8E7E2 /* Info.plist */,
 				7A1D23EE26A67C9400F8E7E2 /* GoogleService-Info.plist */,
+				7A9AEECD2711AE2800DCE2C3 /* Config.swift */,
 			);
 			path = 42restaurants;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 		7A34E4E626A6800A00254C11 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7A9AEECF2711B12400DCE2C3 /* TabBar,NavigationBar */,
 				7AB9CB89270D6BC0000E9A28 /* ThirdTabBar */,
 				7A73EF1D26F9AAD600BC3A09 /* SecondTabBar */,
 				7A73EF1C26F9AAB200BC3A09 /* MainTabBar */,
@@ -284,6 +290,14 @@
 				7AE780C926AED58600B507DE /* CommentPostViewController.swift */,
 			);
 			path = SecondTabBar;
+			sourceTree = "<group>";
+		};
+		7A9AEECF2711B12400DCE2C3 /* TabBar,NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */,
+			);
+			path = "TabBar,NavigationBar";
 			sourceTree = "<group>";
 		};
 		7AB9CB89270D6BC0000E9A28 /* ThirdTabBar */ = {
@@ -611,6 +625,7 @@
 				7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */,
 				7AF6615626AFECC300D405E0 /* StarRatingUISlider.swift in Sources */,
 				7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */,
+				7A9AEED12711B14F00DCE2C3 /* MainTabBarController.swift in Sources */,
 				7A34E51526A7E27F00254C11 /* Category.swift in Sources */,
 				7A34E4EC26A6B50600254C11 /* PickCoordinateViewController.swift in Sources */,
 				7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */,
@@ -621,6 +636,7 @@
 				7AB9CB8B270D6C7B000E9A28 /* MyInfoViewController.swift in Sources */,
 				7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */,
 				7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */,
+				7A9AEECE2711AE2800DCE2C3 /* Config.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
 				7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */,

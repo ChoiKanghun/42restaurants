@@ -31,7 +31,6 @@ class ListStoreViewController: UIViewController {
         
         getStoresInfoFromDatabase()
     }
-    
 
     func getStoresInfoFromDatabase() {
         self.ref.child("stores").observe(DataEventType.value, with: { (snapshot) in
@@ -93,12 +92,12 @@ extension ListStoreViewController: UITableViewDelegate {
 
 extension ListStoreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         StoreSingleton.shared.store = self.stores[indexPath.row]
+        
         guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
         else { return }
-
+            
         self.navigationController?.pushViewController(viewController, animated: true)
-        
     }
+    
 }

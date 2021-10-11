@@ -697,26 +697,30 @@
                                     <constraint firstAttribute="height" constant="4" id="noQ-F3-9L7"/>
                                 </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqg-9a-ork">
-                                <rect key="frame" x="0.0" y="242" width="414" height="620"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uNt-Nc-ENW">
+                                <rect key="frame" x="10" y="247" width="394" height="32"/>
+                                <segments>
+                                    <segment title="images"/>
+                                    <segment title="review"/>
+                                    <segment title="map"/>
+                                </segments>
                                 <connections>
-                                    <segue destination="DOZ-Ke-OQ4" kind="embed" id="A0K-hb-LLz"/>
+                                    <action selector="switchViews:" destination="TYW-bI-y8E" eventType="valueChanged" id="roo-06-jMf"/>
                                 </connections>
-                            </containerView>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rPj-XN-BRy"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Vx7-X9-kPg" firstAttribute="trailing" secondItem="rPj-XN-BRy" secondAttribute="trailing" id="790-95-aKd"/>
+                            <constraint firstItem="uNt-Nc-ENW" firstAttribute="top" secondItem="Liq-fN-mHg" secondAttribute="bottom" constant="5" id="Aa9-2P-SwD"/>
                             <constraint firstItem="Vx7-X9-kPg" firstAttribute="leading" secondItem="rPj-XN-BRy" secondAttribute="leading" id="CwJ-Qd-Bhz"/>
-                            <constraint firstItem="rPj-XN-BRy" firstAttribute="trailing" secondItem="bqg-9a-ork" secondAttribute="trailing" id="IwD-fb-tU6"/>
-                            <constraint firstItem="bqg-9a-ork" firstAttribute="top" secondItem="Liq-fN-mHg" secondAttribute="bottom" id="KO8-Ua-faD"/>
                             <constraint firstItem="Liq-fN-mHg" firstAttribute="top" secondItem="Vx7-X9-kPg" secondAttribute="bottom" constant="10" id="RWx-rC-Jif"/>
-                            <constraint firstItem="bqg-9a-ork" firstAttribute="leading" secondItem="rPj-XN-BRy" secondAttribute="leading" id="VLO-EK-ngW"/>
-                            <constraint firstItem="rPj-XN-BRy" firstAttribute="bottom" secondItem="bqg-9a-ork" secondAttribute="bottom" id="jqJ-MS-WUL"/>
+                            <constraint firstItem="uNt-Nc-ENW" firstAttribute="leading" secondItem="rPj-XN-BRy" secondAttribute="leading" constant="10" id="iZk-gk-Gbf"/>
                             <constraint firstItem="rPj-XN-BRy" firstAttribute="trailing" secondItem="Liq-fN-mHg" secondAttribute="trailing" id="w4q-f5-yf3"/>
                             <constraint firstItem="Liq-fN-mHg" firstAttribute="leading" secondItem="rPj-XN-BRy" secondAttribute="leading" id="xVo-i3-lbc"/>
                             <constraint firstItem="Vx7-X9-kPg" firstAttribute="top" secondItem="rPj-XN-BRy" secondAttribute="top" id="yT6-yr-1vF"/>
+                            <constraint firstItem="rPj-XN-BRy" firstAttribute="trailing" secondItem="uNt-Nc-ENW" secondAttribute="trailing" constant="10" id="yi4-uh-C6v"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9tT-Ks-xs2">
@@ -730,6 +734,7 @@
                         <outlet property="addressLabel" destination="woz-w9-396" id="kaa-A2-ACy"/>
                         <outlet property="categoryLabel" destination="XqG-Jf-u67" id="jCZ-IG-dja"/>
                         <outlet property="ratingLabel" destination="eJQ-5M-hTf" id="bgC-Lf-jcZ"/>
+                        <outlet property="segmentedControl" destination="uNt-Nc-ENW" id="4IM-6d-u56"/>
                         <outlet property="storeNameLabel" destination="iCI-CN-W2D" id="zHC-49-BOj"/>
                     </connections>
                 </viewController>
@@ -1018,7 +1023,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mbh-EY-aDD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3244.9275362318845" y="306.69642857142856"/>
+            <point key="canvasLocation" x="2583" y="379"/>
         </scene>
         <!--Pick Coordinate View Controller-->
         <scene sceneID="1HG-2Z-UMT">
@@ -1106,40 +1111,10 @@
             </objects>
             <point key="canvasLocation" x="939" y="-417"/>
         </scene>
-        <!--Segmented Detail View Controller-->
-        <scene sceneID="wgD-FZ-qtY">
-            <objects>
-                <viewController id="xsM-2M-io9" customClass="SegmentedDetailViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Pes-LR-BZN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="iFi-Ri-mRg"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="GvZ-N8-40z">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p3y-su-5gq">
-                            <rect key="frame" x="15" y="6" width="384" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="First"/>
-                                <segment title="Second"/>
-                                <segment title=""/>
-                            </segments>
-                        </segmentedControl>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="segmentedControl" destination="p3y-su-5gq" id="gGC-Vb-xNg"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rOJ-4K-9NL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6728.985507246377" y="227.67857142857142"/>
-        </scene>
         <!--Detail Map View Controller-->
         <scene sceneID="fQT-yJ-O0W">
             <objects>
-                <viewController storyboardIdentifier="detailMapVC" id="ksT-fJ-Kd1" customClass="DetailMapViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailMapVC" id="ksT-fJ-Kd1" customClass="DetailMapViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R5D-mY-1Bb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1164,7 +1139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CF6-bb-vNu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6728.985507246377" y="811.60714285714278"/>
+            <point key="canvasLocation" x="5270" y="242"/>
         </scene>
         <!--Photos Detail Segment View Controller-->
         <scene sceneID="eyZ-5S-bjf">
@@ -1191,7 +1166,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-IY-lUC">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="leJ-IY-lUC">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 </imageView>
                                             </subviews>
@@ -1224,7 +1199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWI-oy-g2Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7386.9565217391309" y="-106.47321428571428"/>
+            <point key="canvasLocation" x="4019" y="242"/>
         </scene>
         <!--Review Detail Segment View Controller-->
         <scene sceneID="QVf-ly-LWp">
@@ -1362,25 +1337,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUD-Fw-8UV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7386.9565217391309" y="569.86607142857144"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="BGW-0y-MHN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DOZ-Ke-OQ4" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7ZW-uq-3rw">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xsM-2M-io9" kind="relationship" relationship="rootViewController" id="y0y-Bb-US1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RJJ-eA-95O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5899" y="228"/>
+            <point key="canvasLocation" x="4639" y="242"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c43-An-Osa">

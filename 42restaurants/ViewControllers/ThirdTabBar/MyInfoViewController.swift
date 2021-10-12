@@ -19,11 +19,18 @@ class MyInfoViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name: FirebaseAuthenticationNotification.signInSuccess.notificationName, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name: FirebaseAuthenticationNotification.signOutSuccess.notificationName, object: nil)
-
+        
+        self.setUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.setStatusBarBackgroundColor()
+        self.setNavigationBarHidden(isHidden: true)
+        self.view.backgroundColor = Config.shared.applicationThemeColor
         
+    }
+    
+    private func setUI() {
         DispatchQueue.main.async {
             if let currentUser = Auth.auth().currentUser {
                 self.loginLogoutButton.setTitle("로그아웃 >", for: .normal)
@@ -34,7 +41,6 @@ class MyInfoViewController: UIViewController {
             }
         }
     }
-    
     
 
 

@@ -20,7 +20,14 @@ class StoreTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.contentView.backgroundColor = .white
+        self.nameLabel.textColor = .black
+        self.categoryLabel.textColor = .gray
+        self.addressLabel.textColor = .black
+        self.rateLabel.textColor = .gray
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

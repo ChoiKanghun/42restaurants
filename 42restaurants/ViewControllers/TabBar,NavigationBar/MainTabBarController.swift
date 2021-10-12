@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setTabBarColors() {
-        tabBar.barTintColor = Config.shared.applicationThemeColor
+        tabBar.barTintColor = Config.shared.application30Color
         tabBar.isTranslucent = false // 반투명 효과 끄기.
     }
 

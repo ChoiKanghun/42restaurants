@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
+    @IBOutlet weak private var storeInfoView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var photosView: UIView!
@@ -40,11 +41,27 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setNavigationBarHidden(isHidden: false)
         setupUI()
     
     }
-    
+   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setStatusBarBackgroundColor()
+        self.setNavigationBarBackgroundColor()
+        self.storeInfoView.backgroundColor = Config.shared.applicationThemeColor
+        self.view.backgroundColor = Config.shared.applicationThemeColor
+        self.storeNameLabel.tintColor = .white
+        self.categoryLabel.tintColor = .white
+        self.ratingLabel.tintColor = .white
+        self.addressLabel.tintColor = .white
+        
+    }
     private func setupUI() {
+        
+        
         guard let currentTabBarIndex = self.tabBarController?.selectedIndex
         else { return }
         

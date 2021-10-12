@@ -81,14 +81,17 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
         if let imageDictionary = self.comments[indexPath.row].images {
             let images = imageDictionary.map { $0.value }
             cell.images = images
+            cell.collectionViewHeight.constant = 200
         } else {
             cell.images = []
+            cell.collectionViewHeight.constant = 0
         }
         
         cell.userIdLabel?.text = self.comments[indexPath.row].userId
         cell.descriptionLabel?.text = self.comments[indexPath.row].description
         cell.ratingLabel?.text = "\(self.comments[indexPath.row].rating)"
-        
+        cell.profileImageView.image = UIImage(named: "profile\(arc4random_uniform(10) + 1).png")
+
         return cell
     }
     

@@ -113,7 +113,7 @@ class MainMapViewController: UIViewController {
         
         self.setNavigationBarHidden(isHidden: true)
         self.setStatusBarBackgroundColor()
-        self.popUpView.backgroundColor = Config.shared.applicationThemeColor
+        self.popUpView.backgroundColor = Config.shared.application30Color
 
 
     }

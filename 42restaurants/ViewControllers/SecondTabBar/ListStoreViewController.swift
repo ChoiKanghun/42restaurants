@@ -31,6 +31,15 @@ class ListStoreViewController: UIViewController {
         
         getStoresInfoFromDatabase()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setNavigationBarHidden(isHidden: true)
+        self.setStatusBarBackgroundColor()
+        self.setNavigationBarBackgroundColor()
+        self.storeTableView.backgroundColor = Config.shared.applicationThemeColor
+    }
 
     func getStoresInfoFromDatabase() {
         self.ref.child("stores").observe(DataEventType.value, with: { (snapshot) in
@@ -76,7 +85,6 @@ extension ListStoreViewController: UITableViewDelegate {
         cell.addressLabel?.text = store.storeInfo.address
         cell.rateLabel?.text = "\(store.storeInfo.rating)"
         cell.categoryLabel?.text = store.storeInfo.category
-        
         
         let storageRef = storage.reference()
         let reference = storageRef.child("\(store.storeInfo.mainImage)")

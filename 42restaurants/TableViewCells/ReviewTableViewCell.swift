@@ -38,7 +38,6 @@ class ReviewTableViewCell: UITableViewCell {
         self.collectionView.dataSource = self
         
         setUI()
-//        self.collectionView.collectionViewLayout = createLayout()
     }
     
     private func setUI() {

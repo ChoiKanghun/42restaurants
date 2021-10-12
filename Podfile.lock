@@ -374,11 +374,15 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - NMapsMap (3.13.0)
-  - OpalImagePicker (3.0.0)
   - PromisesObjC (1.2.12)
+  - PryntTrimmerView (4.0.2)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
+  - SteviaLayout (4.7.3)
+  - YPImagePicker (5.0.0):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
   - CodableFirebase
@@ -390,7 +394,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseUI/Storage
   - NMapsMap (~> 3.13.0)
-  - OpalImagePicker (~> 3.0.0)
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
@@ -417,9 +421,11 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - NMapsMap
-    - OpalImagePicker
     - PromisesObjC
+    - PryntTrimmerView
     - SDWebImage
+    - SteviaLayout
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -445,10 +451,12 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
-  OpalImagePicker: 38e772dd93a54431fc516b33e1f337c50f745834
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
+  YPImagePicker: 1463a19a36244e209dcb03c30e63559c5afa9602
 
-PODFILE CHECKSUM: 63c60750d715b81afa05ddda884ae513f73516ad
+PODFILE CHECKSUM: d46041ebc17d9ccbca0090534e75e14e91dcaba8
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.0

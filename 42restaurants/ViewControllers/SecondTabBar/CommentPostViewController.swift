@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import OpalImagePicker
 import Photos
 import Firebase
 import CodableFirebase
+import YPImagePicker
 
 class CommentPostViewController: UIViewController {
 
@@ -22,11 +22,10 @@ class CommentPostViewController: UIViewController {
     // 키보드 높이
     @IBOutlet weak var keyHeight: NSLayoutConstraint!
     
-    let imagePicker = OpalImagePickerController()
+    // 갤러리에서 이미지 선택 시 IMAGESET로 들어감
     var imageSet = [UIImage]()
+    // imageSet에 담긴 image들은 upload 시 images에 담겼다가 올라감.
     var images = [String]()
-    let phImageManager = PHImageManager.default()
-    let phImageOption = PHImageRequestOptions()
     
     var ref: DatabaseReference!
     let storage = Storage.storage()
@@ -41,7 +40,6 @@ class CommentPostViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-        initializeOpalImagePicker()
     }
     
     @objc func keyboardWillShow(_ sender: Notification) {
@@ -61,53 +59,52 @@ class CommentPostViewController: UIViewController {
         keyHeight.constant = 10
     }
     
-    private func initializeOpalImagePicker() {
-        self.imagePicker.maximumSelectionsAllowed = 10
-        let configuration = OpalImagePickerConfiguration()
-        configuration.maximumSelectionsAllowedMessage
-            = NSLocalizedString("최대 10장까지 선택 가능합니다.", comment: "")
-        self.imagePicker.configuration = configuration
 
-        // phImageOpation 세팅
-        self.phImageOption.isSynchronous = true
-    }
 
     @IBAction func touchUpAddImageButton(_ sender: Any) {
         
-        self.imageSet = [UIImage]()
+        // config는 사진 옵션 선택
+        var config = YPImagePickerConfiguration()
+        config.library.maxNumberOfItems = 10
+        config.library.mediaType = .photo
+        config.startOnScreen = .library
+        let picker = YPImagePicker(configuration: config)
         
-        presentOpalImagePickerController(
-            imagePicker,
-            animated: true,
-            select: { (assets) in
-                for asset in assets {
-                    // 단점: scaleToFill 을 지원하지 않는다.
-                    self.phImageManager.requestImage(
-                        for: asset,
-                        targetSize: CGSize(width: 100.0, height: 100.0),
-                        contentMode: .default,
-                        options: self.phImageOption,
-                        resultHandler: { (result, info) in
-                            if let result = result {
-                                self.imageSet.append(result)
-                                DispatchQueue.main.async {
-                                    
-                                }
-                            }
-                        })
+        // 먼저 Picker를 Present 해야 한다.
+        present(picker, animated: true, completion: nil)
+
+        var temporaryImageSet = [UIImage]()
+        // 사용자가 사진 Picking을 끝냈다면
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            if cancelled == true { // cancel 시
+                print("picker has been cancelled")
+            }
+            else {
+                for item in items {
+                    switch item {
+                    case .photo(let photo):
+                        print(type(of: photo))
+                        temporaryImageSet.append(photo.image)
+                    default: // 고른 사진의 타입이 이상하면 에러처리.
+                        self.showBasicAlert(title: "타입 불일치", message: "이미지만 올려주세요")
+                        picker.dismiss(animated: true, completion: nil)
+                        return
+                    }
                 }
-//                self.imageSet = assets
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            },
-            cancel: {
-                self.imageSet = [UIImage]()
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            })
+                self.imageSet = temporaryImageSet
+            }
+            picker.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+
+        
+        
     }
+    //                 DispatchQueue.main.async {
+ //   self.collectionView.reloadData()
+// }
     
     @IBAction func onDragStarSlider(_ sender: UISlider) {
         let floatValue = floor(sender.value * 10) / 10
@@ -139,8 +136,7 @@ class CommentPostViewController: UIViewController {
             return
         }
 
-        // MARK: 2. db ref 설정.
-//        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+
         
         // MARK: 3. 이미지가 있다면 이미지를 먼저 업로드.
         
@@ -148,8 +144,7 @@ class CommentPostViewController: UIViewController {
               let storeKey = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey
                 : StoreSingleton.shared.store?.storeKey
         else { fatalError("인터넷 연결 확인 필요") }
-        
-        print(storeKey)
+    
         
         if self.imageSet.count != 0 {
             
@@ -278,7 +273,7 @@ class CommentPostViewController: UIViewController {
             }
             
             self.ref.child("stores/\(storeKey)/comments/\(newCommentKey)").setValue (
-                ["rating": Double(floor(self.starRatingSlider.value * 10) / 10),
+                ["rating": Double(floor(self.starRatingSlider.value * 10)) / 10,
                  "description": description,
                  "userId": userId,
                  "createDate": Date().toDouble(),
@@ -287,33 +282,34 @@ class CommentPostViewController: UIViewController {
             )
         }
         
-        
-        self.ref.child("stores").child("\(storeKey)").observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.exists() {
-               guard let value = snapshot.value else { return }
-               do {
-                   print(value)
-                   let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
-                   let commentCount = storeData.comments.count
-                   var sumOfRatings: Double = 0
-                   for comment in storeData.comments {
-                       sumOfRatings += comment.value.rating
-                   }
-                   let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10) / 10)
-                   self.ref.child("stores/\(storeKey)/rating").setValue(rating)
-                   self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
-                   LoadingService.hideLoading()
-                   DispatchQueue.main.async {
-                       self.navigationController?.popViewController(animated: true)
-                   }
+        DispatchQueue.main.async {
 
-               } catch let err {
-                   LoadingService.hideLoading()
-                   print(err.localizedDescription)
+            self.ref.child("stores").child("\(storeKey)").observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                   guard let value = snapshot.value else { return }
+                   do {
+                       print(value)
+                       let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
+                       let commentCount = storeData.comments.count
+                       var sumOfRatings: Double = 0
+                       for comment in storeData.comments {
+                           sumOfRatings += comment.value.rating
+                       }
+                       let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10)) / 10
+                       self.ref.child("stores/\(storeKey)/rating").setValue(rating)
+                       self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
+                       LoadingService.hideLoading()
+                           self.navigationController?.popViewController(animated: true)
+                       
+
+                   } catch let err {
+                       LoadingService.hideLoading()
+                       print(err.localizedDescription)
+                   }
                }
-           }
-            
-        })
+                
+            })
+        }
     }
 }
 

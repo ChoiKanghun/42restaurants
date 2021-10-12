@@ -19,7 +19,8 @@ target '42restaurants' do
 	pod 'Firebase/Messaging'
 
     # other pods
-	pod 'OpalImagePicker', '~> 3.0.0'
+	# imagePicker
+	pod 'YPImagePicker'	
 
   target '42restaurantsTests' do
     inherit! :search_paths

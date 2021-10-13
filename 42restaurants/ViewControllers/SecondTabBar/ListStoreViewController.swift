@@ -38,7 +38,7 @@ class ListStoreViewController: UIViewController {
         self.setNavigationBarHidden(isHidden: true)
         self.setStatusBarBackgroundColor()
         self.setNavigationBarBackgroundColor()
-        self.storeTableView.backgroundColor = Config.shared.applicationThemeColor
+        self.storeTableView.backgroundColor = .white
     }
 
     func getStoresInfoFromDatabase() {

@@ -46,6 +46,13 @@ class ReviewTableViewCell: UITableViewCell {
         } else {
             self.collectionViewHeight.constant = 200
         }
+        
+        self.collectionView.backgroundColor = Config.shared.application60Color
+        self.backgroundColor = Config.shared.application60Color
+        self.userIdLabel.textColor = Config.shared.applicationContrastTextColor
+        self.ratingLabel.textColor = Config.shared.applicationSupplimetaryTextColor
+        self.descriptionLabel.textColor = Config.shared.applicationContrastTextColor
+        
     }
     
     

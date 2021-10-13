@@ -49,18 +49,17 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+    }
+    
+    private func setupUI() {
+
         self.setStatusBarBackgroundColor()
         self.setNavigationBarBackgroundColor()
-        self.storeInfoView.backgroundColor = Config.shared.applicationThemeColor
-        self.view.backgroundColor = Config.shared.applicationThemeColor
-        self.storeNameLabel.tintColor = .white
-        self.categoryLabel.tintColor = .white
-        self.ratingLabel.tintColor = .white
-        self.addressLabel.tintColor = .white
-        
-    }
-    private func setupUI() {
-        
+        self.view.backgroundColor = Config.shared.application60Color
+        self.storeNameLabel.textColor = Config.shared.applicationContrastTextColor
+        self.categoryLabel.textColor = Config.shared.applicationSupplimetaryTextColor
+        self.ratingLabel.textColor = Config.shared.applicationContrastTextColor
+        self.addressLabel.textColor = Config.shared.applicationContrastTextColor
         
         guard let currentTabBarIndex = self.tabBarController?.selectedIndex
         else { return }
@@ -71,8 +70,11 @@ class DetailViewController: UIViewController {
         self.storeNameLabel?.text = store.storeInfo.name
         self.addressLabel?.text = store.storeInfo.address
         self.categoryLabel?.text = store.storeInfo.category
-        self.ratingLabel?.text = "\(store.storeInfo.rating) / 5"
-       
+        self.ratingLabel?.text = "\(store.storeInfo.rating) (\(store.storeInfo.commentCount))"
+        
+        
+        self.segmentedControl.selectedSegmentTintColor = Config.shared.application30Color
+        
         instantiateSegmentedViewControllers()
     }
     

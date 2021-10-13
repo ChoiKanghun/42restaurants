@@ -17,6 +17,8 @@ class Config {
     let application60Color = UIColor.white
     let application30Color = UIColor.init(red:190/255, green: 215/255, blue: 252/255, alpha: 1)
     let application10Color = UIColor.init(red: 44, green: 62, blue: 80, alpha: 1)
+    let applicationContrastTextColor = UIColor.black
+    let applicationSupplimetaryTextColor = UIColor.gray
     //230 239 252 연파랑
     //222 228 252 연보라색
     //#2c3e50  44 62 80고급남색

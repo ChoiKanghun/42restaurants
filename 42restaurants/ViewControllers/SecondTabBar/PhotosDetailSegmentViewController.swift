@@ -33,6 +33,12 @@ class PhotosDetailSegmentViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 0
         self.collectionView.collectionViewLayout = flowLayout
         self.getImagesFromServer()
+        setUI()
+    }
+
+    private func setUI() {
+        self.collectionView.backgroundColor = .white
+        
     }
     
     private func getImagesFromServer() {

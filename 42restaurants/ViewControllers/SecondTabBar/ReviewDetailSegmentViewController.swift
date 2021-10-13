@@ -38,8 +38,12 @@ class ReviewDetailSegmentViewController: UIViewController {
         self.tableView.dataSource = self
 
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-        
+        setUI()
         updateTableView()
+    }
+    
+    private func setUI() {
+        self.tableView.backgroundColor = .white
     }
     
     private func updateTableView() {

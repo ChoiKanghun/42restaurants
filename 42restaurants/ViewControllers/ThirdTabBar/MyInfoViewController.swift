@@ -26,7 +26,8 @@ class MyInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.setStatusBarBackgroundColor()
         self.setNavigationBarHidden(isHidden: true)
-        self.view.backgroundColor = Config.shared.applicationThemeColor
+        self.isLoggedInLabel.textColor = .black
+        self.view.backgroundColor = .white
         
     }
     

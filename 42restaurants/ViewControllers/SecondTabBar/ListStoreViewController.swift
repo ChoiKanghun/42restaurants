@@ -38,7 +38,7 @@ class ListStoreViewController: UIViewController {
         self.setNavigationBarHidden(isHidden: true)
         self.setStatusBarBackgroundColor()
         self.setNavigationBarBackgroundColor()
-        self.storeTableView.backgroundColor = .white
+        self.storeTableView.backgroundColor = Config.shared.application60Color
     }
 
     func getStoresInfoFromDatabase() {
@@ -105,7 +105,9 @@ extension ListStoreViewController: UITableViewDataSource {
         guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
         else { return }
             
+        tableView.deselectRow(at: indexPath, animated: true)
         self.navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
 }

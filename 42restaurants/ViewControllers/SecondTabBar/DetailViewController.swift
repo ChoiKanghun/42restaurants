@@ -42,6 +42,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.setNavigationBarHidden(isHidden: false)
+        
         setupUI()
     
     }
@@ -52,7 +53,7 @@ class DetailViewController: UIViewController {
     }
     
     private func setupUI() {
-
+        
         self.setStatusBarBackgroundColor()
         self.setNavigationBarBackgroundColor()
         self.view.backgroundColor = Config.shared.application60Color
@@ -74,6 +75,23 @@ class DetailViewController: UIViewController {
         
         
         self.segmentedControl.selectedSegmentTintColor = Config.shared.application30Color
+    
+        DispatchQueue.main.async {
+            let floatValue = Float(store.storeInfo.rating)
+            
+            for index in 1...5 {
+                if let starImage = self.view.viewWithTag(index) as? UIImageView {
+                    if Float(index) <= floatValue {
+                        starImage.image = UIImage(named: "star_full_48px")
+                    } else if Float(index) - floatValue <= 0.5 {
+                        starImage.image = UIImage(named: "star_half_48px")
+                    } else {
+                        starImage.image = UIImage(named: "star_empty_48px")
+                    }
+                }
+            }
+        }
+        
         
         instantiateSegmentedViewControllers()
     }
@@ -81,6 +99,9 @@ class DetailViewController: UIViewController {
     // segmentedControl과 연결된 ViewController들을 초기화하고,
     // 해당 view들을 현재(self) view에 추가한다.
     private func instantiateSegmentedViewControllers() {
+        
+        
+        
         guard let photosVC = self.storyboard?.instantiateViewController(withIdentifier: "PhotosVC"),
               let reviewsVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewVC"),
               let detailMapVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailMapVC")

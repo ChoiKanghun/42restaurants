@@ -404,7 +404,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3210" y="1065"/>
+            <point key="canvasLocation" x="2038" y="1564"/>
         </scene>
         <!--My Info View Controller-->
         <scene sceneID="omD-Ud-rAd">
@@ -1081,7 +1081,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbj-kR-NHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4019" y="1065"/>
+            <point key="canvasLocation" x="2848" y="1564"/>
         </scene>
         <!--Item-->
         <scene sceneID="O2f-2H-SEz">
@@ -1191,6 +1191,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWI-oy-g2Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4019" y="242"/>
+        </scene>
+        <!--Enlarged Image View Controller-->
+        <scene sceneID="xj3-Zo-1VF">
+            <objects>
+                <viewController storyboardIdentifier="EnlargedImageViewController" id="gs0-Bo-7No" customClass="EnlargedImageViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Jz-Jl-eOo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uiq-6c-Bdb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="placeholder.jpg"/>
+                                <connections>
+                                    <action selector="touchUpUIButtonWithImage:" destination="gs0-Bo-7No" eventType="touchUpInside" id="VxQ-DU-0iX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zBS-IX-ujT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Uiq-6c-Bdb" firstAttribute="leading" secondItem="zBS-IX-ujT" secondAttribute="leading" id="5qp-db-BmJ"/>
+                            <constraint firstItem="zBS-IX-ujT" firstAttribute="bottom" secondItem="Uiq-6c-Bdb" secondAttribute="bottom" id="7KD-m5-KTX"/>
+                            <constraint firstItem="zBS-IX-ujT" firstAttribute="trailing" secondItem="Uiq-6c-Bdb" secondAttribute="trailing" id="SOh-Ao-6WS"/>
+                            <constraint firstItem="Uiq-6c-Bdb" firstAttribute="top" secondItem="zBS-IX-ujT" secondAttribute="top" id="VsV-fh-aXV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="UIButtonWithImage" destination="Uiq-6c-Bdb" id="V2b-S4-IBE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lVe-F5-0B1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4019" y="914"/>
         </scene>
         <!--Review Detail Segment View Controller-->
         <scene sceneID="QVf-ly-LWp">
@@ -1372,6 +1406,7 @@
     <resources>
         <image name="appleSignInImage" width="560" height="200"/>
         <image name="camera.on.rectangle.fill" catalog="system" width="128" height="96"/>
+        <image name="placeholder.jpg" width="358" height="355"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="star16px" width="32" height="32"/>
         <image name="star_full_48px" width="48" height="48"/>

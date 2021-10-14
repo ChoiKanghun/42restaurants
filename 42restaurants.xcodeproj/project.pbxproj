@@ -26,6 +26,8 @@
 		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
+		7A97B67D2717BBC1006E9D3C /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */; };
+		7A97B67F2717F1BD006E9D3C /* EnlargedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B67E2717F1BD006E9D3C /* EnlargedImageViewController.swift */; };
 		7A9AEECE2711AE2800DCE2C3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AEECD2711AE2800DCE2C3 /* Config.swift */; };
 		7A9AEED12711B14F00DCE2C3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */; };
 		7AB9CB8B270D6C7B000E9A28 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */; };
@@ -99,6 +101,8 @@
 		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
+		7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		7A97B67E2717F1BD006E9D3C /* EnlargedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargedImageViewController.swift; sourceTree = "<group>"; };
 		7A9AEECD2711AE2800DCE2C3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				7A34E4EE26A6C52200254C11 /* UIViewController+Extensions.swift */,
 				7A34E51626A7FE5800254C11 /* String+Extensions.swift */,
 				7A34E51826A7FEB900254C11 /* Date+Extensions.swift */,
+				7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */,
 				7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */,
 				7AE780C926AED58600B507DE /* CommentPostViewController.swift */,
+				7A97B67E2717F1BD006E9D3C /* EnlargedImageViewController.swift */,
 			);
 			path = SecondTabBar;
 			sourceTree = "<group>";
@@ -624,6 +630,7 @@
 				7AE780C226AE60B200B507DE /* PhotosDetailSegmentViewController.swift in Sources */,
 				7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */,
 				7AF6615626AFECC300D405E0 /* StarRatingUISlider.swift in Sources */,
+				7A97B67D2717BBC1006E9D3C /* UIImageView+Extensions.swift in Sources */,
 				7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */,
 				7A9AEED12711B14F00DCE2C3 /* MainTabBarController.swift in Sources */,
 				7A34E51526A7E27F00254C11 /* Category.swift in Sources */,
@@ -640,6 +647,7 @@
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
 				7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */,
+				7A97B67F2717F1BD006E9D3C /* EnlargedImageViewController.swift in Sources */,
 				7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */,
 				7AE7E13626CB35FD002536E1 /* MainTabStoreSingleton.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,

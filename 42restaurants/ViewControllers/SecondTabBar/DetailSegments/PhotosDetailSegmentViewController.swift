@@ -79,6 +79,7 @@ extension PhotosDetailSegmentViewController: UICollectionViewDelegate, UICollect
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: DetailPhotosCollectionViewCell.reuseIdentifier, for: indexPath) as? DetailPhotosCollectionViewCell
         else {print("can't get images"); return UICollectionViewCell()}
     
@@ -91,16 +92,19 @@ extension PhotosDetailSegmentViewController: UICollectionViewDelegate, UICollect
         return cell
     }
     
+    // 클릭한 셀의 이미지를 가져와서 EnlargedImageViewController의 이미지 변수에 세팅해주고 VC를 띄운다.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? DetailPhotosCollectionViewCell
-        else { return }
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? DetailPhotosCollectionViewCell
+        else { fatalError("can't get detailPhotosCollectionViewCell") }
+        guard let cellImage = cell.imageView.image else { return }
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        guard let imageModalViewController = storyBoard.instantiateViewController(withIdentifier: "EnlargedImageViewController") as? EnlargedImageViewController
+        guard let enlargedImageViewController = storyBoard.instantiateViewController(withIdentifier: "EnlargedImageViewController") as? EnlargedImageViewController
         else { return }
-        imageModalViewController.imagePassed = cell.imageView.image
-        self.present(imageModalViewController, animated: true, completion: nil)
         
+        enlargedImageViewController.imagePassed = cellImage
+        
+        self.navigationController?.pushViewController(enlargedImageViewController, animated: true)
     }
     
    

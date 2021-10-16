@@ -102,4 +102,5 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }

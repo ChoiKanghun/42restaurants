@@ -10,12 +10,14 @@ import UIKit
 
 extension UIViewController {
     
+    // 네비게이션 바를 보이게 하거나 없어지게 합니다.
     func setNavigationBarHidden(isHidden: Bool) {
         if let navigationController = self.navigationController {
             navigationController.isNavigationBarHidden = isHidden
         }
     }
     
+    // statusBar 백그라운드 컬러를 설정.
     func setStatusBarBackgroundColor() {
         if let statusBarView = statusBarView {
             DispatchQueue.main.async {
@@ -24,6 +26,7 @@ extension UIViewController {
         }
     }
     
+    // navigationBar 백그라운드 컬러 설정
     func setNavigationBarBackgroundColor() {
         if let navigationBar = navigationController?.navigationBar {
             DispatchQueue.main.async {

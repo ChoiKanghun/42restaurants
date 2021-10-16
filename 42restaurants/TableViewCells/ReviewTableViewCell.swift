@@ -87,6 +87,19 @@ extension ReviewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ReviewImageCollectionViewCell,
+              let cellImage = cell.imageView.image
+        else { print("can't find any image");return }
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        guard let enlargedImageViewController = storyBoard.instantiateViewController(withIdentifier: "EnlargedImageViewController")
+                as? EnlargedImageViewController
+        else { return }
+        
+        enlargedImageViewController.imagePassed = cellImage
+        self.window?.rootViewController?.present(enlargedImageViewController, animated: true, completion: nil)
+    }
   
     
 }

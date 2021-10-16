@@ -1200,31 +1200,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uiq-6c-Bdb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xlQ-9e-Sot">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="placeholder.jpg"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRJ-4c-SBo">
+                                <rect key="frame" x="10" y="54" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="ntz-7R-fDJ"/>
+                                    <constraint firstAttribute="height" constant="60" id="vly-wB-5Iu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="x"/>
                                 <connections>
-                                    <action selector="touchUpUIButtonWithImage:" destination="gs0-Bo-7No" eventType="touchUpInside" id="VxQ-DU-0iX"/>
+                                    <action selector="touchUpXButton:" destination="gs0-Bo-7No" eventType="touchUpInside" id="t8Q-nx-oJl"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zBS-IX-ujT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Uiq-6c-Bdb" firstAttribute="leading" secondItem="zBS-IX-ujT" secondAttribute="leading" id="5qp-db-BmJ"/>
-                            <constraint firstItem="zBS-IX-ujT" firstAttribute="bottom" secondItem="Uiq-6c-Bdb" secondAttribute="bottom" id="7KD-m5-KTX"/>
-                            <constraint firstItem="zBS-IX-ujT" firstAttribute="trailing" secondItem="Uiq-6c-Bdb" secondAttribute="trailing" id="SOh-Ao-6WS"/>
-                            <constraint firstItem="Uiq-6c-Bdb" firstAttribute="top" secondItem="zBS-IX-ujT" secondAttribute="top" id="VsV-fh-aXV"/>
+                            <constraint firstItem="iRJ-4c-SBo" firstAttribute="leading" secondItem="zBS-IX-ujT" secondAttribute="leading" constant="10" id="Aig-PM-pfZ"/>
+                            <constraint firstItem="iRJ-4c-SBo" firstAttribute="top" secondItem="zBS-IX-ujT" secondAttribute="top" constant="10" id="PQn-aw-2jv"/>
+                            <constraint firstItem="xlQ-9e-Sot" firstAttribute="leading" secondItem="zBS-IX-ujT" secondAttribute="leading" id="bys-QT-oKu"/>
+                            <constraint firstItem="zBS-IX-ujT" firstAttribute="trailing" secondItem="xlQ-9e-Sot" secondAttribute="trailing" id="cmd-Kw-aL1"/>
+                            <constraint firstItem="xlQ-9e-Sot" firstAttribute="top" secondItem="zBS-IX-ujT" secondAttribute="top" id="fWB-RG-88o"/>
+                            <constraint firstItem="zBS-IX-ujT" firstAttribute="bottom" secondItem="xlQ-9e-Sot" secondAttribute="bottom" id="ze7-W7-Sme"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="UIButtonWithImage" destination="Uiq-6c-Bdb" id="V2b-S4-IBE"/>
+                        <outlet property="enlargedImageView" destination="xlQ-9e-Sot" id="Jwk-rN-qeD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lVe-F5-0B1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4019" y="914"/>
+            <point key="canvasLocation" x="4018.8405797101454" y="913.39285714285711"/>
         </scene>
         <!--Review Detail Segment View Controller-->
         <scene sceneID="QVf-ly-LWp">
@@ -1406,7 +1416,6 @@
     <resources>
         <image name="appleSignInImage" width="560" height="200"/>
         <image name="camera.on.rectangle.fill" catalog="system" width="128" height="96"/>
-        <image name="placeholder.jpg" width="358" height="355"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="star16px" width="32" height="32"/>
         <image name="star_full_48px" width="48" height="48"/>

@@ -30,17 +30,25 @@ class ListStoreViewController: UIViewController {
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         getStoresInfoFromDatabase()
+        setUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.setNavigationBarHidden(isHidden: true)
-        self.setStatusBarBackgroundColor()
-        self.setNavigationBarBackgroundColor()
-        self.storeTableView.backgroundColor = Config.shared.application60Color
+        
     }
 
+    private func setUI() {
+        self.setStatusBarBackgroundColor()
+        self.setNavigationBarBackgroundColor()
+        self.setNavigationBarHidden(isHidden: true)
+        self.storeTableView.backgroundColor = Config.shared.application60Color
+        LoadingService.showLoading() // 테이블 뷰 마지막 셀이 didEndDisplaying되면 로딩바 사라짐.
+    }
+    
+    
+    
     func getStoresInfoFromDatabase() {
         self.ref.child("stores").observe(DataEventType.value, with: { (snapshot) in
             
@@ -94,6 +102,9 @@ extension ListStoreViewController: UITableViewDelegate {
         return cell
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
+    }
     
     
 }
@@ -110,4 +121,9 @@ extension ListStoreViewController: UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.stores.count - 1 {
+            LoadingService.hideLoading()
+        }
+    }
 }

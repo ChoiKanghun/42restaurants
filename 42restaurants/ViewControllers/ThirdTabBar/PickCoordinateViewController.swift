@@ -106,9 +106,13 @@ extension PickCoordinateViewController: NMFMapViewTouchDelegate {
         let locationOverlay = self.mapView.locationOverlay
         locationOverlay.hidden = false
         locationOverlay.location = latlng
-        locationOverlay.icon = NMF_MARKER_IMAGE_BLUE
-        locationOverlay.iconWidth = 40
-        locationOverlay.iconHeight = 40
+        guard let storeLocationImage = UIImage(named: "pickCoordinateLocationImage.png")
+        else { fatalError("can't find image")}
+        let locationOverlayImage = NMFOverlayImage.init(image: storeLocationImage)
+        
+        locationOverlay.icon = locationOverlayImage
+        locationOverlay.iconWidth = 24
+        locationOverlay.iconHeight = 24
         
         
         self.naverCoordinate = latlng

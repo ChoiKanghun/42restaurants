@@ -35,13 +35,17 @@ class MainMapViewController: UIViewController {
         return manager
     }()
     
+    var currentLocation: CLLocationCoordinate2D?
+    
     let userMarker = NMFMarker()
-
+    
     var ref: DatabaseReference!
     let storage = Storage.storage()
     
     var stores = [Store]()
 
+    
+    
     // 특정 객체를 지도에서 선택했을 때 이벤트
     var handler: NMFOverlayTouchHandler = { overlay -> Bool in
         return true
@@ -105,19 +109,14 @@ class MainMapViewController: UIViewController {
             }
         })
         
-        
+        setUI()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    private func setUI() {
         self.setNavigationBarHidden(isHidden: true)
         self.setStatusBarBackgroundColor()
         self.popUpView.backgroundColor = Config.shared.application30Color
-
-
     }
-
     
     @IBAction func touchUpStoreNameButton(_ sender: Any) {
 
@@ -125,6 +124,17 @@ class MainMapViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    @IBAction func touchUpMyLocationButton(_ sender: Any) {
+        if let currentLocation = self.currentLocation {
+            self.moveCameraToUserLocation(currentLocation)
+        } else {
+            self.showBasicAlert(
+                title: "위치 권한을 허용해주세요",
+                message: "설정 > 개인정보보호 > 위치 서비스 > 42restaurants를 항상 또는 사용하는 동안으로 설정해주세요")
+        }
+    }
+    
     
 }
 
@@ -151,19 +161,16 @@ extension MainMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location: CLLocation = locations.first
         else {return}
+        self.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
         let NMGCurrentLocation =
             NMGLatLng(lat: location.coordinate.latitude,
                       lng: location.coordinate.longitude)
         
-        
         userMarker.position = NMGCurrentLocation
         userMarker.mapView = mapView
-
-        
-        
-
     }
+    
     
     /*
      위치를 최초로 받아올 때
@@ -216,9 +223,15 @@ extension MainMapViewController: CLLocationManagerDelegate {
             }
             
         }
-
-        
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 

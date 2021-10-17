@@ -156,7 +156,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
             NMGLatLng(lat: location.coordinate.latitude,
                       lng: location.coordinate.longitude)
         
-        print("location: \(NMGCurrentLocation)")
+        
         userMarker.position = NMGCurrentLocation
         userMarker.mapView = mapView
 

@@ -23,7 +23,7 @@
 | DetailSegmentReviewVC 스크롤 시 윗 화면 축소.              |      |          |
 | DetailSegmentPhotosVC 스크롤 시 윗 화면 축소.              |      |          |
 | 검색 기능 추가                                             |      |          |
-| 탭바 Icon 및 텍스트 수정                                   |      |          |
+| 탭바 Icon 및 텍스트 수정                                   | O    | 21/10/17 |
 | DetailReview,PhotoView 다시 사진 한 장으로 수정.           | O    | 21/10/16 |
 |                                                            |      |          |
 |                                                            |      |          |

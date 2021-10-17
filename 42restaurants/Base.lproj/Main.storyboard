@@ -964,11 +964,13 @@
             </objects>
             <point key="canvasLocation" x="-323" y="-201"/>
         </scene>
-        <!--Item-->
+        <!--Map-->
         <scene sceneID="o1U-uy-zpc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jyD-Xb-uwT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="e35-zs-d3z"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="tabBarMapNotSelected" selectedImage="tabBarMapSelected" id="e35-zs-d3z">
+                        <color key="badgeColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NmF-Qw-Zr5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1083,11 +1085,13 @@
             </objects>
             <point key="canvasLocation" x="2848" y="1564"/>
         </scene>
-        <!--Item-->
+        <!--List-->
         <scene sceneID="O2f-2H-SEz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CvA-gh-ZsC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="NKI-ox-hsp"/>
+                    <tabBarItem key="tabBarItem" title="List" image="tabBarListNotSelected" selectedImage="tabBarListSelected" id="NKI-ox-hsp">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gDq-Ii-5rt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1393,11 +1397,11 @@
             </objects>
             <point key="canvasLocation" x="3179.7101449275365" y="-417.1875"/>
         </scene>
-        <!--Item-->
+        <!--My-->
         <scene sceneID="Avx-6F-q2Q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MmQ-9V-aLn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="73f-jO-Kv0"/>
+                    <tabBarItem key="tabBarItem" title="My" image="tabBarUserNotSelected" selectedImage="tabBarUserSelected" id="73f-jO-Kv0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lbY-EA-3mT">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1419,6 +1423,12 @@
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="star16px" width="32" height="32"/>
         <image name="star_full_48px" width="48" height="48"/>
+        <image name="tabBarListNotSelected" width="32" height="32"/>
+        <image name="tabBarListSelected" width="32" height="32"/>
+        <image name="tabBarMapNotSelected" width="32" height="32"/>
+        <image name="tabBarMapSelected" width="32" height="32"/>
+        <image name="tabBarUserNotSelected" width="32" height="32"/>
+        <image name="tabBarUserSelected" width="32" height="32"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

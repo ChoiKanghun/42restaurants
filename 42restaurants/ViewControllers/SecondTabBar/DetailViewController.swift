@@ -74,8 +74,8 @@ class DetailViewController: UIViewController {
         self.ratingLabel?.text = "\(store.storeInfo.rating) (\(store.storeInfo.commentCount))"
         
         
-        self.segmentedControl.selectedSegmentTintColor = Config.shared.application30Color
-    
+        self.segmentedControl.selectedSegmentTintColor = Config.shared.applicationSupplimentaryBackgroundColor
+        
         DispatchQueue.main.async {
             let floatValue = Float(store.storeInfo.rating)
             

@@ -82,7 +82,6 @@ class EnrollStoreViewController: UIViewController {
     
     
     @IBAction func touchUpImageView(_ sender: Any) {
-        print("clicked")
         self.present(self.imagePicker, animated: true)
 
     }

@@ -169,3 +169,18 @@ extension FirebaseAuthentication {
         NotificationCenter.default.post(name: FirebaseAuthenticationNotification.signOutError.notificationName, object: nil)
     }
 }
+
+extension FirebaseAuthentication {
+    public func checkUserExists() -> Bool {
+        if Auth.auth().currentUser == nil { return false }
+        else { return true }
+    }
+    
+    public func getUserEmail() -> String {
+        if let user = Auth.auth().currentUser,
+           let email = user.email {
+            return email
+        }
+        else { return "can't get user email" }
+    }
+}

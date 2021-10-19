@@ -44,7 +44,6 @@ class ListStoreViewController: UIViewController {
         self.setNavigationBarBackgroundColor()
         self.setNavigationBarHidden(isHidden: true)
         self.storeTableView.backgroundColor = Config.shared.application60Color
-        LoadingService.showLoading() // 테이블 뷰 마지막 셀이 didEndDisplaying되면 로딩바 사라짐.
     }
     
     
@@ -122,8 +121,13 @@ extension ListStoreViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            LoadingService.showLoading()
+        }
         if indexPath.row == self.stores.count - 1 {
             LoadingService.hideLoading()
         }
     }
+    
+    
 }

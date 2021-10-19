@@ -64,4 +64,12 @@ extension UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func showBasicAlertAndHandleCompletion(title: String, message: String, completion: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: {_ in
+        })
+        alert.addAction(okAction)
+        self.present(alert, animated: false, completion: completion)
+    }
 }

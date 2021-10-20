@@ -69,4 +69,17 @@ extension UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: false, completion: completion)
     }
+    
+    func dismissIfNotLoggedIn() {
+        let isLoggedIn = FirebaseAuthentication.shared.checkUserExists()
+        if isLoggedIn == false {
+            self.showBasicAlertAndHandleCompletion(title: "로그인이 필요합니다.", message: "로그인 후 이용해주세요") {
+                if let navigationController = self.navigationController {
+                    navigationController.popViewController(animated: true)
+                } else {
+                    self.dismiss(animated: false, completion: nil)
+                }
+            }
+        }
+    }
 }

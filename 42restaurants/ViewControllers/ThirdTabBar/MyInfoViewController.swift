@@ -20,7 +20,7 @@ class MyInfoViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name: FirebaseAuthenticationNotification.signInSuccess.notificationName, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name: FirebaseAuthenticationNotification.signOutSuccess.notificationName, object: nil)
         
-        self.setUI()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,7 +28,7 @@ class MyInfoViewController: UIViewController {
         self.setNavigationBarHidden(isHidden: true)
         self.isLoggedInLabel.textColor = .black
         self.view.backgroundColor = .white
-        
+        self.setUI()
     }
     
     private func setUI() {

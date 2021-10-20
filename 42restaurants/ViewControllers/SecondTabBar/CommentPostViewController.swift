@@ -34,7 +34,7 @@ class CommentPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dismissIfNotLoggedIn(isLoggedIn: FirebaseAuthentication.shared.checkUserExists())
+        self.dismissIfNotLoggedIn()
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -44,13 +44,7 @@ class CommentPostViewController: UIViewController {
         self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
     }
     
-    private func dismissIfNotLoggedIn(isLoggedIn: Bool) {
-        if isLoggedIn == false {
-            self.showBasicAlertAndHandleCompletion(title: "로그인이 필요합니다.", message: "로그인 후 이용해주세요") { 
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
+    
     
     private func fillBasicInfo() { // 추후 길어질 수도 있으므로 함수로 빼둠.
         self.userEmailLabel.text = FirebaseAuthentication.shared.getUserEmail()

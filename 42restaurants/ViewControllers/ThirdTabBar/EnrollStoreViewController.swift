@@ -46,6 +46,8 @@ class EnrollStoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.dismissIfNotLoggedIn()
+        
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         initializeImagePicker()
@@ -69,6 +71,8 @@ class EnrollStoreViewController: UIViewController {
         self.categoryPickerView.delegate = self
         self.categoryPickerView.dataSource = self
     }
+    
+    
     
     @objc func didReceiveTouchedLatLngNotification(_ noti: Notification) {
         guard let coordinate = noti.userInfo?["naverCoordinate"] as? NMGLatLng

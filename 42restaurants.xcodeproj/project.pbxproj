@@ -27,6 +27,7 @@
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
 		7A95D951271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */; };
+		7A95D973271FF28F00164BC3 /* ManageMyStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */; };
 		7A97B67D2717BBC1006E9D3C /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */; };
 		7A97B67F2717F1BD006E9D3C /* EnlargedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B67E2717F1BD006E9D3C /* EnlargedImageViewController.swift */; };
 		7A97B6A22719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B6A12719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift */; };
@@ -105,6 +106,7 @@
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
+		7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMyStoreViewController.swift; sourceTree = "<group>"; };
 		7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		7A97B67E2717F1BD006E9D3C /* EnlargedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargedImageViewController.swift; sourceTree = "<group>"; };
 		7A97B6A12719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargedImagesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */,
 				7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */,
 				7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */,
+				7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */,
 			);
 			path = ThirdTabBar;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				7A34E4E826A6808E00254C11 /* MainMapViewController.swift in Sources */,
 				7AE7E13226CB33EA002536E1 /* MainListStoreViewController.swift in Sources */,
 				7AE780CD26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift in Sources */,
+				7A95D973271FF28F00164BC3 /* ManageMyStoreViewController.swift in Sources */,
 				7A1D23BF26A67BB000F8E7E2 /* AppDelegate.swift in Sources */,
 				7AE780BC26ABB7B100B507DE /* StoreTableViewCell.swift in Sources */,
 				7A34E4F226A7C2AA00254C11 /* Store.swift in Sources */,

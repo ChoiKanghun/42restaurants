@@ -26,6 +26,7 @@
 		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
+		7A95D951271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */; };
 		7A97B67D2717BBC1006E9D3C /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */; };
 		7A97B67F2717F1BD006E9D3C /* EnlargedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B67E2717F1BD006E9D3C /* EnlargedImageViewController.swift */; };
 		7A97B6A22719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B6A12719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift */; };
@@ -103,6 +104,7 @@
 		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
+		7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
 		7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		7A97B67E2717F1BD006E9D3C /* EnlargedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargedImageViewController.swift; sourceTree = "<group>"; };
 		7A97B6A12719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargedImagesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				7A34E51826A7FEB900254C11 /* Date+Extensions.swift */,
 				7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */,
 				7A97B6A327191E4B006E9D3C /* UICollectionView+Extensions.swift */,
+				7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
 				7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */,
 				7A97B6A22719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift in Sources */,
+				7A95D951271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift in Sources */,
 				7A97B67F2717F1BD006E9D3C /* EnlargedImageViewController.swift in Sources */,
 				7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */,
 				7AE7E13626CB35FD002536E1 /* MainTabStoreSingleton.swift in Sources */,

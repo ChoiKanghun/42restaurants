@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import CodableFirebase
+import CoreLocation
+
 
 class ListStoreViewController: UIViewController {
 
@@ -30,21 +32,37 @@ class ListStoreViewController: UIViewController {
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         getStoresInfoFromDatabase()
-        setUI()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        // view will appear에 두는 이유는 리스트 클릭 후 다시 돌아올 때를 대비하기 위해서.
+        setUI()
     }
 
     private func setUI() {
         self.setStatusBarBackgroundColor()
         self.setNavigationBarBackgroundColor()
-        self.setNavigationBarHidden(isHidden: true)
         self.storeTableView.backgroundColor = Config.shared.application60Color
+        self.setNavigationBarHidden(isHidden: true)
+        
     }
+    
+
+    
+    private func getDistanceFromCurrentLocation(_ targetLatitude: Double, _ targetLongitude: Double) -> CLLocationDistance {
+        let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
+        let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLongitude")
+        
+        let targetLocation = CLLocationCoordinate2D(latitude: targetLatitude, longitude: targetLongitude)
+        let currentLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
+        
+        return targetLocation.distance(from: currentLocation)
+    }
+//
+    
     
     
     
@@ -75,6 +93,42 @@ class ListStoreViewController: UIViewController {
     }
     
    
+    @IBAction func touchUpFilterButton(_ sender: Any) {
+        let filterMenu = UIAlertController(title: nil, message: "적용할 필터를 선택해주세요.", preferredStyle: .actionSheet)
+        
+        // 옵션 - 시간순
+        let filterByDate = UIAlertAction(title: "등록된 시간 순", style: .default, handler: { _ in
+            self.stores = self.stores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
+            DispatchQueue.main.async { self.storeTableView.reloadData() }
+        })
+        
+        // 옵션 - 가까운순
+        let filterByDistance = UIAlertAction(title: "가까운 순", style: .default, handler: { _ in
+            self.stores = self.stores.sorted(
+                by: { self.getDistanceFromCurrentLocation($0.storeInfo.latitude, $0.storeInfo.longtitude) <
+                    self.getDistanceFromCurrentLocation($1.storeInfo.latitude, $1.storeInfo.longtitude) })
+            DispatchQueue.main.async { self.storeTableView.reloadData() }
+        })
+        
+        // 옵션 - 리뷰 많은 순
+        let filterByReviewCount = UIAlertAction(title: "리뷰 많은 순", style: .default, handler: { _ in
+            self.stores = self.stores.sorted(by: { $0.storeInfo.commentCount > $1.storeInfo.commentCount })
+            DispatchQueue.main.async { self.storeTableView.reloadData() }
+        })
+        
+        // 옵션 - 평점 높은 순
+        let filterByRating = UIAlertAction(title: "평점 높은 순", style: .default, handler: { _ in
+            self.stores = self.stores.sorted(by: { $0.storeInfo.rating > $1.storeInfo.rating })
+            DispatchQueue.main.async { self.storeTableView.reloadData() }
+        })
+        
+        filterMenu.addAction(filterByDate)
+        filterMenu.addAction(filterByDistance)
+        filterMenu.addAction(filterByReviewCount)
+        filterMenu.addAction(filterByRating)
+    
+        self.present(filterMenu, animated: true, completion: nil)
+    }
 }
 
 extension ListStoreViewController: UITableViewDelegate {
@@ -121,9 +175,7 @@ extension ListStoreViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            LoadingService.showLoading()
-        }
+        
         if indexPath.row == self.stores.count - 1 {
             LoadingService.hideLoading()
         }

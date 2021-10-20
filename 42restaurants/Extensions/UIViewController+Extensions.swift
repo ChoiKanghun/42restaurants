@@ -26,6 +26,7 @@ extension UIViewController {
         }
     }
     
+    
     // navigationBar 백그라운드 컬러 설정
     func setNavigationBarBackgroundColor() {
         if let navigationBar = navigationController?.navigationBar {
@@ -34,10 +35,6 @@ extension UIViewController {
             }
         }
     }
-    
-    
-    
-    
     
     // 상태창 스타일 설정
     var statusBarView: UIView? {

@@ -494,7 +494,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tgV-Ht-OJG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="113" width="414" height="700"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -588,13 +588,38 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IoF-BY-tOT">
+                                <rect key="frame" x="0.0" y="88" width="414" height="25"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QiO-ep-mT4">
+                                        <rect key="frame" x="374" y="0.0" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="5di-76-NX3"/>
+                                            <constraint firstAttribute="height" constant="25" id="Vn8-h2-Egq"/>
+                                        </constraints>
+                                        <state key="normal" image="filter"/>
+                                        <connections>
+                                            <action selector="touchUpFilterButton:" destination="IwU-0V-bRl" eventType="touchUpInside" id="xKj-SJ-BjI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="QiO-ep-mT4" firstAttribute="top" secondItem="IoF-BY-tOT" secondAttribute="top" id="PPu-bq-dPW"/>
+                                    <constraint firstAttribute="trailing" secondItem="QiO-ep-mT4" secondAttribute="trailing" constant="15" id="cg7-bI-o2s"/>
+                                    <constraint firstAttribute="height" constant="25" id="gWt-Lb-FGj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="72P-6T-C0i"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tgV-Ht-OJG" firstAttribute="top" secondItem="72P-6T-C0i" secondAttribute="top" id="Edy-JD-v8P"/>
+                            <constraint firstItem="IoF-BY-tOT" firstAttribute="leading" secondItem="72P-6T-C0i" secondAttribute="leading" id="Ca2-Ut-w8j"/>
+                            <constraint firstItem="72P-6T-C0i" firstAttribute="trailing" secondItem="IoF-BY-tOT" secondAttribute="trailing" id="JD2-KN-kTR"/>
+                            <constraint firstItem="IoF-BY-tOT" firstAttribute="top" secondItem="72P-6T-C0i" secondAttribute="top" id="ROK-ps-zCo"/>
                             <constraint firstItem="72P-6T-C0i" firstAttribute="bottom" secondItem="tgV-Ht-OJG" secondAttribute="bottom" id="Syb-J2-gBX"/>
                             <constraint firstItem="tgV-Ht-OJG" firstAttribute="leading" secondItem="72P-6T-C0i" secondAttribute="leading" id="bFI-82-o6N"/>
+                            <constraint firstItem="tgV-Ht-OJG" firstAttribute="top" secondItem="IoF-BY-tOT" secondAttribute="bottom" id="g1B-wk-dz2"/>
                             <constraint firstItem="72P-6T-C0i" firstAttribute="trailing" secondItem="tgV-Ht-OJG" secondAttribute="trailing" id="rgK-Cs-jcR"/>
                         </constraints>
                     </view>
@@ -605,7 +630,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74n-ui-gCx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1849" y="-417"/>
+            <point key="canvasLocation" x="1847.826086956522" y="-417.1875"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="k0c-hx-RNV">
@@ -1449,6 +1474,7 @@
     <resources>
         <image name="appleSignInImage" width="560" height="200"/>
         <image name="camera.on.rectangle.fill" catalog="system" width="128" height="96"/>
+        <image name="filter" width="40" height="40"/>
         <image name="justWhite" width="43.5" height="43.5"/>
         <image name="myLocation" width="40" height="40"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>

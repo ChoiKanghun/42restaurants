@@ -126,16 +126,12 @@ class MainMapViewController: UIViewController {
     }
     
     @IBAction func touchUpMyLocationButton(_ sender: Any) {
-        if let currentLocation = self.currentLocation {
-            self.moveCameraToUserLocation(currentLocation)
-        } else {
-            self.showBasicAlert(
-                title: "위치 권한을 허용해주세요",
-                message: "설정 > 개인정보보호 > 위치 서비스 > 42restaurants를 항상 또는 사용하는 동안으로 설정해주세요")
-        }
+        let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
+        let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLogitude")
+        let currentLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude,
+                                                     longitude: currentLocationLongitude)
+        self.moveCameraToUserLocation(currentLocation)
     }
-    
-    
 }
 
 extension MainMapViewController: CLLocationManagerDelegate {
@@ -161,12 +157,14 @@ extension MainMapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location: CLLocation = locations.first
         else {return}
-        self.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        
+//        self.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//
         let NMGCurrentLocation =
             NMGLatLng(lat: location.coordinate.latitude,
                       lng: location.coordinate.longitude)
         
+        UserDefaults.standard.set(currentLocation?.latitude, forKey: "currentLocationLatitude")
+        UserDefaults.standard.set(currentLocation?.longitude, forKey: "currentLocationLongitude")
         userMarker.position = NMGCurrentLocation
         userMarker.mapView = mapView
     }

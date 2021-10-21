@@ -3,4 +3,54 @@
    uuid = "766613C7-56F2-4BA8-A73D-453AA1147778"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C1719DAE-78A8-4D5F-960E-D0399DF41A9C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "42restaurants/ViewControllers/SecondTabBar/DetailSegments/ReviewDetailSegmentViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C1719DAE-78A8-4D5F-960E-D0399DF41A9C - 4e1da86b1a7db1a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_2restaurants.ReviewDetailSegmentViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "42restaurants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choeganghun/Desktop/42restaurants/42restaurants/ViewControllers/SecondTabBar/DetailSegments/ReviewDetailSegmentViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "752">
+               </Location>
+               <Location
+                  uuid = "C1719DAE-78A8-4D5F-960E-D0399DF41A9C - cd2b8688d90fb5ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;_2restaurants.Image&gt;) -&gt; () in _2restaurants.ReviewDetailSegmentViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "42restaurants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choeganghun/Desktop/42restaurants/42restaurants/ViewControllers/SecondTabBar/DetailSegments/ReviewDetailSegmentViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

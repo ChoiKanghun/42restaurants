@@ -51,13 +51,14 @@ class ReviewDetailSegmentViewController: UIViewController {
            let storeKey = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey : StoreSingleton.shared.store?.storeKey {
             self.ref.child("stores/\(storeKey)/comments").observe(DataEventType.value, with: {
                 (snapshot) in
-
                 if snapshot.exists() {
-                    
                     guard let value = snapshot.value else { return }
                     do {
                         let commentsData = try FirebaseDecoder().decode([String: Comment].self, from: value)
                         self.comments = commentsData.values.sorted(by:  { $0.createDate < $1.createDate } )
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     } catch let err {
                         print(err.localizedDescription)
                     }

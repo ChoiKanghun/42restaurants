@@ -13,6 +13,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var detailStoreInfoView: UIView!
+    @IBOutlet weak var detailStoreInfoViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak private var storeInfoView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -20,6 +22,8 @@ class DetailViewController: UIViewController {
     var photosView: UIView!
     var reviewsView: UIView!
     var mapView: UIView!
+    
+    var detailStoreInfoViewHeightOriginalConstant: CGFloat?
     
     @IBAction func switchViews(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -42,7 +46,8 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.setNavigationBarHidden(isHidden: false)
-        
+        setDefaultValues()
+        readyToGetNotification()
         setupUI()
     
     }
@@ -50,6 +55,32 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+    }
+    
+    private func setDefaultValues() {
+        self.detailStoreInfoViewHeightOriginalConstant = self.detailStoreInfoViewHeight.constant
+    }
+    
+    private func readyToGetNotification() {
+        NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(self.hideDetailView),
+                    name: Notification.Name("HideDetailView"), object: nil)
+        NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(self.showDetailView),
+                    name: Notification.Name("ShowDetailView"), object: nil)
+    }
+    
+    @objc func hideDetailView() {
+        self.detailStoreInfoView.isHidden = true
+        self.detailStoreInfoViewHeight.constant = 0
+    }
+    @objc func showDetailView() {
+        self.detailStoreInfoView.isHidden = false
+        if let detailStoreInfoViewHeightOriginalConstant = self.detailStoreInfoViewHeightOriginalConstant {
+            self.detailStoreInfoViewHeight.constant = detailStoreInfoViewHeightOriginalConstant
+        } else { fatalError("detailStoreIfnoViewHeightOriginalConstant is nil !")}
     }
     
     private func setupUI() {
@@ -99,9 +130,6 @@ class DetailViewController: UIViewController {
     // segmentedControl과 연결된 ViewController들을 초기화하고,
     // 해당 view들을 현재(self) view에 추가한다.
     private func instantiateSegmentedViewControllers() {
-        
-        
-        
         guard let photosVC = self.storyboard?.instantiateViewController(withIdentifier: "PhotosVC"),
               let reviewsVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewVC"),
               let detailMapVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailMapVC")

@@ -152,11 +152,12 @@ extension ListStoreViewController: UITableViewDelegate {
         let placeholderImage = UIImage(named: "placeholder.jpg")
         cell.storeImageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
         
+        hideLoadingWhenTableViewDidAppear(indexPath)
         return cell
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
+    private func hideLoadingWhenTableViewDidAppear(_ indexPath: IndexPath) {
+        if indexPath.row == self.stores.count - 1 { LoadingService.hideLoading() }
     }
     
     
@@ -173,13 +174,5 @@ extension ListStoreViewController: UITableViewDataSource {
         self.navigationController?.pushViewController(viewController, animated: true)
         
     }
-    
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        if indexPath.row == self.stores.count - 1 {
-            LoadingService.hideLoading()
-        }
-    }
-    
     
 }

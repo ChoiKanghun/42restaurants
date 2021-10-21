@@ -59,7 +59,7 @@ class PhotosDetailSegmentViewController: UIViewController {
                     for data in imageData {
                         self.imageDatas.append(data.value)
                     }
-                    
+                    self.imageDatas = self.imageDatas.sorted(by: { $0.createDate > $1.createDate })
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                     }
@@ -107,8 +107,26 @@ extension PhotosDetailSegmentViewController: UICollectionViewDelegate, UICollect
         self.navigationController?.pushViewController(enlargedImageViewController, animated: true)
     }
     
-   
-    
-
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 전제: DetailVC의 view 높이가 140임.
+        // segmentView의 높이가 31, top Constraint가 15.
+        if scrollView == self.collectionView {
+            let viewHeight = UIScreen.main.bounds.height
+            let contentOffset = scrollView.contentOffset.y
+            
+            if (contentOffset > viewHeight - (140 + 31 + 15)) {
+                NotificationCenter.default.post(
+                    name: Notification.Name("HideDetailView"),
+                    object: nil,
+                    userInfo: nil)
+            }
+            else {
+                NotificationCenter.default.post(
+                    name: Notification.Name("ShowDetailView"),
+                    object: nil,
+                    userInfo: nil)
+            }
+        }
+    }
 }
 

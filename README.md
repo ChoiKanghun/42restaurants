@@ -20,14 +20,15 @@
 | ListStoreVC 테이블 셀 클릭 시의 뒷 배경 색 수정            | O    | 21/10/14 |
 | DetailSegmentReview 테이블 셀 클릭 시 수정                 | O    | 21/10/14 |
 | 리뷰 작성 화면 userID 텍스트 필드 삭제 및 수정             | O    | 21/10/19 |
-| DetailSegmentReviewVC 스크롤 시 윗 화면 축소.              |      |          |
+| DetailSegmentReviewVC 스크롤 시 윗 화면 축소.              | O    | 21/10/21 |
 | 로그인 상태 아닐 시 review 등록하지 못 하게 막기           | O    | 21/10/19 |
 | 검색 기능 추가                                             |      |          |
 | 탭바 Icon 및 텍스트 수정                                   | O    | 21/10/17 |
 | DetailReview,PhotoView 다시 사진 한 장으로 수정.           | O    | 21/10/16 |
-| EnrollStoreVC 위, 경도 좌표 없애고 행정구역으로 수정.      |      |          |
-| PhotosVC 사진 시간 역순으로 나타내기                       |      |          |
+| EnrollStoreVC 위, 경도 좌표 없애고 행정구역으로 수정.      | O    | 21/10/20 |
+| PhotosVC 사진 시간 역순으로 나타내기                       | O    | 21/10/20 |
 | ListStoreView 필터 배민이랑 똑같이 만들기                  |      |          |
+| DetailPhotoVC 스크롤 시 윗 화면 축소.                      | O    | 21/10/21 |
 |                                                            |      |          |
 
 

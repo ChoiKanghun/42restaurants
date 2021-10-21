@@ -10,9 +10,10 @@ import NMapsMap
 
 class PickCoordinateViewController: UIViewController {
 
-    @IBOutlet weak var coordinateLabel: UILabel!
     @IBOutlet weak var mapView: NMFMapView!
-    
+    @IBOutlet weak var basicAddressLabel: UILabel!
+    @IBOutlet weak var detailAddressLabel: UILabel!
+
     var naverCoordinate = NMGLatLng()
     
     lazy var locationManager: CLLocationManager = {
@@ -38,7 +39,7 @@ class PickCoordinateViewController: UIViewController {
     }
     
     @IBAction func touchUpSubmitButton(_ sender: Any) {
-        if self.coordinateLabel?.text == "위, 경도 좌표" {
+        if self.basicAddressLabel?.text == "읍/면/동" {
             self.showBasicAlert(title: "좌표를 입력하세요", message: "좌표값은 필수입니다. 지도에서 가게의 위치를 클릭하세요.")
             return
         }
@@ -46,7 +47,9 @@ class PickCoordinateViewController: UIViewController {
         NotificationCenter.default.post(
             name: Notification.Name("TouchedLatLng"),
             object: nil,
-            userInfo: ["naverCoordinate": self.naverCoordinate])
+            userInfo: ["naverCoordinate": self.naverCoordinate,
+                       "basicAddress": self.basicAddressLabel.text!,
+                       "detailAddress": self.detailAddressLabel.text!])
         
         self.dismiss(animated: true, completion: nil)
         
@@ -96,7 +99,6 @@ extension PickCoordinateViewController: CLLocationManagerDelegate {
 
         
         self.locationManager.stopUpdatingLocation()
-
     }
 }
 
@@ -118,8 +120,36 @@ extension PickCoordinateViewController: NMFMapViewTouchDelegate {
         self.naverCoordinate = latlng
         
         DispatchQueue.main.async {
-            self.coordinateLabel?.text
-                = "좌표: \(latlng.lat) | \(latlng.lng)"
+            self.setCoordinateLabel(latlng)
+        }
+    }
+    
+    private func setCoordinateLabel(_ latlng: NMGLatLng) {
+        let location = CLLocation(latitude: latlng.lat, longitude: latlng.lng)
+        let geoCoder = CLGeocoder()
+        let locale: Locale = Locale(identifier: "Ko-kr") // Korea
+        
+        geoCoder.reverseGeocodeLocation(location, preferredLocale: locale) {
+            (place, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            var basicAddress: String = ""
+            var detailAddress: String = ""
+            if let place: [CLPlacemark] = place,
+               let address = place.last {
+                basicAddress += " \(address.administrativeArea ?? "")"
+                basicAddress += " \(address.subAdministrativeArea ?? "")"
+                basicAddress += " \(address.locality ?? "")"
+                basicAddress += " \(address.subLocality ?? "")"
+                detailAddress += " \(address.thoroughfare ?? "")"
+                detailAddress += " \(address.subThoroughfare ?? "")"
+                
+                self.basicAddressLabel.text = basicAddress
+                self.detailAddressLabel.text = detailAddress
+            }
         }
     }
 }
+

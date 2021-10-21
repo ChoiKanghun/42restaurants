@@ -11,8 +11,9 @@ import NMapsMap
 
 class EnrollStoreViewController: UIViewController {
 
-    @IBOutlet weak var latitudeLabel: UILabel!
-    @IBOutlet weak var longtitudeLabel: UILabel!
+    @IBOutlet weak var basicAddressLabel: UILabel!
+    @IBOutlet weak var detailAddressLabel: UILabel!
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var storeNameTextField: UITextField!
     @IBOutlet weak var categoryPickerView: UIPickerView!
@@ -61,6 +62,12 @@ class EnrollStoreViewController: UIViewController {
             name: Notification.Name("TouchedLatLng"), object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setNavigationBarHidden(isHidden: false)
+    }
+    
     func initializeImagePicker() {
         self.imagePicker.sourceType = .photoLibrary
         self.imagePicker.allowsEditing = true
@@ -73,15 +80,16 @@ class EnrollStoreViewController: UIViewController {
     }
     
     
-    
     @objc func didReceiveTouchedLatLngNotification(_ noti: Notification) {
-        guard let coordinate = noti.userInfo?["naverCoordinate"] as? NMGLatLng
+        guard let basicAddress = noti.userInfo?["basicAddress"] as? String,
+              let detailAddress = noti.userInfo?["detailAddress"] as? String,
+              let naverCoordinate = noti.userInfo?["naverCoordinate"] as? NMGLatLng
         else { return }
         
-        self.latitudeLabel?.text = "\(coordinate.lat)"
-        self.longtitudeLabel?.text = "\(coordinate.lng)"
+        self.basicAddressLabel?.text = basicAddress
+        self.detailAddressLabel?.text = detailAddress
         
-        self.naverCoordinate = coordinate
+        self.naverCoordinate = naverCoordinate
     }
     
     
@@ -101,7 +109,7 @@ class EnrollStoreViewController: UIViewController {
             self.showBasicAlert(title: "가게 이름을 입력하세요", message: "가게 이름 입력값은 필수입니다.")
             LoadingService.hideLoading()
             return
-        } else if self.latitudeLabel?.text == "위치 선택 시 자동 입력" {
+        } else if self.basicAddressLabel?.text == "위치 선택 시 자동 입력" {
             self.showBasicAlert(title: "가게 위치를 선택해주세요", message: "'클릭하여 가게 위치 선택' 버튼을 클릭하여 좌표를 선택합니다.")
             LoadingService.hideLoading()
             return

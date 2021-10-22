@@ -106,6 +106,10 @@ extension ReviewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
 
 extension ReviewTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width - 50, height: 200)
+        if self.images.count == 1 {
+            return CGSize(width: UIScreen.main.bounds.size.width - 50, height: 200)
+        } else {
+            return CGSize(width: 200, height: 200)
+        }
     }
 }

@@ -14,9 +14,22 @@ import CoreLocation
 class ListStoreViewController: UIViewController {
 
     @IBOutlet weak var storeTableView: UITableView!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     var ref: DatabaseReference!
     let storage = Storage.storage()
+    let categories: [Category] =
+        [Category.all,
+         Category.koreanAsian,
+         Category.japaneseCutlet,
+         Category.chinese,
+         Category.western,
+         Category.chickenPizza,
+         Category.bunsik,
+         Category.mexican,
+         Category.fastFood,
+         Category.meat,
+         Category.cafe]
     
     
     var stores = [Store]()
@@ -27,12 +40,13 @@ class ListStoreViewController: UIViewController {
         
         self.storeTableView.delegate = self
         self.storeTableView.dataSource = self
+        self.categoryCollectionView.delegate = self
+        self.categoryCollectionView.dataSource = self
         
 
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         getStoresInfoFromDatabase()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,9 +63,7 @@ class ListStoreViewController: UIViewController {
         self.setNavigationBarHidden(isHidden: true)
         
     }
-    
 
-    
     private func getDistanceFromCurrentLocation(_ targetLatitude: Double, _ targetLongitude: Double) -> CLLocationDistance {
         let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
         let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLongitude")
@@ -176,3 +188,38 @@ extension ListStoreViewController: UITableViewDataSource {
     }
     
 }
+
+
+extension ListStoreViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        self.categories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = self.categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCollectionViewCellReuseIdentifier", for: indexPath) as? CategoryCollectionViewCell
+        else { return UICollectionViewCell() }
+        
+        if indexPath.row == 0 { selectFirstCell(cell, indexPath) }
+        cell.categoryLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        cell.setCellLabelText(self.categories[indexPath.row].rawValue)
+        DispatchQueue.main.async {
+            cell.setCategoryCollectionViewCellUI()
+        }
+//        cell.fitCellSizeToLabelSize()
+        
+        return cell
+        
+    }
+    
+    private func selectFirstCell(_ cell: CategoryCollectionViewCell, _ indexPath: IndexPath) {
+        self.categoryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+        cell.isSelected = true
+        
+    }
+}
+
+extension ListStoreViewController: UICollectionViewDelegateFlowLayout {
+
+}
+
+

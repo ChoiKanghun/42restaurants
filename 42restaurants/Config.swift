@@ -25,4 +25,6 @@ class Config {
     //222 228 252 연보라색
     //#2c3e50  44 62 80고급남색
     let applicationSupplimentaryBackgroundColor = UIColor.gray
+    let applicationFontLightColor = UIColor.systemGray3
+    let applicationFontDefaultColor = UIColor.black
 }

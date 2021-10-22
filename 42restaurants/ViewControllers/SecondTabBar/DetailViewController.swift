@@ -30,14 +30,17 @@ class DetailViewController: UIViewController {
             photosView.alpha = 1
             reviewsView.alpha = 0
             mapView.alpha = 0
+            showDetailView()
         } else if sender.selectedSegmentIndex == 1 {
             photosView.alpha = 0
             reviewsView.alpha = 1
             mapView.alpha = 0
+            showDetailView()
         } else {
             photosView.alpha = 0
             reviewsView.alpha = 0
             mapView.alpha = 1
+            hideDetailView()
         }
         
     }

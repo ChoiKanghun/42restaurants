@@ -8,6 +8,7 @@
 import Foundation
 
 enum Category: String {
+    case all = "전체"
     case koreanAsian = "한식/아시안"
     case mexican = "멕시코 음식"
     case japaneseCutlet = "일식/돈까스"
@@ -21,6 +22,8 @@ enum Category: String {
     
     var imageName: String {
         switch self {
+        case .all:
+            return "전체"
         case .koreanAsian:
             return "korean"
         case .mexican:

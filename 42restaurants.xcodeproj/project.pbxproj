@@ -36,6 +36,7 @@
 		7A9AEED12711B14F00DCE2C3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */; };
 		7AB9CB8B270D6C7B000E9A28 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */; };
 		7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */; };
+		7AC4421127225FC1006F8FEE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */; };
 		7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */; };
 		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
 		7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */; };
@@ -115,6 +116,7 @@
 		7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */,
 				7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */,
 				7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */,
+				7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */,
 				7AE7E13626CB35FD002536E1 /* MainTabStoreSingleton.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,
+				7AC4421127225FC1006F8FEE /* CategoryCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@
 | PhotosVC 사진 시간 역순으로 나타내기                       | O    | 21/10/20 |
 | ListStoreView 필터 배민이랑 똑같이 만들기                  |      |          |
 | DetailPhotoVC 스크롤 시 윗 화면 축소.                      | O    | 21/10/21 |
-|                                                            |      |          |
+| ReviewDetails 이미지는 하나만 넣고 더보기 기능 추가.       |      |          |
 
 
 

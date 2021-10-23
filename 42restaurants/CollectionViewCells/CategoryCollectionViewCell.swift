@@ -18,12 +18,17 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             if isSelected {
                 self.categoryLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
                 self.categoryLabel.textColor = Config.shared.applicationFontDefaultColor
-                
-                
-            } else {
+                if let title = self.categoryLabel.text {
+                    NotificationCenter.default.post(name: Notification.Name("changeTitle"),
+                                                    object: nil,
+                                                    userInfo: ["title": title])
+                } else {
+                    print("can't get categoryLabel's title")
+                }
+            }
+            else {
                 self.categoryLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
                 self.categoryLabel.textColor = Config.shared.applicationFontLightColor
-                
             }
         }
     }

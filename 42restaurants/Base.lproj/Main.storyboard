@@ -761,6 +761,7 @@
                     <connections>
                         <outlet property="categoryCollectionView" destination="itb-ZP-kdZ" id="r24-LR-gWB"/>
                         <outlet property="storeTableView" destination="tgV-Ht-OJG" id="n16-mq-34x"/>
+                        <outlet property="titleLabel" destination="ZxG-zV-uIW" id="x3h-r8-QWm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74n-ui-gCx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -15,6 +15,7 @@ class ListStoreViewController: UIViewController {
 
     @IBOutlet weak var storeTableView: UITableView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var ref: DatabaseReference!
     let storage = Storage.storage()
@@ -43,9 +44,9 @@ class ListStoreViewController: UIViewController {
         self.categoryCollectionView.delegate = self
         self.categoryCollectionView.dataSource = self
         
-        
-        
-
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didReceiveChangeTitleNotification(_:)),
+                                               name: Notification.Name("changeTitle"), object: nil)
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         getStoresInfoFromDatabase()
@@ -58,8 +59,15 @@ class ListStoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // view will appear에 두는 이유는 리스트 클릭 후 다시 돌아올 때를 대비하기 위해서.
-        setUI()
+        setUI() // view will appear에 두는 이유는 다음 화면에서 다시 돌아올 때를 대비하기 위해서.
+
+    }
+    
+    @objc func didReceiveChangeTitleNotification(_ noti: Notification) {
+        guard let title = noti.userInfo?["title"] as? String
+        else { print("can't change title"); return; }
+        
+        DispatchQueue.main.async { self.titleLabel.text = title }
     }
 
     private func setUI() {

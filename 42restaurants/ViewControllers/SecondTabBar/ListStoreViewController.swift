@@ -43,10 +43,16 @@ class ListStoreViewController: UIViewController {
         self.categoryCollectionView.delegate = self
         self.categoryCollectionView.dataSource = self
         
+        
+        
 
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         getStoresInfoFromDatabase()
+        self.categoryCollectionView.collectionViewLayout = CategoryCollectionViewFlowLayout()
+        if let flowLayout = self.categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -200,26 +206,25 @@ extension ListStoreViewController: UICollectionViewDataSource, UICollectionViewD
         else { return UICollectionViewCell() }
         
         if indexPath.row == 0 { selectFirstCell(cell, indexPath) }
-        cell.categoryLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         cell.setCellLabelText(self.categories[indexPath.row].rawValue)
-        DispatchQueue.main.async {
-            cell.setCategoryCollectionViewCellUI()
-        }
-//        cell.fitCellSizeToLabelSize()
-        
+        cell.setCategoryCollectionViewCellUI()
+
         return cell
-        
     }
     
     private func selectFirstCell(_ cell: CategoryCollectionViewCell, _ indexPath: IndexPath) {
-        self.categoryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
-        cell.isSelected = true
-        
+        DispatchQueue.main.async {
+            self.categoryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+            cell.isSelected = true
+            
+        }
     }
 }
 
 extension ListStoreViewController: UICollectionViewDelegateFlowLayout {
-
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 15, height: 30)
+    }
 }
 
 

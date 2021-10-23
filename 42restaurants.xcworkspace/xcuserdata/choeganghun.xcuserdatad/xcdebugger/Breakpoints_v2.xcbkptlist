@@ -5,19 +5,16 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "012A965F-E485-4249-9CC5-329A33CCA84C"
-            shouldBeEnabled = "No"
+            uuid = "3B6DD85A-A9E9-4CB8-B83E-71934FBEBAC3"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "42restaurants/ViewControllers/SecondTabBar/DetailSegments/ReviewDetailSegmentViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "updateTableView()"
-            landmarkType = "7">
+            symbolName = "CategoryCollectionViewFlowLayout"
+            moduleName = "">
+            <Locations>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

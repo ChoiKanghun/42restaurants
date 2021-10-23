@@ -37,6 +37,7 @@
 		7AB9CB8B270D6C7B000E9A28 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */; };
 		7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */; };
 		7AC4421127225FC1006F8FEE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */; };
+		7AC442142723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC442132723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift */; };
 		7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */; };
 		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
 		7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */; };
@@ -117,6 +118,7 @@
 		7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		7AC442132723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
@@ -338,6 +340,14 @@
 			path = ThirdTabBar;
 			sourceTree = "<group>";
 		};
+		7AC442122723A90D006F8FEE /* CollectionViewLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				7AC442132723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift */,
+			);
+			path = CollectionViewLayouts;
+			sourceTree = "<group>";
+		};
 		7AE780BA26ABB79400B507DE /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +380,7 @@
 		7AE780CB26AEDB7E00B507DE /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				7AC442122723A90D006F8FEE /* CollectionViewLayouts */,
 				7AE780CC26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift */,
 				7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */,
 				7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */,
@@ -650,6 +661,7 @@
 				7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */,
 				7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */,
 				7AE780C426AE6D1300B507DE /* DetailViewController.swift in Sources */,
+				7AC442142723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift in Sources */,
 				7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */,
 				7A34E4EF26A6C52200254C11 /* UIViewController+Extensions.swift in Sources */,
 				7AE780C226AE60B200B507DE /* PhotosDetailSegmentViewController.swift in Sources */,

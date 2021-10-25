@@ -38,6 +38,10 @@
 		7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */; };
 		7AC4421127225FC1006F8FEE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */; };
 		7AC442142723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC442132723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift */; };
+		7AC4421827242890006F8FEE /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421727242890006F8FEE /* Filter.swift */; };
+		7AC4421A27242EAF006F8FEE /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421927242EAF006F8FEE /* FilterCollectionViewCell.swift */; };
+		7AC4421C272438F7006F8FEE /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421B272438F7006F8FEE /* FilterViewController.swift */; };
+		7AC4421E27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421D27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift */; };
 		7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */; };
 		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
 		7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */; };
@@ -119,6 +123,10 @@
 		7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		7AC442132723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		7AC4421727242890006F8FEE /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		7AC4421927242EAF006F8FEE /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		7AC4421B272438F7006F8FEE /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		7AC4421D27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
@@ -284,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				7A34E51426A7E27F00254C11 /* Category.swift */,
+				7AC4421727242890006F8FEE /* Filter.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -305,6 +314,7 @@
 				7AE780C326AE6D1300B507DE /* DetailViewController.swift */,
 				7AE780BD26AE585000B507DE /* SegmentedDetailViewController.swift */,
 				7AE780C926AED58600B507DE /* CommentPostViewController.swift */,
+				7AC4421B272438F7006F8FEE /* FilterViewController.swift */,
 			);
 			path = SecondTabBar;
 			sourceTree = "<group>";
@@ -344,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				7AC442132723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift */,
+				7AC4421D27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift */,
 			);
 			path = CollectionViewLayouts;
 			sourceTree = "<group>";
@@ -385,6 +396,7 @@
 				7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */,
 				7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */,
 				7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */,
+				7AC4421927242EAF006F8FEE /* FilterCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -658,9 +670,11 @@
 				7A1D23BF26A67BB000F8E7E2 /* AppDelegate.swift in Sources */,
 				7AE780BC26ABB7B100B507DE /* StoreTableViewCell.swift in Sources */,
 				7A34E4F226A7C2AA00254C11 /* Store.swift in Sources */,
+				7AC4421A27242EAF006F8FEE /* FilterCollectionViewCell.swift in Sources */,
 				7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */,
 				7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */,
 				7AE780C426AE6D1300B507DE /* DetailViewController.swift in Sources */,
+				7AC4421827242890006F8FEE /* Filter.swift in Sources */,
 				7AC442142723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift in Sources */,
 				7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */,
 				7A34E4EF26A6C52200254C11 /* UIViewController+Extensions.swift in Sources */,
@@ -685,7 +699,9 @@
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
 				7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */,
 				7A97B6A22719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift in Sources */,
+				7AC4421E27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift in Sources */,
 				7A95D951271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift in Sources */,
+				7AC4421C272438F7006F8FEE /* FilterViewController.swift in Sources */,
 				7A97B67F2717F1BD006E9D3C /* EnlargedImageViewController.swift in Sources */,
 				7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */,
 				7AE7E13626CB35FD002536E1 /* MainTabStoreSingleton.swift in Sources */,

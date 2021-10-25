@@ -49,6 +49,9 @@ class ListStoreViewController: UIViewController {
                                                name: Notification.Name("changeTitle"), object: nil)
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
+        
+        
+        
         getStoresInfoFromDatabase()
         self.categoryCollectionView.collectionViewLayout = CategoryCollectionViewFlowLayout()
         if let flowLayout = self.categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {

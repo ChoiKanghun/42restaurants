@@ -18,7 +18,7 @@ enum Filter {
     var filterName: String {
         switch self {
         case .latest:
-            return "기본순(최신 등록순)"
+            return "최근 등록 순"
         case .oldest:
             return "오래된 순"
         case .ratingHigh:

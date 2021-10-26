@@ -34,7 +34,7 @@ class ListStoreViewController: UIViewController {
     
     
     var stores = [Store]()
-
+    var countForJustExecuteOnce: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +53,16 @@ class ListStoreViewController: UIViewController {
         
         
         getStoresInfoFromDatabase()
-        self.categoryCollectionView.collectionViewLayout = CategoryCollectionViewFlowLayout()
-        if let flowLayout = self.categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+//        self.categoryCollectionView.collectionViewLayout = CategoryCollectionViewFlowLayout()
+//        if let flowLayout = self.categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+//        }
+        if let layout = categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            //this value represents the minimum spacing between items in the same column.
+            layout.minimumInteritemSpacing = 30
+            //this value represents the minimum spacing between successive columns.
+            layout.minimumLineSpacing = 30
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         }
     }
     
@@ -70,7 +77,10 @@ class ListStoreViewController: UIViewController {
         guard let title = noti.userInfo?["title"] as? String
         else { print("can't change title"); return; }
         
-        DispatchQueue.main.async { self.titleLabel.text = title }
+        DispatchQueue.main.async {
+            self.titleLabel.text = title
+            
+        }
     }
 
     private func setUI() {
@@ -217,24 +227,46 @@ extension ListStoreViewController: UICollectionViewDataSource, UICollectionViewD
         else { return UICollectionViewCell() }
         
         if indexPath.row == 0 { selectFirstCell(cell, indexPath) }
+        
         cell.setCellLabelText(self.categories[indexPath.row].rawValue)
         cell.setCategoryCollectionViewCellUI()
 
+        if cell.isSelected == true { cell.onSelected() }
+        else { cell.onDeselected() }
         return cell
     }
     
     private func selectFirstCell(_ cell: CategoryCollectionViewCell, _ indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            self.categoryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
-            cell.isSelected = true
-            
+        if self.countForJustExecuteOnce == false {
+            print("in")
+            self.countForJustExecuteOnce = true
+            DispatchQueue.main.async {
+                self.categoryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+                cell.onSelected()
+            }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = self.categoryCollectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell
+        else { print("can't execute didSelectItemAt"); return }
+        
+        cell.onSelected()
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = self.categoryCollectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell
+        else { print("can't execute didSelectItemAt"); return }
+        
+        cell.onDeselected()
+        
+    }
+   
 }
 
 extension ListStoreViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 15, height: 30)
+        return CGSize(width: 30, height: 30)
     }
 }
 

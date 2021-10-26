@@ -50,10 +50,18 @@ extension FilterViewController: UICollectionViewDataSource, UICollectionViewDele
         guard let cell = self.filterCollectionView.dequeueReusableCell(withReuseIdentifier: FilterCollectionViewCell.reuseIdentifier, for: indexPath)
         as? FilterCollectionViewCell
         else { print("error: Can't get filter CollectionViewCell"); return UICollectionViewCell() }
-        
+     
+        if indexPath.row == 0 { self.selectFirstCell(cell, indexPath) }
         cell.configure(labelText: filters[indexPath.row].filterName)
         
         return cell
+    }
+    
+    private func selectFirstCell(_ cell: FilterCollectionViewCell, _ indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            self.filterCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+            cell.isSelected = true
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

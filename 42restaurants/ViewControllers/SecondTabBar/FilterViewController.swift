@@ -18,6 +18,7 @@ private let filters: [Filter] = [
 
 class FilterViewController: UIViewController {
     @IBOutlet weak var filterCollectionView: UICollectionView!
+    private var collectionViewOnLoadExecuteJustOnce: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +52,14 @@ extension FilterViewController: UICollectionViewDataSource, UICollectionViewDele
         as? FilterCollectionViewCell
         else { print("error: Can't get filter CollectionViewCell"); return UICollectionViewCell() }
      
-        if indexPath.row == 0 { self.selectFirstCell(cell, indexPath) }
+        if indexPath.row == 0 && self.collectionViewOnLoadExecuteJustOnce == false {
+            collectionViewOnLoadExecuteJustOnce = true
+            self.selectFirstCell(cell, indexPath)
+        }
         cell.configure(labelText: filters[indexPath.row].filterName)
+        
+        if cell.isSelected == true { cell.onSelected() }
+        else { cell.onDeselected() }
         
         return cell
     }
@@ -60,12 +67,23 @@ extension FilterViewController: UICollectionViewDataSource, UICollectionViewDele
     private func selectFirstCell(_ cell: FilterCollectionViewCell, _ indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.filterCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
-            cell.isSelected = true
+            
+            cell.onSelected()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        guard let cell = collectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell
+        else { print("can't select filter cell"); return }
+        
+        cell.onSelected()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell
+        else { print("can't select filter cell"); return }
+        
+        cell.onDeselected()
     }
 }
 

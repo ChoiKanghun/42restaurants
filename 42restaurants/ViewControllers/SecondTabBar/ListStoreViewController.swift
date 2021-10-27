@@ -34,6 +34,7 @@ class ListStoreViewController: UIViewController {
     
     
     var stores = [Store]()
+    var filteredStores = [Store]()
     var countForJustExecuteOnce: Bool = false
     
     override func viewDidLoad() {
@@ -45,25 +46,15 @@ class ListStoreViewController: UIViewController {
         self.categoryCollectionView.dataSource = self
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.didReceiveChangeTitleNotification(_:)),
-                                               name: Notification.Name("changeTitle"), object: nil)
+                                               selector: #selector(self.didReceiveCategorySelectedNotification(_:)),
+                                               name: Notification.Name("categorySelected"), object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didReceiveFilterSelectedNotification(_:)),
+                                               name: Notification.Name("filterSelected"), object: nil)
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-        
-        
-        
-        
+
         getStoresInfoFromDatabase()
-//        self.categoryCollectionView.collectionViewLayout = CategoryCollectionViewFlowLayout()
-//        if let flowLayout = self.categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        }
-        if let layout = categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            //this value represents the minimum spacing between items in the same column.
-            layout.minimumInteritemSpacing = 30
-            //this value represents the minimum spacing between successive columns.
-            layout.minimumLineSpacing = 30
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        }
+        setCollectionViewLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,14 +64,87 @@ class ListStoreViewController: UIViewController {
 
     }
     
-    @objc func didReceiveChangeTitleNotification(_ noti: Notification) {
-        guard let title = noti.userInfo?["title"] as? String
-        else { print("can't change title"); return; }
+    @objc func didReceiveCategorySelectedNotification(_ noti: Notification) {
+        guard let category = noti.userInfo?["category"] as? String,
+              let currentCategory = self.titleLabel?.text
+        else { print("can't handle didReceiveCategory Notification"); return; }
         
-        DispatchQueue.main.async {
-            self.titleLabel.text = title
-            
+        if category != currentCategory { executeCategoryFiltering(category) }
+        
+        DispatchQueue.main.async { self.titleLabel.text = category }
+    }
+    
+    private func executeCategoryFiltering(_ category: String) {
+        switch category {
+        case Category.all.rawValue:
+            self.filteredStores = self.stores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
+        case Category.koreanAsian.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.koreanAsian.rawValue })
+        case Category.japaneseCutlet.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.japaneseCutlet.rawValue })
+        case Category.chinese.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.chinese.rawValue })
+        case Category.western.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.western.rawValue })
+        case Category.chickenPizza.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.chickenPizza.rawValue })
+        case Category.bunsik.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.bunsik.rawValue })
+        case Category.mexican.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.mexican.rawValue })
+        case Category.fastFood.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.fastFood.rawValue })
+        case Category.meat.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.meat.rawValue })
+        case Category.cafe.rawValue:
+            self.filteredStores = self.stores.filter({ $0.storeInfo.category == Category.cafe.rawValue })
+        default:
+            self.filteredStores = self.stores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
+            print("in default category filter")
         }
+        
+        DispatchQueue.main.async { self.storeTableView.reloadData() }
+    }
+    
+    @objc func didReceiveFilterSelectedNotification(_ noti: Notification) {
+        guard let filter = noti.userInfo?["filter"] as? String
+        else { print("can't handle didReceiveFilter Notification"); return }
+        
+        switch filter {
+        case Filter.latest.filterName:
+            self.filteredStores = self.filteredStores.sorted(by: { $0.storeInfo.createDate > $1.storeInfo.createDate })
+        case Filter.nearest.filterName:
+            self.filteredStores = self.filteredStores.sorted(
+                by: { self.getDistanceFromCurrentLocation($0.storeInfo.latitude, $0.storeInfo.longtitude) <
+                    self.getDistanceFromCurrentLocation($1.storeInfo.latitude, $1.storeInfo.longtitude) })
+        case Filter.ratingHigh.filterName:
+            self.filteredStores = self.filteredStores.sorted(by: { $0.storeInfo.rating > $1.storeInfo.rating })
+        case Filter.reviewCount.filterName:
+            self.filteredStores = self.filteredStores.sorted(by: { $0.storeInfo.commentCount > $1.storeInfo.commentCount })
+        case Filter.oldest.filterName:
+            self.filteredStores = self.filteredStores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
+        case Filter.ratingLow.filterName:
+            self.filteredStores = self.filteredStores.sorted(by: { $0.storeInfo.rating < $1.storeInfo.rating })
+        default:
+            self.filteredStores = self.filteredStores.sorted(by: { $0.storeInfo.createDate > $1.storeInfo.createDate })
+            print("default filter noti  in")
+        }
+        
+        DispatchQueue.main.async { self.storeTableView.reloadData() }
+    }
+    
+    private func getDistanceFromCurrentLocation(_ targetLatitude: Double, _ targetLongitude: Double) -> CLLocationDistance {
+        let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
+        let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLongitude")
+        
+        let targetLocation = CLLocationCoordinate2D(latitude: targetLatitude, longitude: targetLongitude)
+        let currentLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
+        
+        return targetLocation.distance(from: currentLocation)
+    }
+    
+    private func executeFilterCategoryFiltering(_ filter: String) {
+        
     }
 
     private func setUI() {
@@ -91,17 +155,17 @@ class ListStoreViewController: UIViewController {
         
     }
 
-    private func getDistanceFromCurrentLocation(_ targetLatitude: Double, _ targetLongitude: Double) -> CLLocationDistance {
-        let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
-        let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLongitude")
-        
-        let targetLocation = CLLocationCoordinate2D(latitude: targetLatitude, longitude: targetLongitude)
-        let currentLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)
-        
-        return targetLocation.distance(from: currentLocation)
+
+
+    private func setCollectionViewLayout() {
+        if let layout = categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            //this value represents the minimum spacing between items in the same column.
+            layout.minimumInteritemSpacing = 30
+            //this value represents the minimum spacing between successive columns.
+            layout.minimumLineSpacing = 30
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }
     }
-//
-    
     
     
     
@@ -172,14 +236,14 @@ class ListStoreViewController: UIViewController {
 
 extension ListStoreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.stores.count
+        return self.filteredStores.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = self.storeTableView.dequeueReusableCell(withIdentifier: StoreTableViewCell.reuseIdentifier) as? StoreTableViewCell
         else { return UITableViewCell() }
         
-        let store = self.stores[indexPath.row]
+        let store = self.filteredStores[indexPath.row]
         
         cell.nameLabel?.text = store.storeInfo.name
         cell.addressLabel?.text = store.storeInfo.address
@@ -196,7 +260,8 @@ extension ListStoreViewController: UITableViewDelegate {
     }
     
     private func hideLoadingWhenTableViewDidAppear(_ indexPath: IndexPath) {
-        if indexPath.row == self.stores.count - 1 { LoadingService.hideLoading() }
+        if indexPath.row == self.filteredStores.count - 1 { LoadingService.hideLoading() }
+        if self.filteredStores.count == 0 { LoadingService.hideLoading() }
     }
     
     

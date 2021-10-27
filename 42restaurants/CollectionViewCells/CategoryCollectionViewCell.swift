@@ -34,17 +34,15 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     func onSelected() {
-        
-        
         self.categoryLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
         self.categoryLabel.textColor = Config.shared.applicationFontDefaultColor
         if self.isCellSelected == false,
-           let title = self.categoryLabel.text {
-            print("selected in")
+           let category = self.categoryLabel.text {
+            
 
-            NotificationCenter.default.post(name: Notification.Name("changeTitle"),
+            NotificationCenter.default.post(name: Notification.Name("categorySelected"),
                                             object: nil,
-                                            userInfo: ["title": title])
+                                            userInfo: ["category": category])
         } else {
             print("can't get categoryLabel's title")
         }
@@ -52,7 +50,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     func onDeselected() {
-        print("else in")
         self.categoryLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         self.categoryLabel.textColor = Config.shared.applicationFontLightColor
         isCellSelected = false

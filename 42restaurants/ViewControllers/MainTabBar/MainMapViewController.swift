@@ -35,7 +35,6 @@ class MainMapViewController: UIViewController {
         return manager
     }()
     
-    var currentLocation: CLLocationCoordinate2D?
     
     let userMarker = NMFMarker()
     
@@ -133,7 +132,7 @@ class MainMapViewController: UIViewController {
     
     @IBAction func touchUpMyLocationButton(_ sender: Any) {
         let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
-        let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLogitude")
+        let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLongitude")
         let currentLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude,
                                                      longitude: currentLocationLongitude)
         self.moveCameraToUserLocation(currentLocation)
@@ -168,9 +167,10 @@ extension MainMapViewController: CLLocationManagerDelegate {
         let NMGCurrentLocation =
             NMGLatLng(lat: location.coordinate.latitude,
                       lng: location.coordinate.longitude)
-        
-        UserDefaults.standard.set(currentLocation?.latitude, forKey: "currentLocationLatitude")
-        UserDefaults.standard.set(currentLocation?.longitude, forKey: "currentLocationLongitude")
+        print("latitude: ",location.coordinate.latitude)
+        print("longitude: ", location.coordinate.longitude)
+        UserDefaults.standard.set(location.coordinate.latitude, forKey: "currentLocationLatitude")
+        UserDefaults.standard.set(location.coordinate.longitude, forKey: "currentLocationLongitude")
         userMarker.position = NMGCurrentLocation
         userMarker.mapView = mapView
     }
@@ -200,7 +200,6 @@ extension MainMapViewController: CLLocationManagerDelegate {
         
         for (index, element) in self.stores.enumerated() {
             let marker = NMFMarker()
-            print(element.storeInfo.latitude)
             marker.position = NMGLatLng(
                 lat: Double(element.storeInfo.latitude),
                 lng: Double(element.storeInfo.longtitude))
@@ -228,14 +227,6 @@ extension MainMapViewController: CLLocationManagerDelegate {
             
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
 

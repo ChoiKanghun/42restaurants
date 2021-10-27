@@ -13,28 +13,6 @@ class FilterCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var labelWrapperView: UIView!
     
-    override var isSelected: Bool {
-        didSet {
-            
-            if isSelected {
-                setViewOnSelected()
-            }
-            else {
-                self.configure(labelText: self.filterLabel?.text)
-            }
-        }
-    }
-    
-    private func setViewOnSelected() {
-
-        self.filterLabel.textColor = Config.shared.applicationOnSelectedTextColor
-        self.labelWrapperView?.backgroundColor = Config.shared.applicationOnSelectedBackgroundColor
-        self.filterLabel?.backgroundColor = Config.shared.applicationOnSelectedBackgroundColor
-    }
-    
-
- 
-    
     func configure(labelText: String?) {
         setLabelText(labelText: labelText)
         setUpView()
@@ -57,7 +35,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     private func setLabelView() {
         self.filterLabel?.textAlignment = .center
-        self.filterLabel?.textColor = .gray
+        self.filterLabel?.textColor = .systemGray2
         self.filterLabel?.font = UIFont.systemFont(ofSize: 13.0, weight: .regular)
     }
     
@@ -66,6 +44,26 @@ class FilterCollectionViewCell: UICollectionViewCell {
 
     }
     
+    func onSelected() {
+        sendFilterNotification()
+        self.filterLabel.textColor = Config.shared.applicationOnSelectedTextColor
+        self.labelWrapperView?.backgroundColor = Config.shared.applicationOnSelectedBackgroundColor
+        self.filterLabel?.backgroundColor = Config.shared.applicationOnSelectedBackgroundColor
+        self.isSelected = true
+    }
     
+    private func sendFilterNotification() {
+        if let filter = self.filterLabel.text {
+            NotificationCenter.default.post(name: Notification.Name("filterSelected"),
+                                            object: nil,
+                                            userInfo: ["filter": filter])
+        }
+        
+    }
+    
+    func onDeselected(){
+        self.setUpView()
+        self.isSelected = false
+    }
     
 }

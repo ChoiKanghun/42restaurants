@@ -25,8 +25,27 @@ class FilterViewController: UIViewController {
 
         self.filterCollectionView.delegate = self
         self.filterCollectionView.dataSource = self
+        self.enrollNotification()
         setUpView()
         setUpFilterCollectionView()
+        
+    }
+    
+    private func enrollNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didReceiveCategoryDidChangeNotification(_:)),
+                                               name: Notification.Name("categoryDidChange"), object: nil)
+    }
+    
+    @objc func didReceiveCategoryDidChangeNotification(_ noti: Notification) {
+        guard let indexPath = self.filterCollectionView.indexPathsForSelectedItems?.first,
+              let cell = self.filterCollectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell,
+              let filter = cell.filterLabel?.text
+        else { print("error on didReceiveCategorydidChangeNotification function"); return }
+        
+        NotificationCenter.default.post(name: Notification.Name("filterSelected"),
+                                        object: nil,
+                                        userInfo: ["filter": filter])
     }
     
     private func setUpView() {

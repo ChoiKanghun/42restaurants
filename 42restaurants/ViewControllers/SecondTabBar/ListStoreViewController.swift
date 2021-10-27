@@ -103,7 +103,11 @@ class ListStoreViewController: UIViewController {
             print("in default category filter")
         }
         
-        DispatchQueue.main.async { self.storeTableView.reloadData() }
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name("categoryDidChange"),
+                                            object: nil,
+                                            userInfo: nil)
+        }
     }
     
     @objc func didReceiveFilterSelectedNotification(_ noti: Notification) {
@@ -127,7 +131,7 @@ class ListStoreViewController: UIViewController {
             self.filteredStores = self.filteredStores.sorted(by: { $0.storeInfo.rating < $1.storeInfo.rating })
         default:
             self.filteredStores = self.filteredStores.sorted(by: { $0.storeInfo.createDate > $1.storeInfo.createDate })
-            print("default filter noti  in")
+            print("default filter notification in")
         }
         
         DispatchQueue.main.async { self.storeTableView.reloadData() }

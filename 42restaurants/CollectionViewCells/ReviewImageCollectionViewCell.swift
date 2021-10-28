@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Firebase
 
 class ReviewImageCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "reviewImageCollectionViewCell"
+    let storageRef = Storage.storage().reference()
     
     @IBOutlet weak var imageView: UIImageView!
+    
+    
 }

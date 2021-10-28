@@ -12,8 +12,9 @@ class FilterCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         self.scrollDirection = .horizontal
-        self.minimumLineSpacing = 0
-        self.sectionInset = UIEdgeInsets(top: 0, left: 20.0, bottom: 0, right: 20.0)
+        self.minimumLineSpacing = 10
+        self.minimumInteritemSpacing = 10.0
+        self.sectionInset = UIEdgeInsets(top: 0, left: 20.0, bottom: 0, right: 50.0)
     
         let attributes = super.layoutAttributesForElements(in: rect)
         var leftMargin = sectionInset.left

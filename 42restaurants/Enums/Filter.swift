@@ -14,6 +14,7 @@ enum Filter {
     case ratingLow
     case reviewCount
     case nearest
+    case imageCount
     
     var filterName: String {
         switch self {
@@ -29,6 +30,8 @@ enum Filter {
             return "리뷰 많은 순"
         case .nearest:
             return "가까운 순"
+        case .imageCount:
+            return "이미지 많은 순"
         }
     }
 }

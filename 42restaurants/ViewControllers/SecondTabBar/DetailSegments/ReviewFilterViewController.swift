@@ -10,8 +10,6 @@ import UIKit
 private let filters: [Filter] = [
     Filter.latest,
     Filter.ratingHigh,
-    Filter.reviewCount,
-    Filter.nearest,
     Filter.oldest,
     Filter.ratingLow
 ]

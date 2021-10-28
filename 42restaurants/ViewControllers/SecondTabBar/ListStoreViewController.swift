@@ -107,6 +107,7 @@ class ListStoreViewController: UIViewController {
             NotificationCenter.default.post(name: Notification.Name("categoryDidChange"),
                                             object: nil,
                                             userInfo: nil)
+            self.storeTableView.reloadData()
         }
     }
     
@@ -273,7 +274,7 @@ extension ListStoreViewController: UITableViewDelegate {
 
 extension ListStoreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        StoreSingleton.shared.store = self.stores[indexPath.row]
+        StoreSingleton.shared.store = self.filteredStores[indexPath.row]
         
         guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
         else { return }

@@ -65,7 +65,4 @@ class ReviewFilterCollectionViewCell: UICollectionViewCell {
         self.setUpView()
         self.isSelected = false
     }
-        
-
-
 }

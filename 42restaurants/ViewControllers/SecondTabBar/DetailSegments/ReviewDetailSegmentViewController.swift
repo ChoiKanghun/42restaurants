@@ -38,8 +38,35 @@ class ReviewDetailSegmentViewController: UIViewController {
         self.tableView.dataSource = self
 
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveReviewFilterSelectedNotification(_:)),
+                                               name: Notification.Name("reviewFilterSelected"),
+                                               object: nil)
+        
+        
         setUI()
         updateTableView()
+    }
+    
+    @objc func didReceiveReviewFilterSelectedNotification(_ noti: Notification) {
+        guard let reviewFilter = noti.userInfo?["reviewFilter"] as? String
+        else { print("can't get reviewFilter notification"); return }
+        
+        switch reviewFilter {
+        case Filter.latest.filterName:
+            self.comments = self.comments.sorted(by: { $0.createDate > $1.createDate })
+        case Filter.ratingHigh.filterName:
+            self.comments = self.comments.sorted(by: { $0.rating > $1.rating })
+        case Filter.oldest.filterName:
+            self.comments = self.comments.sorted(by: { $0.createDate < $1.createDate })
+        case Filter.ratingLow.filterName:
+            self.comments = self.comments.sorted(by: { $0.rating < $1.rating })
+        default:
+            self.comments = self.comments.sorted(by: { $0.createDate > $1.createDate })
+            print("default filter notification in")
+        }
+        
     }
     
     private func setUI() {

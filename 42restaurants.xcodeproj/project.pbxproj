@@ -25,6 +25,8 @@
 		7A34E51526A7E27F00254C11 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51426A7E27F00254C11 /* Category.swift */; };
 		7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51626A7FE5800254C11 /* String+Extensions.swift */; };
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
+		7A407466272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407465272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift */; };
+		7A407468272A2E31008E52A5 /* ReviewFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
 		7A95D951271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */; };
 		7A95D973271FF28F00164BC3 /* ManageMyStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */; };
@@ -110,6 +112,8 @@
 		7A34E51426A7E27F00254C11 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7A34E51626A7FE5800254C11 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		7A407465272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterViewController.swift; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
 		7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMyStoreViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 				7AE780BF26AE605A00B507DE /* ReviewDetailSegmentViewController.swift */,
 				7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */,
 				7A97B67E2717F1BD006E9D3C /* EnlargedImageViewController.swift */,
+				7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */,
 			);
 			path = DetailSegments;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				7AE7E12B26C295BB002536E1 /* ReviewImageCollectionViewCell.swift */,
 				7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */,
 				7AC4421927242EAF006F8FEE /* FilterCollectionViewCell.swift */,
+				7A407465272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -676,6 +682,7 @@
 				7AE780C426AE6D1300B507DE /* DetailViewController.swift in Sources */,
 				7AC4421827242890006F8FEE /* Filter.swift in Sources */,
 				7AC442142723A93C006F8FEE /* CategoryCollectionViewFlowLayout.swift in Sources */,
+				7A407466272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift in Sources */,
 				7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */,
 				7A34E4EF26A6C52200254C11 /* UIViewController+Extensions.swift in Sources */,
 				7AE780C226AE60B200B507DE /* PhotosDetailSegmentViewController.swift in Sources */,
@@ -696,6 +703,7 @@
 				7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */,
 				7A9AEECE2711AE2800DCE2C3 /* Config.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
+				7A407468272A2E31008E52A5 /* ReviewFilterViewController.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
 				7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */,
 				7A97B6A22719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift in Sources */,

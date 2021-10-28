@@ -1466,7 +1466,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IGA-VP-AmM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewTableViewCell" rowHeight="425" id="0xJ-ZL-Prl" customClass="ReviewTableViewCell" customModule="_2restaurants" customModuleProvider="target">
@@ -1578,13 +1578,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pD7-YC-idV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="k42-oT-ofK"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="60w-oi-IXy" kind="embed" id="hgb-1N-Ayb"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Aj3-9s-QMf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Aj3-9s-QMf" firstAttribute="trailing" secondItem="pD7-YC-idV" secondAttribute="trailing" id="2ej-sj-2dW"/>
+                            <constraint firstItem="IGA-VP-AmM" firstAttribute="top" secondItem="pD7-YC-idV" secondAttribute="bottom" id="8kT-CX-Vtx"/>
                             <constraint firstItem="Aj3-9s-QMf" firstAttribute="bottom" secondItem="IGA-VP-AmM" secondAttribute="bottom" id="QLm-ok-fUy"/>
+                            <constraint firstItem="pD7-YC-idV" firstAttribute="top" secondItem="Aj3-9s-QMf" secondAttribute="top" id="SIu-KI-4mN"/>
                             <constraint firstItem="Aj3-9s-QMf" firstAttribute="trailing" secondItem="IGA-VP-AmM" secondAttribute="trailing" id="Vsn-g5-NVM"/>
-                            <constraint firstItem="IGA-VP-AmM" firstAttribute="top" secondItem="Aj3-9s-QMf" secondAttribute="top" id="qCG-Lh-zYY"/>
+                            <constraint firstItem="pD7-YC-idV" firstAttribute="leading" secondItem="Aj3-9s-QMf" secondAttribute="leading" id="pt1-ga-yzW"/>
                             <constraint firstItem="IGA-VP-AmM" firstAttribute="leading" secondItem="Aj3-9s-QMf" secondAttribute="leading" id="sIo-li-V8O"/>
                         </constraints>
                     </view>
@@ -1708,6 +1720,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YoR-Sk-PKQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2608.6956521739135" y="-651.5625"/>
+        </scene>
+        <!--Review Filter View Controller-->
+        <scene sceneID="fDh-h8-QHs">
+            <objects>
+                <viewController id="60w-oi-IXy" customClass="ReviewFilterViewController" customModule="_2restaurants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qqx-8H-tXt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="G7W-dt-fFQ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EYQ-nW-5fS">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wYX-A1-eSg" customClass="ReviewFilterCollectionViewCell" customModule="_2restaurants" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-39" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ICT-QY-zLq">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHd-MB-6cS">
+                                                    <rect key="frame" x="-56" y="0.0" width="240" height="128"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vu-mw-iNR">
+                                                            <rect key="frame" x="99" y="54" width="42" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="9Vu-mw-iNR" secondAttribute="trailing" constant="7" id="7U1-TY-suk"/>
+                                                        <constraint firstAttribute="bottom" secondItem="9Vu-mw-iNR" secondAttribute="bottom" constant="10" id="Czf-0J-OOw"/>
+                                                        <constraint firstItem="9Vu-mw-iNR" firstAttribute="leading" secondItem="rHd-MB-6cS" secondAttribute="leading" constant="7" id="HSj-qw-dRn"/>
+                                                        <constraint firstItem="9Vu-mw-iNR" firstAttribute="top" secondItem="rHd-MB-6cS" secondAttribute="top" constant="10" id="X4Q-td-Xf3"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="rHd-MB-6cS" secondAttribute="trailing" id="MwL-3h-sCH"/>
+                                                <constraint firstItem="rHd-MB-6cS" firstAttribute="leading" secondItem="ICT-QY-zLq" secondAttribute="leading" id="ade-y7-D0Q"/>
+                                                <constraint firstItem="rHd-MB-6cS" firstAttribute="top" secondItem="ICT-QY-zLq" secondAttribute="top" id="eNO-W0-xeI"/>
+                                                <constraint firstAttribute="bottom" secondItem="rHd-MB-6cS" secondAttribute="bottom" id="hhR-Od-hCQ"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelWrapperView" destination="rHd-MB-6cS" id="Rtm-O4-foa"/>
+                                            <outlet property="reviewFilterLabel" destination="9Vu-mw-iNR" id="Cf1-zb-PO0"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="G7W-dt-fFQ" firstAttribute="leading" secondItem="Qqx-8H-tXt" secondAttribute="leading" id="3xI-X5-vZI"/>
+                            <constraint firstItem="G7W-dt-fFQ" firstAttribute="top" secondItem="Qqx-8H-tXt" secondAttribute="top" id="Glt-yq-3XU"/>
+                            <constraint firstAttribute="trailing" secondItem="G7W-dt-fFQ" secondAttribute="trailing" id="jeg-GO-nPF"/>
+                            <constraint firstAttribute="bottom" secondItem="G7W-dt-fFQ" secondAttribute="bottom" id="mmv-qq-3Yj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="reviewFilterCollectionView" destination="G7W-dt-fFQ" id="sO8-2t-pmc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CmL-LG-5IK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4723" y="-111"/>
         </scene>
     </scenes>
     <resources>

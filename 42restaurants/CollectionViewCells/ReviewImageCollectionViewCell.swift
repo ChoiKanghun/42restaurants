@@ -12,7 +12,12 @@ class ReviewImageCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "reviewImageCollectionViewCell"
     let storageRef = Storage.storage().reference()
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var reviewImageView: UIImageView!
     
+    override func prepareForReuse() {
+        
+//        self.reviewImageView.sd_cancelCurrentImageLoad()
+//        self.reviewImageView.image = UIImage(named: "placeholder.jpg")
+    }
     
 }

@@ -108,7 +108,7 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
         
         guard let cell = self.reviewTableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.reuseIdentifier, for: indexPath) as? ReviewTableViewCell
         else { return UITableViewCell() }
-
+        
 //        DispatchQueue.main.async {
 //            if let index: IndexPath = tableView.indexPath(for: cell) {
 //                if index.row == indexPath.row {
@@ -120,24 +120,21 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
 //                }
 //            }
 //        }
+        
         if let images = self.comments[indexPath.row].images?.values.map({ $0 }) {
             cell.images = images
-            cell.setUserIdLabelText(userId: self.comments[indexPath.row].userId)
-            cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
-            cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)
-            cell.setImage()
-            self.reviewTableView.reloadRows(at: [indexPath], with: .none)
+            
 
 
         } else {
             cell.images = [Image]()
-            cell.setUserIdLabelText(userId: self.comments[indexPath.row].userId)
-            cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
-            cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)
-            cell.setImage()
-            self.reviewTableView.reloadRows(at: [indexPath], with: .none)
+            
         }
-        
+        cell.setUserIdLabelText(userId: self.comments[indexPath.row].userId)
+        cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
+        cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)
+        cell.setImage()
+        self.reviewTableView.reloadRows(at: [indexPath], with: .none)
         
         return cell
     }

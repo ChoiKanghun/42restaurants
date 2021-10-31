@@ -1425,14 +1425,14 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRJ-4c-SBo">
-                                <rect key="frame" x="10" y="54" width="60" height="60"/>
+                                <rect key="frame" x="0.0" y="44" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="ntz-7R-fDJ"/>
                                     <constraint firstAttribute="height" constant="60" id="vly-wB-5Iu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="x"/>
+                                <state key="normal" image="xmark.circle.fill" catalog="system"/>
                                 <connections>
                                     <action selector="touchUpXButton:" destination="gs0-Bo-7No" eventType="touchUpInside" id="t8Q-nx-oJl"/>
                                 </connections>
@@ -1441,8 +1441,8 @@
                         <viewLayoutGuide key="safeArea" id="zBS-IX-ujT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iRJ-4c-SBo" firstAttribute="leading" secondItem="zBS-IX-ujT" secondAttribute="leading" constant="10" id="Aig-PM-pfZ"/>
-                            <constraint firstItem="iRJ-4c-SBo" firstAttribute="top" secondItem="zBS-IX-ujT" secondAttribute="top" constant="10" id="PQn-aw-2jv"/>
+                            <constraint firstItem="iRJ-4c-SBo" firstAttribute="leading" secondItem="zBS-IX-ujT" secondAttribute="leading" id="Aig-PM-pfZ"/>
+                            <constraint firstItem="iRJ-4c-SBo" firstAttribute="top" secondItem="zBS-IX-ujT" secondAttribute="top" id="PQn-aw-2jv"/>
                             <constraint firstItem="xlQ-9e-Sot" firstAttribute="leading" secondItem="zBS-IX-ujT" secondAttribute="leading" id="bys-QT-oKu"/>
                             <constraint firstItem="zBS-IX-ujT" firstAttribute="trailing" secondItem="xlQ-9e-Sot" secondAttribute="trailing" id="cmd-Kw-aL1"/>
                             <constraint firstItem="xlQ-9e-Sot" firstAttribute="top" secondItem="zBS-IX-ujT" secondAttribute="top" id="fWB-RG-88o"/>
@@ -1816,6 +1816,7 @@
         <image name="tabBarMapSelected" width="32" height="32"/>
         <image name="tabBarUserNotSelected" width="32" height="32"/>
         <image name="tabBarUserSelected" width="32" height="32"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

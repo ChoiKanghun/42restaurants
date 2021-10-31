@@ -6,19 +6,22 @@
 //
 
 import UIKit
-
+import FirebaseStorage
+import FirebaseUI
 
 class EnlargedImageViewController: UIViewController {
 
     @IBOutlet weak var enlargedImageView: UIImageView!
     
-    var imagePassed: UIImage?
+    var imageUrl: String = ""
+    let storageRef = Storage.storage().reference()
     
     override func viewDidLoad() {
     
         super.viewDidLoad()
 
-        self.enlargedImageView.image = self.imagePassed
+        let imageReference = self.storageRef.child(imageUrl)
+        self.enlargedImageView.sd_setImage(with: imageReference)
         self.enlargedImageView.enableZoom()
         self.view.backgroundColor = .black
         

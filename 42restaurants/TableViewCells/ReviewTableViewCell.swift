@@ -97,7 +97,12 @@ extension ReviewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         
         return cell
     }
-    
+        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: Notification.Name("showEnlargedImage"),
+                                        object: nil,
+                                        userInfo: ["imageUrl": self.images[indexPath.row].imageUrl])
+    }
     
 }
 

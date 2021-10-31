@@ -48,15 +48,27 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addNotifications()
+        
         self.setNavigationBarHidden(isHidden: false)
         setDefaultValues()
         readyToGetNotification()
         setupUI()
     
     }
-   
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    private func addNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showEnlargedViewController(_:)),
+                                               name: Notification.Name("showEnlargedImage"), object: nil)
+    }
+    
+    @objc func showEnlargedViewController(_ noti: Notification) {
+        guard let imageUrl = noti.userInfo?["imageUrl"] as? String,
+              let enlargedImageViewController = self.storyboard?.instantiateViewController(withIdentifier: "EnlargedImageViewController") as? EnlargedImageViewController
+        else { print("can't handle showEnlargedImage notification"); return }
+        
+        enlargedImageViewController.imageUrl = imageUrl
+        self.navigationController?.pushViewController(enlargedImageViewController, animated: true)
         
     }
     

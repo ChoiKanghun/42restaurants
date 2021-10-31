@@ -94,17 +94,9 @@ extension PhotosDetailSegmentViewController: UICollectionViewDelegate, UICollect
     
     // 클릭한 셀의 이미지를 가져와서 EnlargedImageViewController의 이미지 변수에 세팅해주고 VC를 띄운다.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = self.collectionView.cellForItem(at: indexPath) as? DetailPhotosCollectionViewCell
-        else { fatalError("can't get detailPhotosCollectionViewCell") }
-        guard let cellImage = cell.imageView.image else { return }
-        
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        guard let enlargedImageViewController = storyBoard.instantiateViewController(withIdentifier: "EnlargedImageViewController") as? EnlargedImageViewController
-        else { return }
-        
-        enlargedImageViewController.imagePassed = cellImage
-        
-        self.navigationController?.pushViewController(enlargedImageViewController, animated: true)
+        NotificationCenter.default.post(name: Notification.Name("showEnlargedImage"),
+                                        object: nil,
+                                        userInfo: ["imageUrl": self.imageDatas[indexPath.row].imageUrl])
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

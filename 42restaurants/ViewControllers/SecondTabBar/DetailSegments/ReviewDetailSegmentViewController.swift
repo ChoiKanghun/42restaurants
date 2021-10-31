@@ -122,14 +122,23 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
 //        }
         if let images = self.comments[indexPath.row].images?.values.map({ $0 }) {
             cell.images = images
+            cell.setUserIdLabelText(userId: self.comments[indexPath.row].userId)
+            cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
+            cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)
+            cell.setImage()
+            self.reviewTableView.reloadRows(at: [indexPath], with: .none)
+
+
         } else {
             cell.images = [Image]()
+            cell.setUserIdLabelText(userId: self.comments[indexPath.row].userId)
+            cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
+            cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)
+            cell.setImage()
+            self.reviewTableView.reloadRows(at: [indexPath], with: .none)
         }
         
-        cell.setUserIdLabelText(userId: self.comments[indexPath.row].userId)
-        cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
-        cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)
-
+        
         return cell
     }
     
@@ -148,7 +157,7 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
             let contentOffset = scrollView.contentOffset.y
             
 
-            if (contentOffset > viewHeight - (140 + 31 + 15)) {
+            if (contentOffset > viewHeight - (140 + 50 + 15)) {
                 NotificationCenter.default.post(
                     name: Notification.Name("HideDetailView"),
                     object: nil,

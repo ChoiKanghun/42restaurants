@@ -1511,7 +1511,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1WF-S4-Jb3">
                                                     <rect key="frame" x="20" y="67.5" width="374" height="200"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="200" placeholder="YES" id="Lbc-gf-9si"/>
+                                                        <constraint firstAttribute="height" constant="200" id="b5r-T3-FMA"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -1539,6 +1539,7 @@
                                             <outlet property="descriptionLabel" destination="Cry-DG-KeY" id="kaK-7G-wS0"/>
                                             <outlet property="profileImageView" destination="oix-F0-XOc" id="DJE-Mt-yfP"/>
                                             <outlet property="ratingLabel" destination="abQ-ru-HHP" id="p4Y-8x-KLG"/>
+                                            <outlet property="reviewImageHeight" destination="b5r-T3-FMA" id="URZ-7P-PMG"/>
                                             <outlet property="reviewImageView" destination="1WF-S4-Jb3" id="Exd-cG-qS6"/>
                                             <outlet property="starImageView" destination="Oub-H1-GoE" id="wPg-oi-qg1"/>
                                             <outlet property="userIdLabel" destination="t2H-b9-ah4" id="bkn-nA-hMQ"/>

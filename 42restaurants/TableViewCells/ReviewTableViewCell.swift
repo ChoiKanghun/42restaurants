@@ -18,18 +18,27 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var starImageView: UIImageView!
-    
     @IBOutlet weak var reviewImageView: UIImageView!
+    
+    @IBOutlet weak var reviewImageHeight: NSLayoutConstraint!
     
     let storageRef = Storage.storage().reference()
 
     var images = [Image]()
+    
+    override func prepareForReuse() {
+        self.reviewImageView.sd_cancelCurrentImageLoad()
+        
+        self.reviewImageView.image = nil
+    }
     
     override func awakeFromNib() {
         setUI()
     }
     
     private func setUI() {
+        
+        
         self.backgroundColor = Config.shared.application60Color
         self.userIdLabel.textColor = Config.shared.applicationContrastTextColor
         self.ratingLabel.textColor = Config.shared.applicationSupplimetaryTextColor
@@ -47,20 +56,26 @@ class ReviewTableViewCell: UITableViewCell {
     func setRatingLabelText(rating: Double) {
         self.ratingLabel.text = "\(rating)"
         
-        setImage()
+        
     }
     
     func setImage() {
+        self.reviewImageHeight?.isActive = true
+        if self.images.count == 0 {
+            print("image height 0 in")
+            self.reviewImageHeight?.constant = 0
+            
+        } else {
+            self.reviewImageHeight?.constant = 200
+
+        }
+        
         if let image = self.images.first {
             let reference = self.storageRef.child("\(image.imageUrl)")
             self.reviewImageView.sd_setImage(with: reference)
-            NSLayoutConstraint.activate([
-                self.reviewImageView.heightAnchor.constraint(equalToConstant: 200)
-            ])
+            
         } else {
-            NSLayoutConstraint.activate([
-                self.reviewImageView.heightAnchor.constraint(equalToConstant: 0)
-            ])
+            
         }
         
     }

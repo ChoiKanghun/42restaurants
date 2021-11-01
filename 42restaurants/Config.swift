@@ -28,7 +28,7 @@ class Config {
     
     /* BackGround */
     let applicationSupplimentaryBackgroundColor = UIColor.gray
-    let applicationBackgroundLightGrayColor: UIColor = .systemGray6
+    let applicationBackgroundLightGrayColor: UIColor = .lightGray
     let applicationOnSelectedBackgroundColor = UIColor.init(displayP3Red: 190/255, green: 215/255, blue: 252/255, alpha: 1)
     
     /* FONT */

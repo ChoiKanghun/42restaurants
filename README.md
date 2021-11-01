@@ -36,6 +36,11 @@
 | 데이터 모두 삭제 후 재등록                                 |      |          |
 | internet 체크 on AppDelegate                               | O    | 21/11/01 |
 | list store vc Pull to Refresh                              | O    | 21/11/01 |
+| review 제출 시 뷰 사라지기 전에 alert                      |      |          |
+| 가게 등록 화면 취소 및 제출 버튼 이벤트                    |      |          |
+| Review 별점 x.x 형식으로 맞추기                            |      |          |
+| 가게등록하기 placeholder 컬러                              |      |          |
+| 가게 등록하기 picker view text 컬러                        |      |          |
 
 
 

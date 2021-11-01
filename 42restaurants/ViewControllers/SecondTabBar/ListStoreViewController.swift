@@ -37,8 +37,12 @@ class ListStoreViewController: UIViewController {
     var filteredStores = [Store]()
     var countForJustExecuteOnce: Bool = false
     
+    let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        LoadingService.showLoading()
         
         self.storeTableView.delegate = self
         self.storeTableView.dataSource = self
@@ -53,6 +57,10 @@ class ListStoreViewController: UIViewController {
                                                name: Notification.Name("filterSelected"), object: nil)
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
 
+        self.refreshControl.attributedTitle = NSAttributedString(string: "")
+        self.refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
+        self.storeTableView.addSubview(refreshControl)
+        
         getStoresInfoFromDatabase()
         setCollectionViewLayout()
     }
@@ -63,6 +71,8 @@ class ListStoreViewController: UIViewController {
         setUI() // view will appear에 두는 이유는 다음 화면에서 다시 돌아올 때를 대비하기 위해서.
 
     }
+    
+    
     
     @objc func didReceiveCategorySelectedNotification(_ noti: Notification) {
         guard let category = noti.userInfo?["category"] as? String,
@@ -172,9 +182,18 @@ class ListStoreViewController: UIViewController {
         }
     }
     
+    @objc func onPullToRefresh() {
+        if self.filteredStores.isEmpty == true {
+            getStoresInfoFromDatabase()
+        }
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+        }
+        
+        
+    }
     
-    
-    func getStoresInfoFromDatabase() {
+    private func getStoresInfoFromDatabase() {
         self.ref.child("stores").observe(DataEventType.value, with: { (snapshot) in
             
             if snapshot.exists() {
@@ -187,7 +206,7 @@ class ListStoreViewController: UIViewController {
                         let store: Store = Store(storeKey: storeData.key, storeInfo: storeData.value)
                         self.stores.append(store)
                     }
-                    self.stores = self.stores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
+                    self.filteredStores = self.stores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
                     
                     DispatchQueue.main.async {
                         self.storeTableView.reloadData()
@@ -201,42 +220,7 @@ class ListStoreViewController: UIViewController {
     }
     
    
-    @IBAction func touchUpFilterButton(_ sender: Any) {
-        let filterMenu = UIAlertController(title: nil, message: "적용할 필터를 선택해주세요.", preferredStyle: .actionSheet)
-        
-        // 옵션 - 시간순
-        let filterByDate = UIAlertAction(title: "등록된 시간 순", style: .default, handler: { _ in
-            self.stores = self.stores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
-            DispatchQueue.main.async { self.storeTableView.reloadData() }
-        })
-        
-        // 옵션 - 가까운순
-        let filterByDistance = UIAlertAction(title: "가까운 순", style: .default, handler: { _ in
-            self.stores = self.stores.sorted(
-                by: { self.getDistanceFromCurrentLocation($0.storeInfo.latitude, $0.storeInfo.longtitude) <
-                    self.getDistanceFromCurrentLocation($1.storeInfo.latitude, $1.storeInfo.longtitude) })
-            DispatchQueue.main.async { self.storeTableView.reloadData() }
-        })
-        
-        // 옵션 - 리뷰 많은 순
-        let filterByReviewCount = UIAlertAction(title: "리뷰 많은 순", style: .default, handler: { _ in
-            self.stores = self.stores.sorted(by: { $0.storeInfo.commentCount > $1.storeInfo.commentCount })
-            DispatchQueue.main.async { self.storeTableView.reloadData() }
-        })
-        
-        // 옵션 - 평점 높은 순
-        let filterByRating = UIAlertAction(title: "평점 높은 순", style: .default, handler: { _ in
-            self.stores = self.stores.sorted(by: { $0.storeInfo.rating > $1.storeInfo.rating })
-            DispatchQueue.main.async { self.storeTableView.reloadData() }
-        })
-        
-        filterMenu.addAction(filterByDate)
-        filterMenu.addAction(filterByDistance)
-        filterMenu.addAction(filterByReviewCount)
-        filterMenu.addAction(filterByRating)
-    
-        self.present(filterMenu, animated: true, completion: nil)
-    }
+
 }
 
 extension ListStoreViewController: UITableViewDelegate {
@@ -252,7 +236,7 @@ extension ListStoreViewController: UITableViewDelegate {
         
         cell.nameLabel?.text = store.storeInfo.name
         cell.addressLabel?.text = store.storeInfo.address
-        cell.rateLabel?.text = "\(store.storeInfo.rating)"
+        cell.rateLabel?.text = "\(store.storeInfo.rating)(\(store.storeInfo.commentCount))"
         cell.categoryLabel?.text = store.storeInfo.category
         
         let storageRef = storage.reference()
@@ -266,7 +250,6 @@ extension ListStoreViewController: UITableViewDelegate {
     
     private func hideLoadingWhenTableViewDidAppear(_ indexPath: IndexPath) {
         if indexPath.row == self.filteredStores.count - 1 { LoadingService.hideLoading() }
-        if self.filteredStores.count == 0 { LoadingService.hideLoading() }
     }
     
     
@@ -308,7 +291,6 @@ extension ListStoreViewController: UICollectionViewDataSource, UICollectionViewD
     
     private func selectFirstCell(_ cell: CategoryCollectionViewCell, _ indexPath: IndexPath) {
         if self.countForJustExecuteOnce == false {
-            print("in")
             self.countForJustExecuteOnce = true
             DispatchQueue.main.async {
                 self.categoryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())

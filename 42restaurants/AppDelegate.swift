@@ -16,9 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // for firebase
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        checkInternetConnected()
+        
+        
         
         // firebase init
         FirebaseApp.configure()
@@ -63,7 +65,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    // MARK: - 화면 세로로 고정시키기.(가로전환 막기)
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
 
+    // MARK: - 인터넷 연결 체크
+    func checkInternetConnected() {
+        Reachability.isConnectedToNetwork { (isConnected) in
+            if isConnected == false {
+                var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        }
+    }
+        
+    
 }
 
 // messaging
@@ -78,7 +95,5 @@ extension AppDelegate {
             userInfo: dataDict
         )
     }
-    
-    
 }
 

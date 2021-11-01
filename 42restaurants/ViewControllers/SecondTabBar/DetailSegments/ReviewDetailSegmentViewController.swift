@@ -23,6 +23,8 @@ class ReviewDetailSegmentViewController: UIViewController {
     var ref: DatabaseReference!
     let storageRef = Storage.storage().reference()
     
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,8 +39,20 @@ class ReviewDetailSegmentViewController: UIViewController {
                                                object: nil)
         
         
+        refreshControl.addTarget(self, action: #selector(onPullToReloadTableView), for: .valueChanged)
+        self.reviewTableView.addSubview(refreshControl)
+        
         setUI()
         setTableView()
+    }
+    
+    @objc func onPullToReloadTableView() {
+        if self.comments.count == 0 {
+            self.setTableView()
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     @objc func didReceiveReviewFilterSelectedNotification(_ noti: Notification) {
@@ -58,7 +72,9 @@ class ReviewDetailSegmentViewController: UIViewController {
             self.comments = self.comments.sorted(by: { $0.createDate > $1.createDate })
             print("default filter notification in")
         }
-        
+        DispatchQueue.main.async {
+            self.reviewTableView.reloadData()
+        }
     }
     
     private func setUI() {

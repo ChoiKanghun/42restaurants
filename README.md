@@ -5,7 +5,7 @@
 | ListStoreView 로딩바 추가                                  | O    | 21/10/15 |
 | ListStoreView 필터 추가(최신순, 거리순)                    | O    | 21/10/20 |
 | ReviewDetailViewController 모든 세팅 끝내기                | O    | 21/10/31 |
-| DetailSegmentReview 필터(최신순, 별점 높은/낮은 순)        |      |          |
+| DetailSegmentReview 필터(최신순, 별점 높은/낮은 순)        | O    | 21/11/01 |
 | 디테일 세그먼트 리뷰의 사진 크게 보기                      | O    | 21/10/15 |
 | 디테일 세그먼트 포토뷰 사진 크게 보기 추가                 | O    | 21/10/14 |
 | 스토어 등록 맵뷰 위치 이미지 변경                          | O    | 21/10/17 |
@@ -22,7 +22,7 @@
 | 리뷰 작성 화면 userID 텍스트 필드 삭제 및 수정             | O    | 21/10/19 |
 | DetailSegmentReviewVC 스크롤 시 윗 화면 축소.              | O    | 21/10/21 |
 | 로그인 상태 아닐 시 review 등록하지 못 하게 막기           | O    | 21/10/19 |
-| 검색 기능 추가                                             |      |          |
+| 내가 등록한 정보 수정하기                                  |      |          |
 | 탭바 Icon 및 텍스트 수정                                   | O    | 21/10/17 |
 | DetailReview,PhotoView 다시 사진 한 장으로 수정.           | O    | 21/10/16 |
 | EnrollStoreVC 위, 경도 좌표 없애고 행정구역으로 수정.      | O    | 21/10/20 |
@@ -30,10 +30,12 @@
 | ListStoreView 필터 배민이랑 똑같이 만들기                  | O    | 21/10/28 |
 | DetailPhotoVC 스크롤 시 윗 화면 축소.                      | O    | 21/10/21 |
 | 메인 맵 뷰 카테고리 이미지 밑에 캡션도 달기.               | O    | 21/11/01 |
-| listStoreVC 테이블뷰 디자인                                |      |          |
-| 가로 세로 전환 막기                                        |      |          |
-| listStore VC 로딩 바 표시                                  |      |          |
-|                                                            |      |          |
+| listStoreVC 테이블뷰 디자인                                | O    | 21/11/01 |
+| 가로 세로 전환 막기                                        | O    | 21/11/01 |
+| listStore VC 로딩 바 표시                                  | O    | 21/11/01 |
+| 데이터 모두 삭제 후 재등록                                 |      |          |
+| internet 체크 on AppDelegate                               | O    | 21/11/01 |
+| list store vc Pull to Refresh                              | O    | 21/11/01 |
 
 
 

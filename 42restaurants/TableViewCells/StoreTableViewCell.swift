@@ -26,7 +26,7 @@ class StoreTableViewCell: UITableViewCell {
         self.categoryLabel.textColor = .gray
         self.addressLabel.textColor = .black
         self.rateLabel.textColor = .gray
-        
+        self.storeImageView.layer.cornerRadius = 90 / 3 // imageHeight / 3
         
     }
 

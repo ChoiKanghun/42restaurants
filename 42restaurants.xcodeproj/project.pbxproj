@@ -28,6 +28,7 @@
 		7A407466272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407465272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift */; };
 		7A407468272A2E31008E52A5 /* ReviewFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
+		7A772B28272FC4D900F5B712 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A772B27272FC4D900F5B712 /* Reachability.swift */; };
 		7A95D951271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */; };
 		7A95D973271FF28F00164BC3 /* ManageMyStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */; };
 		7A97B67D2717BBC1006E9D3C /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */; };
@@ -115,6 +116,7 @@
 		7A407465272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterViewController.swift; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
+		7A772B27272FC4D900F5B712 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
 		7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMyStoreViewController.swift; sourceTree = "<group>"; };
 		7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -323,6 +325,14 @@
 			path = SecondTabBar;
 			sourceTree = "<group>";
 		};
+		7A772B26272FC4C900F5B712 /* InternetCheck */ = {
+			isa = PBXGroup;
+			children = (
+				7A772B27272FC4D900F5B712 /* Reachability.swift */,
+			);
+			path = InternetCheck;
+			sourceTree = "<group>";
+		};
 		7A97B6A027190788006E9D3C /* DetailSegments */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,6 +387,7 @@
 		7AE780C526AECE2200B507DE /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				7A772B26272FC4C900F5B712 /* InternetCheck */,
 				7AE780C626AECE7400B507DE /* Singletons */,
 				7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */,
 				7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */,
@@ -695,6 +706,7 @@
 				7A34E4EC26A6B50600254C11 /* PickCoordinateViewController.swift in Sources */,
 				7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */,
 				7AE780C026AE605A00B507DE /* ReviewDetailSegmentViewController.swift in Sources */,
+				7A772B28272FC4D900F5B712 /* Reachability.swift in Sources */,
 				7AE7E12C26C295BB002536E1 /* ReviewImageCollectionViewCell.swift in Sources */,
 				7AE780C826AECE8C00B507DE /* StoreSingleton.swift in Sources */,
 				7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */,

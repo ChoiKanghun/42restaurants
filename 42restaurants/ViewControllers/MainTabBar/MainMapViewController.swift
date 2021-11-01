@@ -188,6 +188,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
         mapView.moveCamera(cameraUpdate)
         
         userMarker.captionText = "ME"
+        userMarker.zIndex = Int.max
         if let userLocationImage = UIImage(systemName: "circle.fill") {
             let overlayImage = NMFOverlayImage.init(image: userLocationImage)
             userMarker.iconImage = overlayImage
@@ -215,6 +216,10 @@ extension MainMapViewController: CLLocationManagerDelegate {
             DispatchQueue.main.async {
                 if let imageName: String = Category.init(rawValue: element.storeInfo.category)?.imageName {
                     marker.iconImage = NMFOverlayImage(name: "\(imageName)")
+                    marker.captionText = element.storeInfo.name
+                    marker.captionColor = UIColor.init(red: 42/255, green: 42/255, blue: 42/255, alpha: 1)
+                    marker.captionMinZoom = 14.0
+
                 }
                 
                 marker.mapView = self.mapView

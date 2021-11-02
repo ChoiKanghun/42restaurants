@@ -61,7 +61,8 @@ class ReviewTableViewCell: UITableViewCell {
     }
     
     func setRatingLabelText(rating: Double) {
-        self.ratingLabel.text = "\(rating)"
+        let ratingString = String(format: "%.1f", rating)
+        self.ratingLabel.text = "\(ratingString)"
         
         
     }
@@ -108,11 +109,11 @@ extension ReviewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
 
 extension ReviewTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenWidth = self.reviewImagesCollectionView.frame.size.width
+        let collectionViewWidth = self.reviewImagesCollectionView.frame.size.width
         if self.images.count == 1 {
-            return CGSize(width: screenWidth, height: 150)
+            return CGSize(width: collectionViewWidth, height: 150)
         } else {
-            return CGSize(width: screenWidth / 2, height: 150)
+            return CGSize(width: collectionViewWidth / 2.2, height: 150)
         }
     }
 }

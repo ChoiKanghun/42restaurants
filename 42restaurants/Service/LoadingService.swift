@@ -28,6 +28,10 @@ class LoadingService {
             }
             loadingIndicatorView.startAnimating()
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+            self.hideLoading()
+        }
     }
     
     static func hideLoading() {

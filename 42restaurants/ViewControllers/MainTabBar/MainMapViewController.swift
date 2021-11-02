@@ -23,6 +23,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var popUpStoreNameButton: UIButton!
     @IBOutlet weak var popUpRatingLabel: UILabel!
     @IBOutlet weak var popUpCommentCountLabel: UILabel!
+    @IBOutlet weak var popUpCategoryLabel: UILabel!
     @IBOutlet weak var popUpView: UIView!
     
     
@@ -70,6 +71,7 @@ class MainMapViewController: UIViewController {
                let rating = overlay.userInfo["rating"] as? String,
                let commentCount = overlay.userInfo["commentCount"] as? String,
                let imageUrl = overlay.userInfo["imageUrl"] as? String,
+               let category = overlay.userInfo["category"] as? String,
                let store = overlay.userInfo["store"] as? Store {
                 
                 MainTabStoreSingleton.shared.store = store
@@ -80,6 +82,7 @@ class MainMapViewController: UIViewController {
                     let buttonText = NSAttributedString(string: storeName)
                     self.popUpStoreNameButton.setAttributedTitle(buttonText, for: .normal)
                     self.popUpRatingLabel.text = rating
+                    self.popUpCategoryLabel.text = category
                     self.popUpCommentCountLabel.text = "방문자리뷰 \(commentCount)"
                     self.popUpImageView.sd_setImage(with: imageRef)
                 }
@@ -211,6 +214,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
                                "rating": "\(element.storeInfo.rating)",
                                "commentCount": "\(element.storeInfo.commentCount)",
                                "imageUrl": element.storeInfo.mainImage,
+                               "category": element.storeInfo.category,
                                "store": element]
             marker.touchHandler = self.handler
             DispatchQueue.main.async {

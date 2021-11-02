@@ -18,7 +18,7 @@ class EnrollStoreViewController: UIViewController {
     @IBOutlet weak var storeNameTextField: UITextField!
     @IBOutlet weak var categoryPickerView: UIPickerView!
     @IBOutlet weak var userIdLabel: UILabel!
-    @IBOutlet weak var telephoneLabel: UITextField!
+    @IBOutlet weak var telephoneTextField: UITextField!
     @IBOutlet weak var starRatingSlider: UISlider!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var commentTextView: UITextView!
@@ -46,8 +46,10 @@ class EnrollStoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardOnTouchAnywhere)))
+        
         self.dismissIfNotLoggedIn()
+        setUI()
         
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
@@ -62,10 +64,39 @@ class EnrollStoreViewController: UIViewController {
             name: Notification.Name("TouchedLatLng"), object: nil)
     }
     
+    @objc func dismissKeyboardOnTouchAnywhere() {
+        view.endEditing(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.setNavigationBarHidden(isHidden: false)
+    }
+    
+    private func setUI() {
+        setTextFieldUI()
+    }
+    
+    private func setTextFieldUI() {
+        let borderColor: CGColor = UIColor.gray.cgColor
+        let placeholderColor: UIColor = .gray
+        
+        storeNameTextField.layer.borderWidth = 0.5
+        storeNameTextField.layer.borderColor = borderColor
+        telephoneTextField.layer.borderWidth = 0.5
+        telephoneTextField.layer.borderColor = borderColor
+        
+        
+        storeNameTextField.attributedPlaceholder = NSAttributedString(
+            string: "가게 이름 (필수)",
+            attributes: [NSAttributedString.Key.foregroundColor: placeholderColor]
+        )
+        telephoneTextField.attributedPlaceholder = NSAttributedString(
+            string: "전화번호 (선택 옵션입니다.)",
+            attributes: [NSAttributedString.Key.foregroundColor: placeholderColor]
+        )
+    
     }
     
     func initializeImagePicker() {
@@ -183,7 +214,7 @@ class EnrollStoreViewController: UIViewController {
                  "createDate": now.toDouble(),
                  "modifyDate": now.toDouble(),
                  "category": self.selectedCategory,
-                 "telephone": (self.telephoneLabel.text ?? ""),
+                 "telephone": (self.telephoneTextField.text ?? ""),
                  "address": addressString,
                  "commentCount": 1,
                  "images": [imageKey:
@@ -216,7 +247,8 @@ class EnrollStoreViewController: UIViewController {
                     (error, snapshot) in
                     DispatchQueue.main.async {
                         LoadingService.hideLoading()
-                        self.dismiss(animated: true, completion: nil)
+                        self.navigationController?.popViewController(animated: false)
+                        NotificationCenter.default.post(name: Notification.Name("didEnrollStore"), object: nil)
                     }
                 }
                 
@@ -284,5 +316,10 @@ extension EnrollStoreViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.selectedCategory = self.pickerValues[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let attributedString = NSAttributedString(string: self.pickerValues[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        return attributedString
     }
 }

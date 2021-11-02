@@ -36,11 +36,13 @@
 | 데이터 모두 삭제 후 재등록                                 |      |          |
 | internet 체크 on AppDelegate                               | O    | 21/11/01 |
 | list store vc Pull to Refresh                              | O    | 21/11/01 |
-| review 제출 시 뷰 사라지기 전에 alert                      |      |          |
-| 가게 등록 화면 취소 및 제출 버튼 이벤트                    |      |          |
-| Review 별점 x.x 형식으로 맞추기                            |      |          |
-| 가게등록하기 placeholder 컬러                              |      |          |
-| 가게 등록하기 picker view text 컬러                        |      |          |
+| review 제출 시 뷰 사라지기 전에 alert                      | O    | 21/11/02 |
+| 가게 등록 화면 취소 및 제출 버튼 이벤트                    | O    | 21/11/02 |
+| Review 별점 x.x 형식으로 맞추기                            | O    | 21/11/02 |
+| 가게등록하기 placeholder 컬러                              | O    | 21/11/02 |
+| 가게 등록하기 picker view text 컬러                        | O    | 21/11/02 |
+| LaunchScreen 바꾸기                                        | O    | 21/11/02 |
+| MyInfoViewController 맨 위에 height 1 줄 달기.             | O    | 21/11/02 |
 
 
 

@@ -34,6 +34,7 @@ class CommentPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardOnTouchAnywhere)))
         self.dismissIfNotLoggedIn()
         
         self.collectionView.delegate = self
@@ -45,6 +46,9 @@ class CommentPostViewController: UIViewController {
     }
     
     
+    @objc func dismissKeyboardOnTouchAnywhere() {
+        view.endEditing(true)
+    }
     
     private func fillBasicInfo() { // 추후 길어질 수도 있으므로 함수로 빼둠.
         self.userEmailLabel.text = FirebaseAuthentication.shared.getUserEmail()
@@ -296,28 +300,26 @@ class CommentPostViewController: UIViewController {
 
             self.ref.child("stores").child("\(storeKey)").observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.exists() {
-                   guard let value = snapshot.value else { return }
-                   do {
-                       print(value)
-                       let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
-                       let commentCount = storeData.comments.count
-                       var sumOfRatings: Double = 0
-                       for comment in storeData.comments {
-                           sumOfRatings += comment.value.rating
-                       }
-                       let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10)) / 10
-                       self.ref.child("stores/\(storeKey)/rating").setValue(rating)
-                       self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
-                       LoadingService.hideLoading()
-                           self.navigationController?.popViewController(animated: true)
-                       
-
+                    guard let value = snapshot.value else { return }
+                    do {
+                        print(value)
+                        let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
+                        let commentCount = storeData.comments.count
+                        var sumOfRatings: Double = 0
+                        for comment in storeData.comments {
+                            sumOfRatings += comment.value.rating
+                        }
+                        let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10)) / 10
+                        self.ref.child("stores/\(storeKey)/rating").setValue(rating)
+                        self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
+                        LoadingService.hideLoading()
+                        self.navigationController?.popViewController(animated: true)
+                        NotificationCenter.default.post(name: Notification.Name("reviewSubmitDone"), object: nil)
                    } catch let err {
-                       LoadingService.hideLoading()
-                       print(err.localizedDescription)
+                        LoadingService.hideLoading()
+                        print(err.localizedDescription)
                    }
                }
-                
             })
         }
     }

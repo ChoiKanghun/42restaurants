@@ -37,6 +37,9 @@ class ReviewDetailSegmentViewController: UIViewController {
                                                selector: #selector(didReceiveReviewFilterSelectedNotification(_:)),
                                                name: Notification.Name("reviewFilterSelected"),
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveReviewSubmitDone(_:)),
+                                               name: Notification.Name("reviewSubmitDone"), object: nil)
         
         
         refreshControl.addTarget(self, action: #selector(onPullToReloadTableView), for: .valueChanged)
@@ -53,6 +56,10 @@ class ReviewDetailSegmentViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    @objc func didReceiveReviewSubmitDone(_ noti: Notification) {
+        self.showBasicAlert(title: "제출 완료", message: "리뷰가 성공적으로 등록되었습니다 !")
     }
     
     @objc func didReceiveReviewFilterSelectedNotification(_ noti: Notification) {
@@ -146,6 +153,7 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
             cell.images = [Image]()
             
         }
+        
         cell.setUserIdLabelText(userId: self.comments[indexPath.row].userId)
         cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
         cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)

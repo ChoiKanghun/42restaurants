@@ -17,9 +17,18 @@ class MyInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name: FirebaseAuthenticationNotification.signInSuccess.notificationName, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(viewWillAppear(_:)), name: FirebaseAuthenticationNotification.signOutSuccess.notificationName, object: nil)
-        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(viewWillAppear(_:)),
+                                               name: FirebaseAuthenticationNotification.signInSuccess.notificationName,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(viewWillAppear(_:)),
+                                               name: FirebaseAuthenticationNotification.signOutSuccess.notificationName,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveDidEnrollStoreNotification(_:)),
+                                               name: Notification.Name("didEnrollStore"),
+                                               object: nil)
         
     }
 
@@ -29,6 +38,10 @@ class MyInfoViewController: UIViewController {
         self.isLoggedInLabel.textColor = .black
         self.view.backgroundColor = .white
         self.setUI()
+    }
+    
+    @objc func didReceiveDidEnrollStoreNotification(_ noti: Notification) {
+        self.showBasicAlert(title: "가게 등록 성공", message: "가게 등록이 완료되었습니다 !")
     }
     
     private func setUI() {

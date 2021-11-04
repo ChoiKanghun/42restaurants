@@ -25,4 +25,30 @@ extension UICollectionView {
         
         return CGSize(width: cellWidth, height: screenHeight)
     }
+    
+    func setHorizontalCollectionViewEmptyBackground() {
+        let emptyView: UIView = {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+            return view
+        }()
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named:"imageNotFound")
+
+        emptyView.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 150),
+            imageView.heightAnchor.constraint(equalToConstant: 150),
+            imageView.topAnchor.constraint(equalTo: emptyView.topAnchor, constant: 0),
+            imageView.leadingAnchor.constraint(equalTo: emptyView.leadingAnchor, constant: 0)
+        ])
+
+        self.backgroundView = emptyView
+    }
+    
+    func resetBackground() {
+        self.backgroundView = nil
+    }
 }

@@ -51,6 +51,8 @@
 		7AC4421C272438F7006F8FEE /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421B272438F7006F8FEE /* FilterViewController.swift */; };
 		7AC4421E27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421D27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift */; };
 		7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */; };
+		7ADDD5F32733AA7F00E26DAC /* ModifyMyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDD5F22733AA7F00E26DAC /* ModifyMyReviewViewController.swift */; };
+		7ADDD5F52733C3CA00E26DAC /* ModifyReviewImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDD5F42733C3CA00E26DAC /* ModifyReviewImageCollectionViewCell.swift */; };
 		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
 		7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */; };
 		7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */; };
@@ -144,6 +146,8 @@
 		7AC4421B272438F7006F8FEE /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		7AC4421D27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
+		7ADDD5F22733AA7F00E26DAC /* ModifyMyReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyMyReviewViewController.swift; sourceTree = "<group>"; };
+		7ADDD5F42733C3CA00E26DAC /* ModifyReviewImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyReviewImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -394,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				7A9C0D2127336D6E00D22551 /* ManageMyReviewViewController.swift */,
+				7ADDD5F22733AA7F00E26DAC /* ModifyMyReviewViewController.swift */,
 			);
 			path = ManageMyReview;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */,
 				7AC4421927242EAF006F8FEE /* FilterCollectionViewCell.swift */,
 				7A407465272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift */,
+				7ADDD5F42733C3CA00E26DAC /* ModifyReviewImageCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 				7AE780C226AE60B200B507DE /* PhotosDetailSegmentViewController.swift in Sources */,
 				7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */,
 				7AF6615626AFECC300D405E0 /* StarRatingUISlider.swift in Sources */,
+				7ADDD5F32733AA7F00E26DAC /* ModifyMyReviewViewController.swift in Sources */,
 				7A97B67D2717BBC1006E9D3C /* UIImageView+Extensions.swift in Sources */,
 				7A34E51726A7FE5800254C11 /* String+Extensions.swift in Sources */,
 				7A9AEED12711B14F00DCE2C3 /* MainTabBarController.swift in Sources */,
@@ -772,6 +779,7 @@
 				7A97B6A22719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift in Sources */,
 				7AC4421E27264A0E006F8FEE /* FilterCollectionViewFlowLayout.swift in Sources */,
 				7A95D951271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift in Sources */,
+				7ADDD5F52733C3CA00E26DAC /* ModifyReviewImageCollectionViewCell.swift in Sources */,
 				7AC4421C272438F7006F8FEE /* FilterViewController.swift in Sources */,
 				7A97B67F2717F1BD006E9D3C /* EnlargedImageViewController.swift in Sources */,
 				7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */,

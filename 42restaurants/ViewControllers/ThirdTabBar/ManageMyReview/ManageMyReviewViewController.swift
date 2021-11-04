@@ -117,7 +117,13 @@ extension ManageMyReviewViewController: UITableViewDelegate, UITableViewDataSour
         if isAbleToEdit(self.comments[indexPath.row].comment.createDate) == false {
             showBasicAlert(title: "리뷰 수정 기간이 지났습니다.", message: "리뷰 수정은 이틀 동안 가능합니다 !")
         } else {
+            guard let myReviewVC = self.storyboard?.instantiateViewController(
+                withIdentifier: ModifyMyReviewViewController.storyboardId) as? ModifyMyReviewViewController
+            else { print("can't find myReviewVC"); return }
             
+            myReviewVC.commentKey = self.comments[indexPath.row].commentKey
+            
+            self.navigationController?.pushViewController(myReviewVC, animated: true)
         }
         
         

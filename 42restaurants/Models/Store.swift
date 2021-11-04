@@ -25,6 +25,7 @@ struct StoreInfo: Codable {
     let enrollUser: String
     let telephone: String?
     let address: String?
+    let addressDetail: String?
     var commentCount: Int
     var comments: [String: Comment]
 }

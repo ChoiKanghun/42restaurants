@@ -86,7 +86,6 @@ extension PickCoordinateViewController: CLLocationManagerDelegate {
         let cameraUpdate = NMFCameraUpdate(scrollTo: cameraPosition)
         mapView.moveCamera(cameraUpdate)
         
-        print("location: \(NMGCurrentLocation)")
         let userMarker = NMFMarker()
         userMarker.position = NMGCurrentLocation
         userMarker.captionText = "ME"

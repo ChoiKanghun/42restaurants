@@ -35,7 +35,8 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     private func setLabelView() {
         self.filterLabel?.textAlignment = .center
-        self.filterLabel?.textColor = .systemGray2
+        self.filterLabel?.backgroundColor = .lightGray
+        self.filterLabel?.textColor = .systemGray3
         self.filterLabel?.font = UIFont.systemFont(ofSize: 13.0, weight: .regular)
     }
     

@@ -176,7 +176,7 @@ extension FirebaseAuthentication {
         else { return true }
     }
     
-    public func getUserEmail() -> String {
+    func getUserEmail() -> String {
         if let user = Auth.auth().currentUser,
            let email = user.email {
             return email

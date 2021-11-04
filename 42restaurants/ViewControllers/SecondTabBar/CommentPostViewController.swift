@@ -142,14 +142,17 @@ class CommentPostViewController: UIViewController {
     @IBAction func touchUpSubmitButton(_ sender: UIBarButtonItem) {
         LoadingService.showLoading()
         // MARK: 1. 필수 항목 비어 있으면 오류 처리하기.
-        guard let userId = self.userEmailLabel.text,
-              let description = self.descriptionTextView.text
-        else {
+        if self.descriptionTextView.text == "" {
             LoadingService.hideLoading()
             self.showBasicAlert(title: "내용을 입력하세요.", message: "내용은 필수 입력값입니다.");
             return
         }
-
+        
+        // MARK: 2. userId와 description 추출
+        guard let userId = self.userEmailLabel.text,
+              let description = self.descriptionTextView.text
+        else { print("no user id error"); return }
+        
 
         
         // MARK: 3. 이미지가 있다면 이미지를 먼저 업로드.
@@ -191,6 +194,8 @@ class CommentPostViewController: UIViewController {
                 
                 let image = filePath
                 self.images.append(image)
+
+
                 
                 uploadTask.observe(.success) { snapshot in
                 

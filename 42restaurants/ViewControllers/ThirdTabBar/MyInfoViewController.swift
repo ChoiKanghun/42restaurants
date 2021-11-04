@@ -37,6 +37,7 @@ class MyInfoViewController: UIViewController {
         self.setNavigationBarHidden(isHidden: true)
         self.isLoggedInLabel.textColor = .black
         self.view.backgroundColor = .white
+        self.setNavigationBarBackgroundColor()
         self.setUI()
     }
     

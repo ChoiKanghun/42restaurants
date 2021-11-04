@@ -29,6 +29,8 @@
 		7A407468272A2E31008E52A5 /* ReviewFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
 		7A772B28272FC4D900F5B712 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A772B27272FC4D900F5B712 /* Reachability.swift */; };
+		7A772B5627312C3C00F5B712 /* MyStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A772B5527312C3C00F5B712 /* MyStoreTableViewCell.swift */; };
+		7A772B5D2731F22A00F5B712 /* ModifyMyStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A772B5C2731F22A00F5B712 /* ModifyMyStoreViewController.swift */; };
 		7A95D951271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */; };
 		7A95D973271FF28F00164BC3 /* ManageMyStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */; };
 		7A97B67D2717BBC1006E9D3C /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */; };
@@ -37,6 +39,9 @@
 		7A97B6A427191E4B006E9D3C /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A97B6A327191E4B006E9D3C /* UICollectionView+Extensions.swift */; };
 		7A9AEECE2711AE2800DCE2C3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AEECD2711AE2800DCE2C3 /* Config.swift */; };
 		7A9AEED12711B14F00DCE2C3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */; };
+		7A9C0D1F273364ED00D22551 /* ManageMyStorePickCoordinateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9C0D1E273364ED00D22551 /* ManageMyStorePickCoordinateViewController.swift */; };
+		7A9C0D2227336D6E00D22551 /* ManageMyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9C0D2127336D6E00D22551 /* ManageMyReviewViewController.swift */; };
+		7A9C0D242733753C00D22551 /* ManageMyReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9C0D232733753C00D22551 /* ManageMyReviewTableViewCell.swift */; };
 		7AB9CB8B270D6C7B000E9A28 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */; };
 		7AB9CB8D270D6D23000E9A28 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */; };
 		7AC4421127225FC1006F8FEE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */; };
@@ -117,6 +122,8 @@
 		7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterViewController.swift; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		7A772B27272FC4D900F5B712 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		7A772B5527312C3C00F5B712 /* MyStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoreTableViewCell.swift; sourceTree = "<group>"; };
+		7A772B5C2731F22A00F5B712 /* ModifyMyStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyMyStoreViewController.swift; sourceTree = "<group>"; };
 		7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
 		7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMyStoreViewController.swift; sourceTree = "<group>"; };
 		7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -125,6 +132,9 @@
 		7A97B6A327191E4B006E9D3C /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		7A9AEECD2711AE2800DCE2C3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		7A9AEED02711B14F00DCE2C3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		7A9C0D1E273364ED00D22551 /* ManageMyStorePickCoordinateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMyStorePickCoordinateViewController.swift; sourceTree = "<group>"; };
+		7A9C0D2127336D6E00D22551 /* ManageMyReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMyReviewViewController.swift; sourceTree = "<group>"; };
+		7A9C0D232733753C00D22551 /* ManageMyReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMyReviewTableViewCell.swift; sourceTree = "<group>"; };
 		7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7AC4421027225FC1006F8FEE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -333,6 +343,33 @@
 			path = InternetCheck;
 			sourceTree = "<group>";
 		};
+		7A772B592731F1D300F5B712 /* ManageMyStores */ = {
+			isa = PBXGroup;
+			children = (
+				7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */,
+				7A772B5C2731F22A00F5B712 /* ModifyMyStoreViewController.swift */,
+				7A9C0D1E273364ED00D22551 /* ManageMyStorePickCoordinateViewController.swift */,
+			);
+			path = ManageMyStores;
+			sourceTree = "<group>";
+		};
+		7A772B5A2731F1F400F5B712 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7A772B5B2731F20100F5B712 /* EnrollStore */ = {
+			isa = PBXGroup;
+			children = (
+				7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */,
+				7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */,
+			);
+			path = EnrollStore;
+			sourceTree = "<group>";
+		};
 		7A97B6A027190788006E9D3C /* DetailSegments */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,14 +390,22 @@
 			path = "TabBar,NavigationBar";
 			sourceTree = "<group>";
 		};
+		7A9C0D2027336D5A00D22551 /* ManageMyReview */ = {
+			isa = PBXGroup;
+			children = (
+				7A9C0D2127336D6E00D22551 /* ManageMyReviewViewController.swift */,
+			);
+			path = ManageMyReview;
+			sourceTree = "<group>";
+		};
 		7AB9CB89270D6BC0000E9A28 /* ThirdTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				7A9C0D2027336D5A00D22551 /* ManageMyReview */,
+				7A772B5B2731F20100F5B712 /* EnrollStore */,
+				7A772B5A2731F1F400F5B712 /* Login */,
+				7A772B592731F1D300F5B712 /* ManageMyStores */,
 				7AB9CB8A270D6C7B000E9A28 /* MyInfoViewController.swift */,
-				7A34E4E926A6B1C000254C11 /* EnrollStoreViewController.swift */,
-				7AB9CB8C270D6D23000E9A28 /* LoginViewController.swift */,
-				7A34E4EB26A6B50600254C11 /* PickCoordinateViewController.swift */,
-				7A95D972271FF28F00164BC3 /* ManageMyStoreViewController.swift */,
 			);
 			path = ThirdTabBar;
 			sourceTree = "<group>";
@@ -380,6 +425,8 @@
 				7AE780BB26ABB7B100B507DE /* StoreTableViewCell.swift */,
 				7AE7E12926C2943A002536E1 /* ReviewTableViewCell.swift */,
 				7A97B6A12719089F006E9D3C /* EnlargedImagesCollectionViewCell.swift */,
+				7A772B5527312C3C00F5B712 /* MyStoreTableViewCell.swift */,
+				7A9C0D232733753C00D22551 /* ManageMyReviewTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -679,16 +726,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A97B6A427191E4B006E9D3C /* UICollectionView+Extensions.swift in Sources */,
+				7A772B5627312C3C00F5B712 /* MyStoreTableViewCell.swift in Sources */,
 				7AE780B926ABB65F00B507DE /* ListStoreViewController.swift in Sources */,
 				7A34E4E826A6808E00254C11 /* MainMapViewController.swift in Sources */,
 				7AE7E13226CB33EA002536E1 /* MainListStoreViewController.swift in Sources */,
 				7AE780CD26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift in Sources */,
 				7A95D973271FF28F00164BC3 /* ManageMyStoreViewController.swift in Sources */,
 				7A1D23BF26A67BB000F8E7E2 /* AppDelegate.swift in Sources */,
+				7A9C0D2227336D6E00D22551 /* ManageMyReviewViewController.swift in Sources */,
 				7AE780BC26ABB7B100B507DE /* StoreTableViewCell.swift in Sources */,
+				7A9C0D242733753C00D22551 /* ManageMyReviewTableViewCell.swift in Sources */,
 				7A34E4F226A7C2AA00254C11 /* Store.swift in Sources */,
 				7AC4421A27242EAF006F8FEE /* FilterCollectionViewCell.swift in Sources */,
 				7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */,
+				7A9C0D1F273364ED00D22551 /* ManageMyStorePickCoordinateViewController.swift in Sources */,
 				7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */,
 				7AE780C426AE6D1300B507DE /* DetailViewController.swift in Sources */,
 				7AC4421827242890006F8FEE /* Filter.swift in Sources */,
@@ -727,6 +778,7 @@
 				7AE7E13626CB35FD002536E1 /* MainTabStoreSingleton.swift in Sources */,
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,
 				7AC4421127225FC1006F8FEE /* CategoryCollectionViewCell.swift in Sources */,
+				7A772B5D2731F22A00F5B712 /* ModifyMyStoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

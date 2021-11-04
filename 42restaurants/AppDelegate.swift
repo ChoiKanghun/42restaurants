@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         checkInternetConnected()
-        
+        Thread.sleep(forTimeInterval: 2.0) // 2초 동안 launchScreen 보여주기
         
         
         // firebase init

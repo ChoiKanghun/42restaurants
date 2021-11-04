@@ -153,8 +153,9 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
             cell.images = [Image]()
             
         }
-        
-        cell.setUserIdLabelText(userId: self.comments[indexPath.row].userId)
+        if let userId = self.comments[indexPath.row].userId.components(separatedBy: "@").first {
+            cell.setUserIdLabelText(userId: userId)
+        }
         cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
         cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)
         cell.setImage()

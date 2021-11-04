@@ -25,7 +25,7 @@ enum Category: String {
         case .all:
             return "전체"
         case .koreanAsian:
-            return "korean"
+            return "koreanAsian"
         case .mexican:
             return "mexican"
         case .japaneseCutlet:

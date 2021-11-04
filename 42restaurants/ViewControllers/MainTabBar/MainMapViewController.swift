@@ -25,6 +25,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var popUpCommentCountLabel: UILabel!
     @IBOutlet weak var popUpCategoryLabel: UILabel!
     @IBOutlet weak var popUpView: UIView!
+    @IBOutlet weak var checkMyLocationButton: UIButton!
     
     
     lazy var locationManager: CLLocationManager = {
@@ -124,6 +125,7 @@ class MainMapViewController: UIViewController {
         self.setNavigationBarHidden(isHidden: true)
         self.setStatusBarBackgroundColor()
         self.popUpView.backgroundColor = Config.shared.application30Color
+        
     }
     
     @IBAction func touchUpStoreNameButton(_ sender: Any) {
@@ -170,8 +172,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
         let NMGCurrentLocation =
             NMGLatLng(lat: location.coordinate.latitude,
                       lng: location.coordinate.longitude)
-        print("latitude: ",location.coordinate.latitude)
-        print("longitude: ", location.coordinate.longitude)
+
         UserDefaults.standard.set(location.coordinate.latitude, forKey: "currentLocationLatitude")
         UserDefaults.standard.set(location.coordinate.longitude, forKey: "currentLocationLongitude")
         userMarker.position = NMGCurrentLocation

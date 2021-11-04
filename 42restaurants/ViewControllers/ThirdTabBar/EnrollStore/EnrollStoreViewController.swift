@@ -49,8 +49,9 @@ class EnrollStoreViewController: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardOnTouchAnywhere)))
         
         self.dismissIfNotLoggedIn()
-        setUI()
         
+        setUI()
+        setUserIdLabel()
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         initializeImagePicker()
@@ -78,6 +79,10 @@ class EnrollStoreViewController: UIViewController {
         setTextFieldUI()
     }
     
+    private func setUserIdLabel() {
+        self.userIdLabel?.text = FirebaseAuthentication.shared.getUserEmail()
+    }
+    
     private func setTextFieldUI() {
         let borderColor: CGColor = UIColor.gray.cgColor
         let placeholderColor: UIColor = .gray
@@ -99,13 +104,13 @@ class EnrollStoreViewController: UIViewController {
     
     }
     
-    func initializeImagePicker() {
+    private func initializeImagePicker() {
         self.imagePicker.sourceType = .photoLibrary
         self.imagePicker.allowsEditing = true
         self.imagePicker.delegate = self
     }
     
-    func initializeCategoryPickerView() {
+    private func initializeCategoryPickerView() {
         self.categoryPickerView.delegate = self
         self.categoryPickerView.dataSource = self
     }
@@ -119,7 +124,6 @@ class EnrollStoreViewController: UIViewController {
         
         self.basicAddressLabel?.text = basicAddress
         self.detailAddressLabel?.text = detailAddress
-        
         self.naverCoordinate = naverCoordinate
     }
     
@@ -216,6 +220,7 @@ class EnrollStoreViewController: UIViewController {
                  "category": self.selectedCategory,
                  "telephone": (self.telephoneTextField.text ?? ""),
                  "address": addressString,
+                 "addressDetail": self.detailAddressLabel.text ?? "",
                  "commentCount": 1,
                  "images": [imageKey:
                                 ["imageUrl": filePath,
@@ -292,8 +297,6 @@ extension EnrollStoreViewController: UIImagePickerControllerDelegate, UINavigati
         
         self.imageView?.image = newImage
         picker.dismiss(animated: true, completion: nil)
-        
-        
     }
     
 }

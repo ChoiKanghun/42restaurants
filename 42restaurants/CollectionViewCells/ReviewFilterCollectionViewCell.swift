@@ -36,7 +36,8 @@ class ReviewFilterCollectionViewCell: UICollectionViewCell {
     
     private func setLabelView() {
         self.reviewFilterLabel?.textAlignment = .center
-        self.reviewFilterLabel?.textColor = .systemGray2
+        self.reviewFilterLabel?.backgroundColor = .lightGray
+        self.reviewFilterLabel?.textColor = .systemGray3
         self.reviewFilterLabel?.font = UIFont.systemFont(ofSize: 13.0, weight: .regular)
     }
     

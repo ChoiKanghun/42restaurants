@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import CodableFirebase
+import Photos
+import YPImagePicker
 
 class ModifyMyReviewViewController: UIViewController {
     static let storyboardId: String = "modifyMyReviewViewController"
@@ -15,6 +17,8 @@ class ModifyMyReviewViewController: UIViewController {
     var commentKey: String?
     var commentPath: String?
     var images: [(String, Image)] = []
+    var imageSet = [UIImage]()
+    
     var ref: DatabaseReference!
     var storageRef = Storage.storage().reference()
     
@@ -39,14 +43,14 @@ class ModifyMyReviewViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setNavigationBarHidden(isHidden: false)
         setUI()
+
     }
     
     private func setDefaultValues() {
         LoadingService.showShortLoading()
         self.descriptionTextView.isUserInteractionEnabled = false
         setCollectionViewValues()
-        setTextView()
-        setRating()
+        
     }
     
     private func setCollectionViewValues() {
@@ -54,7 +58,8 @@ class ModifyMyReviewViewController: UIViewController {
     }
     
     private func setCommentPathAndImages() {
-        guard let commentKey = self.commentKey else { return }
+        guard let commentKey = self.commentKey
+        else { print("can't get commentKey"); return }
         self.ref.child("stores").getData(completion: { error, snapshot in
             if snapshot.exists() {
                 self.images = []
@@ -66,15 +71,25 @@ class ModifyMyReviewViewController: UIViewController {
                         for comment in comments {
                             if comment.key == commentKey {
                                 self.commentPath = "stores/\(storeData.key)/comments/\(commentKey)"
+                                // 이미지 있는 경우
                                 if let commentImagePairs = comment.value.images {
                                     for commentImagePair in commentImagePairs {
                                         self.images.append((commentImagePair.key, commentImagePair.value))
+                                        
                                     }
                                     DispatchQueue.main.async {
+                                        self.setTextView(comment.value.description)
+                                        self.setRating(comment.value.rating)
                                         self.imageCollectionView.reloadData()
                                         return
                                     }
                                     return
+                                }
+                                else { // 이미지 없는 경우
+                                    DispatchQueue.main.async {
+                                        self.setTextView(comment.value.description)
+                                        self.setRating(comment.value.rating)
+                                    }
                                 }
                             }
                         }
@@ -86,34 +101,87 @@ class ModifyMyReviewViewController: UIViewController {
         })
     }
     
-    private func setTextView() {
-        guard let commentPath = self.commentPath else { return }
-        self.ref.child(commentPath).child("description").getData(completion: { error, snapshot in
-            if snapshot.exists() {
-                guard let description = snapshot.value as? String else { print("can't get value"); return }
-                self.descriptionTextView.text = description
-            }
-        })
+    private func setTextView(_ description: String) {
+        self.descriptionTextView.text = description
     }
     
-    private func setRating() {
-        guard let commentPath = self.commentPath else { return }
-        self.ref.child(commentPath).child("rating").getData(completion: { error, snapshot in
-            if snapshot.exists() {
-                guard let rating = snapshot.value as? Double else { print("can't get value"); return }
-                let formattedRating =  Double(floor(rating * 10)) / 10
-                self.ratingLabel.text = String(formattedRating)
-                self.starRatingSlider.value = Float(formattedRating)
+    private func setRating(_ rating: Double) {
+        let formattedRating =  Double(floor(rating * 10)) / 10
+        self.ratingLabel.text = String(formattedRating)
+        self.starRatingSlider.value = Float(formattedRating)
+        
+        let floatValue = Float(floor(rating * 10)) / 10
+        
+        for index in 1...5 {
+            if let starImage = view.viewWithTag(index) as? UIImageView {
+                if Float(index) <= floatValue {
+                    starImage.image = UIImage(named: "star_full_48px")
+                } else if Float(index) - floatValue <= 0.5 {
+                    starImage.image = UIImage(named: "star_half_48px")
+                } else {
+                    starImage.image = UIImage(named: "star_empty_48px")
+                }
             }
-        })
+        }
     }
     
     private func setUI() {
         self.addImageButton.alpha = 0.0
     }
     
+    @IBAction func onDragStarSlider(_ sender: UISlider) {
+        let floatValue = floor(sender.value * 10) / 10
+        
+        for index in 1...5 {
+            if let starImage = view.viewWithTag(index) as? UIImageView {
+                if Float(index) <= floatValue {
+                    starImage.image = UIImage(named: "star_full_48px")
+                } else if Float(index) - floatValue <= 0.5 {
+                    starImage.image = UIImage(named: "star_half_48px")
+                } else {
+                    starImage.image = UIImage(named: "star_empty_48px")
+                }
+            }
+        }
+        DispatchQueue.main.async { self.ratingLabel?.text = "\(floatValue)" }
+    }
+    
+    @IBAction func touchUpAddImageButton(_ sender: Any) {
+        var config = YPImagePickerConfiguration()
+        config.library.maxNumberOfItems = 10
+        config.library.mediaType = .photo
+        config.startOnScreen = .library
+        let picker = YPImagePicker(configuration: config)
+        
+        self.present(picker, animated: true, completion: nil)
+        
+        var temporaryImageSet = [UIImage]()
+        
+        picker.didFinishPicking(completion: { [unowned picker] items, cancelled in
+            if cancelled == true { print("picking image cancelled")}
+            else {
+                for item in items {
+                    switch item {
+                    case .photo(let photo):
+                        temporaryImageSet.append(photo.image)
+                    default:
+                        self.showBasicAlert(title: "타입 불일치", message: "이미지만 올려주세요")
+                        picker.dismiss(animated: true, completion: nil)
+                        return
+                    }
+                }
+                self.imageSet = temporaryImageSet
+            }
+            picker.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.async { self.imageCollectionView.reloadData() }
+        })
+        
+    }
+    
     @IBAction func touchUpModifyingButton(_ sender: Any) {
-        if self.modifyingButton.title == "수정하기" { changeUIOnModifying() }
+        if self.modifyingButton.title == "수정하기" { changeUIOnModifying(); return }
+        else { LoadingService.showLoading(); modifyReview() }
+        
     }
     
     private func changeUIOnModifying() {
@@ -122,9 +190,24 @@ class ModifyMyReviewViewController: UIViewController {
         self.descriptionTextView.isUserInteractionEnabled = true
     }
     
-    
-
-
+    private func modifyReview() {
+        // MARK: 1. 필수 항목이 비어있으면 오류 처리
+        if self.descriptionTextView.text == "" {
+            LoadingService.hideLoading()
+            self.showBasicAlert(title: "내용을 입력하세요.", message: "내용은 필수 값입니다.")
+            return
+        }
+        
+        // MARK: 2. description과 commentKey, rating 추출
+        guard let description = self.descriptionTextView.text,
+              let commentKey = self.commentKey
+        else { print("can't get description/commentKey"); return }
+        let rating = self.starRatingSlider.value
+        
+        // MARK: 3. 이미지 변경사항이 있다면 이미지부터 업로드.
+        
+        
+    }
 }
 
 extension ModifyMyReviewViewController: UICollectionViewDelegate, UICollectionViewDataSource {

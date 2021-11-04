@@ -40,6 +40,9 @@ class CommentPostViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
     
+        self.starRatingSlider.value = 5.0
+        
+        
         fillBasicInfo()
         handleKeyboardAppearance()
         self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
@@ -309,7 +312,7 @@ class CommentPostViewController: UIViewController {
                     do {
                         print(value)
                         let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
-                        let commentCount = storeData.comments.count
+                        let commentCount = storeData.comments.count + 1
                         var sumOfRatings: Double = 0
                         for comment in storeData.comments {
                             sumOfRatings += comment.value.rating

@@ -155,7 +155,7 @@ class ModifyMyStoreViewController: UIViewController {
         else { self.showBasicAlert(title: "실패", message: "이미지를 가져올 수 없습니다."); return }
         let now = Date()
         
-        let filePath = "images\(storeBeforeChanged.storeKey)/\(storeBeforeChanged.storeInfo.enrollUser)\(now.toString()).png"
+        let filePath = "images/\(storeBeforeChanged.storeKey)/\(storeBeforeChanged.storeInfo.enrollUser)\(now.toString()).png"
         let metaData = StorageMetadata()
         metaData.contentType = "image/png"
         

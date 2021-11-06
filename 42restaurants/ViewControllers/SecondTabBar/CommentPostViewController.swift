@@ -261,6 +261,7 @@ class CommentPostViewController: UIViewController {
                                         ]
                                     }
                                 }
+                               
                                 
                                 // 이전의 데이터 + 현재 데이터를 post해야 하므로.
                                 // runTransactionalBlock을 씀.

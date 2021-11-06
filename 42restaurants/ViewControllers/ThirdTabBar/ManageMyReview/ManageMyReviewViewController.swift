@@ -26,8 +26,12 @@ class ManageMyReviewViewController: UIViewController {
 
         self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         setUI()
-        LoadingService.showLoading()
+        LoadingService.showShortLoading()
         fetchComments()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.setNavigationBarHidden(isHidden: false)
     }
     
     private func setUI() {
@@ -39,6 +43,7 @@ class ManageMyReviewViewController: UIViewController {
             
             if snapshot.exists() {
                 self.comments = []
+                self.storeNameAndCreateDates = []
                 guard let value = snapshot.value else { return }
                 do {
                     let storesData = try FirebaseDecoder().decode([String: StoreInfo].self, from: value)
@@ -69,6 +74,9 @@ class ManageMyReviewViewController: UIViewController {
         })
     }
     
+    private func observeCommentChange() {
+        
+    }
 }
 
 extension ManageMyReviewViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,8 +90,10 @@ extension ManageMyReviewViewController: UITableViewDelegate, UITableViewDataSour
         else { return UITableViewCell() }
         
         let comment = self.comments[indexPath.row].comment
+        let ratingText = floor(comment.rating * 10) / 10
         cell.storeNameLabel?.text = self.storeNameAndCreateDates[indexPath.row].0
-        cell.ratingLabel?.text = "\(String(format: "%.1f", comment.rating)))"
+        
+        cell.ratingLabel?.text = "\(ratingText)"
         cell.descriptionLabel?.text = comment.description
         if let images = comment.images,
            let firstImage = images.first {
@@ -130,5 +140,14 @@ extension ManageMyReviewViewController: UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제", handler: {
+            (action:UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            let comment = self.comments[indexPath.row]
 
+        })
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
 }

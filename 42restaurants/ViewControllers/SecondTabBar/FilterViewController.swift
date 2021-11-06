@@ -35,6 +35,10 @@ class FilterViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didReceiveCategoryDidChangeNotification(_:)),
                                                name: Notification.Name("categoryDidChange"), object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector:  #selector(didReceiveCategoryDidChangeNotification(_:)),
+                                               name: Notification.Name("changeToCurrentFilter"), object: nil)
     }
     
     @objc func didReceiveCategoryDidChangeNotification(_ noti: Notification) {

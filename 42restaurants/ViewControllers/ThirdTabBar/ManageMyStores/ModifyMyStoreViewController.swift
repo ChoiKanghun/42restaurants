@@ -96,6 +96,7 @@ class ModifyMyStoreViewController: UIViewController {
         self.changeImageButton.isHidden = false
         self.changeAddressButton.isHidden = false
         self.storeNameTextField.isUserInteractionEnabled = true
+        self.telephoneTextField.isUserInteractionEnabled = true
         self.changeCategoryPickerView.isHidden = false
     }
     
@@ -104,6 +105,7 @@ class ModifyMyStoreViewController: UIViewController {
         self.changeImageButton.isHidden = true
         self.changeAddressButton.isHidden = true
         self.storeNameTextField.isUserInteractionEnabled = false
+        self.telephoneTextField.isUserInteractionEnabled = false
         self.changeCategoryPickerView.isHidden = true
     }
     

@@ -738,6 +738,9 @@
                                     <constraint firstAttribute="width" constant="30" id="SuP-0m-LS0"/>
                                 </constraints>
                                 <state key="normal" image="camera.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="touchUpAddImageButton:" destination="Oqu-vR-82R" eventType="touchUpInside" id="ODb-hM-1Yy"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uqn-pg-cmM">
                                 <rect key="frame" x="70" y="98" width="344" height="150"/>
@@ -821,6 +824,9 @@
                                 <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="onDragStarSlider:" destination="Oqu-vR-82R" eventType="valueChanged" id="qQT-RY-Mpp"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igE-A9-dxI">
                                 <rect key="frame" x="157" y="333" width="100" height="25"/>

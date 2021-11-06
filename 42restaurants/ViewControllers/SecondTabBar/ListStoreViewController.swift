@@ -69,7 +69,8 @@ class ListStoreViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setUI() // view will appear에 두는 이유는 다음 화면에서 다시 돌아올 때를 대비하기 위해서.
-
+        NotificationCenter.default.post(name: Notification.Name("changeToCurrentFilter"),
+                                        object: nil)
     }
     
     
@@ -209,7 +210,8 @@ class ListStoreViewController: UIViewController {
                     self.filteredStores = self.stores.sorted(by: { $0.storeInfo.createDate < $1.storeInfo.createDate })
                     
                     DispatchQueue.main.async {
-                        self.storeTableView.reloadData()
+                        NotificationCenter.default.post(name: Notification.Name("changeToCurrentFilter"),
+                                                        object: nil)
                     }
                 } catch let err {
                     print(err.localizedDescription)

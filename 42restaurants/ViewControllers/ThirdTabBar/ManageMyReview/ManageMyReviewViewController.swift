@@ -81,6 +81,11 @@ class ManageMyReviewViewController: UIViewController {
 
 extension ManageMyReviewViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.comments.count == 0 {
+            tableView.setBackgroundWhenNoData()
+        } else {
+            tableView.resetBackground()
+        }
         return self.comments.count
     }
     

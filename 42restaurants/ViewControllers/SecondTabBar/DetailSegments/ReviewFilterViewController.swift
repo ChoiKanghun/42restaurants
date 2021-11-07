@@ -25,11 +25,27 @@ class ReviewFilterViewController: UIViewController {
 
         self.reviewFilterCollectionView.delegate = self
         self.reviewFilterCollectionView.dataSource = self
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveGetCurrentReviewFilterNotification),
+                                               name: Notification.Name("getCurrentReviewFilter"),
+                                               object: nil)
+        
         setUpView()
         setUpReviewFilterCollectionView()
+        
     }
-
     
+    
+    @objc func didReceiveGetCurrentReviewFilterNotification() {
+        guard let indexPath = self.reviewFilterCollectionView.indexPathsForSelectedItems?.first,
+              let cell = self.reviewFilterCollectionView.cellForItem(at: indexPath) as? ReviewFilterCollectionViewCell,
+              let filter = cell.reviewFilterLabel?.text
+        else { print("error on didReceiveGetCurrentReviewFilterNotification function"); return }
+        
+        NotificationCenter.default.post(name: Notification.Name("reviewFilterSelected"),
+                                        object: nil,
+                                        userInfo: ["reviewFilter": filter])
+    }
  
     
     private func setUpView() {

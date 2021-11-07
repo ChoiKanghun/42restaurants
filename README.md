@@ -45,9 +45,9 @@
 | MyInfoViewController 맨 위에 height 1 줄 달기.             | O    | 21/11/02 |
 | review 등록 조건 주기                                      | O    | 21/11/02 |
 | launch screen time 증가시키기(2초)                         | O    | 21/11/03 |
-| my store/review 들 데이터 없을 경우 처리.                  |      |          |
+| my store/review 들 데이터 없을 경우 처리.                  | O    | 21/11/07 |
 | review modify 구현                                         | O    | 21/11/05 |
-| listStore, reviewDetail 최신순으로 자동정렬.               |      |          |
+| listStore, reviewDetail 최신순으로 자동정렬.               | O    | 21/11/05 |
 | imageNotFound 바꾸기                                       | O    | 21/11/06 |
 
 

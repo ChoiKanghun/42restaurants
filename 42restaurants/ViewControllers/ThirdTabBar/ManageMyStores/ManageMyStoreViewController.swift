@@ -69,7 +69,12 @@ class ManageMyStoreViewController: UIViewController {
 
 extension ManageMyStoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.stores.count
+        if self.stores.count == 0 {
+            self.myStoreTableView.setBackgroundWhenNoData()
+        } else {
+            self.myStoreTableView.resetBackground()
+        }
+        return self.stores.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

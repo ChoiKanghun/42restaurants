@@ -106,7 +106,8 @@ class ReviewDetailSegmentViewController: UIViewController {
                         let commentsData = try FirebaseDecoder().decode([String: Comment].self, from: value)
                         self.comments = commentsData.values.sorted(by:  { $0.createDate < $1.createDate } )
                         DispatchQueue.main.async {
-                            self.reviewTableView.reloadData()
+                            NotificationCenter.default.post(name: Notification.Name("getCurrentReviewFilter"),
+                                                            object: nil)
                         }
                     } catch let err {
                         print(err.localizedDescription)

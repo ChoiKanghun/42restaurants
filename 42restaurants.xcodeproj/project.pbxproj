@@ -53,6 +53,7 @@
 		7ADD9CE8270D84E900916091 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */; };
 		7ADDD5F32733AA7F00E26DAC /* ModifyMyReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDD5F22733AA7F00E26DAC /* ModifyMyReviewViewController.swift */; };
 		7ADDD5F52733C3CA00E26DAC /* ModifyReviewImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDD5F42733C3CA00E26DAC /* ModifyReviewImageCollectionViewCell.swift */; };
+		7ADDD5F72737744E00E26DAC /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDD5F62737744E00E26DAC /* UITableView+Extensions.swift */; };
 		7ADEA98D26B105D200BE32D1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98C26B105D200BE32D1 /* Image.swift */; };
 		7ADEA98F26B2614C00BE32D1 /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */; };
 		7ADEA99126B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */; };
@@ -148,6 +149,7 @@
 		7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		7ADDD5F22733AA7F00E26DAC /* ModifyMyReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyMyReviewViewController.swift; sourceTree = "<group>"; };
 		7ADDD5F42733C3CA00E26DAC /* ModifyReviewImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyReviewImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		7ADDD5F62737744E00E26DAC /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		7ADEA98C26B105D200BE32D1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7ADEA98E26B2614C00BE32D1 /* DetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		7ADEA99026B26C4C00BE32D1 /* DetailPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				7A97B67C2717BBC1006E9D3C /* UIImageView+Extensions.swift */,
 				7A97B6A327191E4B006E9D3C /* UICollectionView+Extensions.swift */,
 				7A95D950271FA04700164BC3 /* CLLocationCoordinate2D+Extensions.swift */,
+				7ADDD5F62737744E00E26DAC /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				7AC4421A27242EAF006F8FEE /* FilterCollectionViewCell.swift in Sources */,
 				7AE780BE26AE585000B507DE /* SegmentedDetailViewController.swift in Sources */,
 				7A9C0D1F273364ED00D22551 /* ManageMyStorePickCoordinateViewController.swift in Sources */,
+				7ADDD5F72737744E00E26DAC /* UITableView+Extensions.swift in Sources */,
 				7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */,
 				7AE780C426AE6D1300B507DE /* DetailViewController.swift in Sources */,
 				7AC4421827242890006F8FEE /* Filter.swift in Sources */,

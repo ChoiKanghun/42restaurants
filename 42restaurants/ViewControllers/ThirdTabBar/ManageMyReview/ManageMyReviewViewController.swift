@@ -24,6 +24,8 @@ class ManageMyReviewViewController: UIViewController {
         self.myReviewTableView.delegate = self
         self.myReviewTableView.dataSource = self
 
+        self.dismissIfNotLoggedIn()
+        
         self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         setUI()
         LoadingService.showShortLoading()

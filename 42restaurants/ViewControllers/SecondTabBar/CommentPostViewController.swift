@@ -306,30 +306,58 @@ class CommentPostViewController: UIViewController {
         }
         
         DispatchQueue.main.async {
+            if self.imageSet.count != 0 {
+                self.ref.child("stores").child("\(storeKey)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        guard let value = snapshot.value else { return }
+                        do {
+                            let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
+                            let commentCount = storeData.comments.count + 1
+                            print("commentCount: \(commentCount)")
+                            var sumOfRatings: Double = 0
+                            for comment in storeData.comments {
+                                sumOfRatings += comment.value.rating
+                            }
+                            let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10)) / 10
 
-            self.ref.child("stores").child("\(storeKey)").observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.exists() {
-                    guard let value = snapshot.value else { return }
-                    do {
-                        print(value)
-                        let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
-                        let commentCount = storeData.comments.count + 1
-                        var sumOfRatings: Double = 0
-                        for comment in storeData.comments {
-                            sumOfRatings += comment.value.rating
-                        }
-                        let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10)) / 10
-                        self.ref.child("stores/\(storeKey)/rating").setValue(rating)
-                        self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
-                        LoadingService.hideLoading()
-                        self.navigationController?.popViewController(animated: true)
-                        NotificationCenter.default.post(name: Notification.Name("reviewSubmitDone"), object: nil)
-                   } catch let err {
-                        LoadingService.hideLoading()
-                        print(err.localizedDescription)
+                            self.ref.child("stores/\(storeKey)/rating").setValue(rating)
+                            self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
+                            LoadingService.hideLoading()
+                            self.navigationController?.popViewController(animated: true)
+                            NotificationCenter.default.post(name: Notification.Name("reviewSubmitDone"), object: nil)
+                       } catch let err {
+                            LoadingService.hideLoading()
+                            print(err.localizedDescription)
+                       }
                    }
-               }
-            })
+                })
+            } else {
+                self.ref.child("stores").child("\(storeKey)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        guard let value = snapshot.value else { return }
+                        do {
+                            let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
+                            let commentCount = storeData.comments.count
+                            print("commentCount: \(commentCount)")
+                            var sumOfRatings: Double = 0
+                            for comment in storeData.comments {
+                                sumOfRatings += comment.value.rating
+                            }
+                            let rating = Double(floor((sumOfRatings / Double(commentCount)) * 10)) / 10
+
+                            self.ref.child("stores/\(storeKey)/rating").setValue(rating)
+                            self.ref.child("stores/\(storeKey)/commentCount").setValue(commentCount)
+                            LoadingService.hideLoading()
+                            self.navigationController?.popViewController(animated: true)
+                            NotificationCenter.default.post(name: Notification.Name("reviewSubmitDone"), object: nil)
+                       } catch let err {
+                            LoadingService.hideLoading()
+                            print(err.localizedDescription)
+                       }
+                   }
+                })
+            }
+            
         }
     }
 }

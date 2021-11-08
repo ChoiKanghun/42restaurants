@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Getting Messaing Token
         
-        
         return true
     }
 
@@ -96,4 +95,5 @@ extension AppDelegate {
         )
     }
 }
+
 

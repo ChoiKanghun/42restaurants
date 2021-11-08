@@ -17,7 +17,7 @@ class ReviewDetailSegmentViewController: UIViewController {
     
     private var updateJustOnceFlag: Bool = false
     
-    private var comments = [Comment]()
+    private var comments = [Comments]()
     
     
     var ref: DatabaseReference!
@@ -68,15 +68,15 @@ class ReviewDetailSegmentViewController: UIViewController {
         
         switch reviewFilter {
         case Filter.latest.filterName:
-            self.comments = self.comments.sorted(by: { $0.createDate > $1.createDate })
+            self.comments = self.comments.sorted(by: {  $0.comment.createDate > $1.comment.createDate })
         case Filter.ratingHigh.filterName:
-            self.comments = self.comments.sorted(by: { $0.rating > $1.rating })
+            self.comments = self.comments.sorted(by: { $0.comment.rating > $1.comment.rating })
         case Filter.oldest.filterName:
-            self.comments = self.comments.sorted(by: { $0.createDate < $1.createDate })
+            self.comments = self.comments.sorted(by: { $0.comment.createDate < $1.comment.createDate })
         case Filter.ratingLow.filterName:
-            self.comments = self.comments.sorted(by: { $0.rating < $1.rating })
+            self.comments = self.comments.sorted(by: { $0.comment.rating < $1.comment.rating })
         default:
-            self.comments = self.comments.sorted(by: { $0.createDate > $1.createDate })
+            self.comments = self.comments.sorted(by: { $0.comment.createDate > $1.comment.createDate })
             print("default filter notification in")
         }
         DispatchQueue.main.async {
@@ -104,7 +104,8 @@ class ReviewDetailSegmentViewController: UIViewController {
                     guard let value = snapshot.value else { return }
                     do {
                         let commentsData = try FirebaseDecoder().decode([String: Comment].self, from: value)
-                        self.comments = commentsData.values.sorted(by:  { $0.createDate < $1.createDate } )
+                        self.comments = commentsData.map( { Comments.init(commentKey: $0.key, comment: $0.value) } )
+                        self.comments = self.comments.sorted(by: { $0.comment.createDate > $1.comment.createDate })
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(name: Notification.Name("getCurrentReviewFilter"),
                                                             object: nil)
@@ -132,37 +133,112 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
         
         guard let cell = self.reviewTableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.reuseIdentifier, for: indexPath) as? ReviewTableViewCell
         else { return UITableViewCell() }
+
+        cell.reportButton.tag = indexPath.row
+        cell.reportButton.addTarget(self, action: #selector(reportButtonTapped(_:)), for: .touchUpInside)
         
-//        DispatchQueue.main.async {
-//            if let index: IndexPath = tableView.indexPath(for: cell) {
-//                if index.row == indexPath.row {
-//                    if let image = self.comments[indexPath.row].images?.first {
-//                        let reference = self.storageRef.child("\(image.value.imageUrl)")
-//                        cell.reviewImageView.sd_setImage(with: reference)
-//
-//                    }
-//                }
-//            }
-//        }
-        
-        if let images = self.comments[indexPath.row].images?.values.map({ $0 }) {
+        if let images = self.comments[indexPath.row].comment.images?.values.map({ $0 }) {
             cell.images = images
-            
-
-
         } else {
             cell.images = [Image]()
-            
         }
-        if let userId = self.comments[indexPath.row].userId.components(separatedBy: "@").first {
+        if let userId = self.comments[indexPath.row].comment.userId.components(separatedBy: "@").first {
             cell.setUserIdLabelText(userId: userId)
         }
-        cell.setDescriptionLabelText(description: self.comments[indexPath.row].description)
-        cell.setRatingLabelText(rating: self.comments[indexPath.row].rating)
+        cell.setDescriptionLabelText(description: self.comments[indexPath.row].comment.description)
+        cell.setRatingLabelText(rating: self.comments[indexPath.row].comment.rating)
         cell.setImage()
         self.reviewTableView.reloadRows(at: [indexPath], with: .none)
         
         return cell
+    }
+    
+    @objc func reportButtonTapped(_ sender: UIButton) {
+        let comment = self.comments[sender.tag]
+        
+        let alertController = UIAlertController(title: nil, message: "신고하기", preferredStyle: .actionSheet)
+        let reportAction = UIAlertAction(title: "부적절한 컨텐츠입니다", style: .destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.onReport(comment: comment)
+        })
+        let cancelAction = UIAlertAction(title: "취소", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+        })
+        
+        alertController.addAction(reportAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func onReport(comment: Comments) {
+        self.ref.child("reports/\(comment.commentKey)").getData(completion: { error, snapshot in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let value = snapshot.value {
+                if type(of: value) == NSNull.self {
+                    self.handleWhenNoReport(comment: comment)
+                    return
+                }
+                print(value)
+                do {
+                    let report = try FirebaseDecoder().decode(Report.self, from: value)
+                    self.increaseReportCount(comment, report)
+                    
+                } catch let e {
+                    print(e.localizedDescription)
+                }
+            }
+            
+        })
+        
+    }
+    
+    private func handleWhenNoReport(comment: Comments) {
+        let autoId = self.ref.child("reports/\(comment.commentKey)").childByAutoId().key
+        self.ref.child("reports/\(comment.commentKey)").setValue([
+            "reportCount" : 1,
+            "reportUsers": [
+                autoId: comment.comment.userId
+            ]
+        ]) { (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                self.showBasicAlert(title: "로그인이 필요합니다.", message: "로그인 후 이용해주세요")
+            } else {
+                self.showBasicAlert(title: "신고 완료", message: "접수되었습니다.")
+            }
+            
+        }
+    }
+    
+    private func increaseReportCount(_ comment: Comments,_ report: Report) {
+        self.ref.child("reports/\(comment.commentKey)").child("reportCount").setValue(report.reportCount + 1)
+        
+        guard let autoId = self.ref.child("reports/\(comment.commentKey)/reportUsers").childByAutoId().key
+        else { return }
+        var reporters = [String: String]()
+        for reporter in report.reportUsers {
+            reporters[reporter.key] = reporter.value
+        }
+        reporters[autoId] = comment.comment.userId
+        
+        self.ref.child("reports/\(comment.commentKey)").child("reportUsers").setValue(reporters)
+        { (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                self.showBasicAlert(title: "로그인이 필요합니다.", message: "로그인 후 이용해주세요")
+            } else {
+                ref.parent?.child("reportCount").getData(completion: { (error, snapshot) in
+                    if let value = snapshot.value as? Int {
+                        if value >= 10 {
+                            RealtimeDBService.shared.deleteCommentByCommentKey(commentKey: comment.commentKey)
+                        }
+                    }
+                })
+                self.showBasicAlert(title: "신고 완료", message: "접수되었습니다.")
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

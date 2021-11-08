@@ -226,7 +226,6 @@ class ModifyMyReviewViewController: UIViewController {
         
         // MARK: 3. 이미지 변경사항이 있다면 이미지부터 업로드.
         if self.imageSet.count != 0 {
-            print("이미지 있는 걸로 들어옴")
             for (index, image) in self.imageSet.enumerated() {
                 guard let uploadImageData = image.jpegData(compressionQuality: 0.8)
                 else {

@@ -18,6 +18,8 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var starImageView: UIImageView!
+
+    @IBOutlet weak var reportButton: UIButton!
     
     @IBOutlet weak var reviewImagesCollectionView: UICollectionView!
     @IBOutlet weak var reviewImagesCollectionViewHeight: NSLayoutConstraint!
@@ -26,15 +28,7 @@ class ReviewTableViewCell: UITableViewCell {
 
     var images = [Image]()
     
-    override func prepareForReuse() {
-//        for i in 0..<self.images.count {
-//            if let cell = self.reviewImagesCollectionView.cellForItem(at: IndexPath(row: i, section: 0)) as? ReviewImageCollectionViewCell {
-//                cell.reviewImageView.sd_cancelCurrentImageLoad()
-//                cell.reviewImageView.image = nil
-//            }
-//        }
-//        self.reviewImagesCollectionView.reloadData()
-    }
+
     
     override func awakeFromNib() {
         self.reviewImagesCollectionView.delegate = self
@@ -61,7 +55,7 @@ class ReviewTableViewCell: UITableViewCell {
     }
     
     func setRatingLabelText(rating: Double) {
-        let ratingString = String(format: "%.1f", rating)
+        let ratingString = String(floor(rating * 10) / 10)
         self.ratingLabel.text = "\(ratingString)"
         
         

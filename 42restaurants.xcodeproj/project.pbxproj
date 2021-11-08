@@ -27,6 +27,9 @@
 		7A34E51926A7FEB900254C11 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E51826A7FEB900254C11 /* Date+Extensions.swift */; };
 		7A407466272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407465272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift */; };
 		7A407468272A2E31008E52A5 /* ReviewFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */; };
+		7A68588B2738C71700B003CC /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68588A2738C71700B003CC /* Report.swift */; };
+		7A68588D2738DCFF00B003CC /* RealtimeDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68588C2738DCFF00B003CC /* RealtimeDBService.swift */; };
+		7A68588F2738FDDA00B003CC /* consentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68588E2738FDDA00B003CC /* consentViewController.swift */; };
 		7A73EF1F26FC4D4C00BC3A09 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */; };
 		7A772B28272FC4D900F5B712 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A772B27272FC4D900F5B712 /* Reachability.swift */; };
 		7A772B5627312C3C00F5B712 /* MyStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A772B5527312C3C00F5B712 /* MyStoreTableViewCell.swift */; };
@@ -123,6 +126,9 @@
 		7A34E51826A7FEB900254C11 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7A407465272A2D1C008E52A5 /* ReviewFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		7A407467272A2E31008E52A5 /* ReviewFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterViewController.swift; sourceTree = "<group>"; };
+		7A68588A2738C71700B003CC /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		7A68588C2738DCFF00B003CC /* RealtimeDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeDBService.swift; sourceTree = "<group>"; };
+		7A68588E2738FDDA00B003CC /* consentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = consentViewController.swift; sourceTree = "<group>"; };
 		7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		7A772B27272FC4D900F5B712 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7A772B5527312C3C00F5B712 /* MyStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoreTableViewCell.swift; sourceTree = "<group>"; };
@@ -283,6 +289,7 @@
 				7AB9CB89270D6BC0000E9A28 /* ThirdTabBar */,
 				7A73EF1D26F9AAD600BC3A09 /* SecondTabBar */,
 				7A73EF1C26F9AAB200BC3A09 /* MainTabBar */,
+				7A68588E2738FDDA00B003CC /* consentViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -307,6 +314,7 @@
 				7A34E4F126A7C2AA00254C11 /* Store.swift */,
 				7AF6615726B0F0F200D405E0 /* Comments.swift */,
 				7ADEA98C26B105D200BE32D1 /* Image.swift */,
+				7A68588A2738C71700B003CC /* Report.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -446,6 +454,7 @@
 				7AE780C626AECE7400B507DE /* Singletons */,
 				7A73EF1E26FC4D4C00BC3A09 /* LoadingService.swift */,
 				7ADD9CE7270D84E900916091 /* FirebaseAuthentication.swift */,
+				7A68588C2738DCFF00B003CC /* RealtimeDBService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -737,6 +746,7 @@
 				7A97B6A427191E4B006E9D3C /* UICollectionView+Extensions.swift in Sources */,
 				7A772B5627312C3C00F5B712 /* MyStoreTableViewCell.swift in Sources */,
 				7AE780B926ABB65F00B507DE /* ListStoreViewController.swift in Sources */,
+				7A68588F2738FDDA00B003CC /* consentViewController.swift in Sources */,
 				7A34E4E826A6808E00254C11 /* MainMapViewController.swift in Sources */,
 				7AE7E13226CB33EA002536E1 /* MainListStoreViewController.swift in Sources */,
 				7AE780CD26AEDBB100B507DE /* PhotoSetCollectionViewCell.swift in Sources */,
@@ -777,6 +787,7 @@
 				7AF6615826B0F0F200D405E0 /* Comments.swift in Sources */,
 				7A9AEECE2711AE2800DCE2C3 /* Config.swift in Sources */,
 				7A1D23C126A67BB000F8E7E2 /* SceneDelegate.swift in Sources */,
+				7A68588D2738DCFF00B003CC /* RealtimeDBService.swift in Sources */,
 				7A407468272A2E31008E52A5 /* ReviewFilterViewController.swift in Sources */,
 				7AE780CA26AED58600B507DE /* CommentPostViewController.swift in Sources */,
 				7AE7E12A26C2943A002536E1 /* ReviewTableViewCell.swift in Sources */,
@@ -791,6 +802,7 @@
 				7A34E4EA26A6B1C000254C11 /* EnrollStoreViewController.swift in Sources */,
 				7AC4421127225FC1006F8FEE /* CategoryCollectionViewCell.swift in Sources */,
 				7A772B5D2731F22A00F5B712 /* ModifyMyStoreViewController.swift in Sources */,
+				7A68588B2738C71700B003CC /* Report.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

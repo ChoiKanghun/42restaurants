@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        logOutIfBlockedAuthentication()
         
         NotificationCenter.default.addObserver(self, selector: #selector(dismissThisView), name: FirebaseAuthenticationNotification.signInSuccess.notificationName, object: nil)
         
@@ -29,6 +29,25 @@ class LoginViewController: UIViewController {
         FirebaseAuthentication.shared.signInWithApple(window: window)
     }
     
-
+    private func logOutIfBlockedAuthentication() {
+        if FirebaseAuthentication.shared.checkUserExists() == false { return }
+        self.ref.child("reports/deleted").observe(DataEventType.value, with: { snapshot in
+            if let value = snapshot.value {
+                do {
+                    let currentUserEmail = FirebaseAuthentication.shared.getUserEmail()
+                    let deletedUserPairs = try FirebaseDecoder().decode([String: String].self, from: value)
+                    for deletedUser in deletedUserPairs.values {
+                        if currentUserEmail == deletedUser {
+                            FirebaseAuthentication.shared.signOut()
+                            self.showBasicAlert(title: "정지된 계정입니다.", message: "애플아이디로 로그인 기능이 정지됩니다.")
+                        }
+                    }
+                } catch let e {
+                    print(e.localizedDescription)
+                }
+            }
+            
+        })
+    }
 }
 

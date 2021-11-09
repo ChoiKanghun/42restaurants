@@ -73,8 +73,7 @@ class ListStoreViewController: UIViewController {
                                         object: nil)
     }
     
-    
-    
+
     @objc func didReceiveCategorySelectedNotification(_ noti: Notification) {
         guard let category = noti.userInfo?["category"] as? String,
               let currentCategory = self.titleLabel?.text

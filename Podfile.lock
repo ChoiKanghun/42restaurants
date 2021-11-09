@@ -376,6 +376,7 @@ PODS:
   - NMapsMap (3.13.0)
   - PromisesObjC (1.2.12)
   - PryntTrimmerView (4.0.2)
+  - RxSwift (4.5.0)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
@@ -394,6 +395,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseUI/Storage
   - NMapsMap (~> 3.13.0)
+  - RxSwift (~> 4.0)
   - YPImagePicker
 
 SPEC REPOS:
@@ -423,6 +425,7 @@ SPEC REPOS:
     - NMapsMap
     - PromisesObjC
     - PryntTrimmerView
+    - RxSwift
     - SDWebImage
     - SteviaLayout
     - YPImagePicker
@@ -453,10 +456,11 @@ SPEC CHECKSUMS:
   NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   YPImagePicker: 1463a19a36244e209dcb03c30e63559c5afa9602
 
-PODFILE CHECKSUM: d46041ebc17d9ccbca0090534e75e14e91dcaba8
+PODFILE CHECKSUM: 005de3e4ef9620e8af1a0897136234698f569830
 
 COCOAPODS: 1.11.0

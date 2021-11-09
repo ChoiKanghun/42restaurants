@@ -28,11 +28,23 @@ class ReviewDetailSegmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+
+        setDelegates()
+        addNotifications()
+        addRefreshControl()
+        setUI()
+        setTableView()
+    }
+    
+    private func setDelegates() {
         self.reviewTableView.delegate = self
         self.reviewTableView.dataSource = self
 
-        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-        
+    }
+    
+    private func addNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didReceiveReviewFilterSelectedNotification(_:)),
                                                name: Notification.Name("reviewFilterSelected"),
@@ -41,12 +53,11 @@ class ReviewDetailSegmentViewController: UIViewController {
                                                selector: #selector(didReceiveReviewSubmitDone(_:)),
                                                name: Notification.Name("reviewSubmitDone"), object: nil)
         
-        
+    }
+    
+    private func addRefreshControl() {
         refreshControl.addTarget(self, action: #selector(onPullToReloadTableView), for: .valueChanged)
         self.reviewTableView.addSubview(refreshControl)
-        
-        setUI()
-        setTableView()
     }
     
     @objc func onPullToReloadTableView() {
@@ -57,6 +68,7 @@ class ReviewDetailSegmentViewController: UIViewController {
             self.refreshControl.endRefreshing()
         }
     }
+    
     
     @objc func didReceiveReviewSubmitDone(_ noti: Notification) {
         self.showBasicAlert(title: "제출 완료", message: "리뷰가 성공적으로 등록되었습니다 !")
@@ -303,3 +315,4 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
         return UITableView.automaticDimension
     }
 }
+

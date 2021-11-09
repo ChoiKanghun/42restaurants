@@ -17,7 +17,7 @@ target '42restaurants' do
 	pod 'CodableFirebase'
 	pod 'FirebaseUI/Storage'
 	pod 'Firebase/Messaging'
-
+	pod 'RxSwift', '~> 4.0'
     # other pods
 	# imagePicker
 	pod 'YPImagePicker'	

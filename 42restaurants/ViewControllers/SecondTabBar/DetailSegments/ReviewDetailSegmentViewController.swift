@@ -169,10 +169,30 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
         alertController.addAction(reportAction)
         alertController.addAction(cancelAction)
         
-        self.present(alertController, animated: true, completion: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad { //디바이스 타입이 iPad일때
+            if let popoverController = alertController.popoverPresentationController { // ActionSheet가 표현되는 위치를 저장해줍니다.
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+                self.present(alertController, animated: true, completion: nil)
+                
+            }
+            
+        } else {
+            self.present(alertController, animated: true, completion: nil)
+        }
+
+        
     }
     
     private func onReport(comment: Comments) {
+        if FirebaseAuthentication.shared.checkUserExists() == false {
+            DispatchQueue.main.async {
+                self.showBasicAlert(title: "로그인 후 이용해주세요.", message: "로그인이 필요합니다.")
+            }
+            
+        }
+        
         self.ref.child("reports/\(comment.commentKey)").getData(completion: { error, snapshot in
             if let error = error {
                 print(error.localizedDescription)
@@ -182,9 +202,17 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
                     self.handleWhenNoReport(comment: comment)
                     return
                 }
-                print(value)
                 do {
                     let report = try FirebaseDecoder().decode(Report.self, from: value)
+                    let userEmail = FirebaseAuthentication.shared.getUserEmail()
+                    for r in report.reportUsers {
+                        if r.value == userEmail {
+                            DispatchQueue.main.async {
+                                self.showBasicAlert(title: "이미 신고했습니다.", message: "신고한 컨텐츠입니다.")
+                            }
+                            return
+                        }
+                    }
                     self.increaseReportCount(comment, report)
                     
                 } catch let e {

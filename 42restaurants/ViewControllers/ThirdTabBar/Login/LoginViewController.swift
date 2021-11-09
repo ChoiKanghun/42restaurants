@@ -7,7 +7,9 @@
 
 import UIKit
 import AuthenticationServices
-import FirebaseAuth
+import Firebase
+import CodableFirebase
+
 class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -25,13 +27,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func touchUpSignInWithApple(_ sender: Any) {
-        guard let window = UIApplication.shared.windows.last else { print("cant get window");return }
+        guard let window = UIApplication.shared.windows.last else { print("can't get window");return }
         FirebaseAuthentication.shared.signInWithApple(window: window)
     }
     
     private func logOutIfBlockedAuthentication() {
         if FirebaseAuthentication.shared.checkUserExists() == false { return }
-        self.ref.child("reports/deleted").observe(DataEventType.value, with: { snapshot in
+        let ref: DatabaseReference! = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
+        ref.child("reports/deleted").observe(DataEventType.value, with: { snapshot in
             if let value = snapshot.value {
                 do {
                     let currentUserEmail = FirebaseAuthentication.shared.getUserEmail()

@@ -54,14 +54,14 @@ class MainMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        logOutIfBlockedAuthentication()
         callMessaging()
         
         self.locationManager.requestWhenInUseAuthorization()
         self.mapView.positionMode = .normal
             
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-        
+        logOutIfBlockedAuthentication()
+
         self.mapView.touchDelegate = self
         self.popUpView.isHidden = true
         self.handler = { (overlay) -> Bool in

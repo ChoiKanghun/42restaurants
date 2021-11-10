@@ -17,6 +17,16 @@ class StoreTableViewCell: UITableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     
+    var store: Store? {
+        didSet {
+            if let store = store {
+                self.setNameLabel(text: store.storeInfo.name)
+                self.setAddressLabel(text: store.storeInfo.address ?? "")
+                self.setCategoryLabel(text: store.storeInfo.category)
+                self.setRateLabel(text: "\(store.storeInfo.rating)(\(store.storeInfo.commentCount))")
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,8 +42,19 @@ class StoreTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
+    
+    func setNameLabel(text: String) {
+        self.nameLabel?.text = text
+    }
+    func setAddressLabel(text: String) {
+        self.addressLabel?.text = text
+    }
+    func setCategoryLabel(text: String) {
+        self.categoryLabel?.text = text
+    }
+    func setRateLabel(text: String) {
+        self.rateLabel?.text = text
+    }
+    
 }

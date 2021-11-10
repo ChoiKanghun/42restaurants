@@ -11,18 +11,14 @@ import FirebaseAuth
 
 class MyInfoViewController: UIViewController {
 
-    @IBOutlet weak var loginLogoutButton: UIButton!
-    @IBOutlet weak var isLoggedInLabel: UILabel!
+    @IBOutlet weak var logOutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(viewWillAppear(_:)),
-                                               name: FirebaseAuthenticationNotification.signInSuccess.notificationName,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(viewWillAppear(_:)),
+                                               selector: #selector(onLogOut),
                                                name: FirebaseAuthenticationNotification.signOutSuccess.notificationName,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
@@ -35,40 +31,30 @@ class MyInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.setStatusBarBackgroundColor()
         self.setNavigationBarHidden(isHidden: true)
-        self.isLoggedInLabel.textColor = .black
         self.view.backgroundColor = .white
         self.setNavigationBarBackgroundColor()
-        self.setUI()
+    }
+    
+    @objc func onLogOut() {
+        UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            exit(0)
+        })
     }
     
     @objc func didReceiveDidEnrollStoreNotification(_ noti: Notification) {
         self.showBasicAlert(title: "가게 등록 성공", message: "가게 등록이 완료되었습니다 !")
     }
-    
-    private func setUI() {
-        DispatchQueue.main.async {
-            if let currentUser = Auth.auth().currentUser {
-                self.loginLogoutButton.setTitle("로그아웃 >", for: .normal)
-                self.isLoggedInLabel.text = "\(currentUser.email ?? "hidden email")"
-            } else {
-                self.loginLogoutButton.setTitle("로그인", for: .normal)
-                self.isLoggedInLabel.text = "로그인이 필요합니다."
-            }
-        }
-    }
-    
-
 
     @IBAction func touchUpLogOutButton(_ sender: Any) {
-       
-        if Auth.auth().currentUser != nil {
+        let alert = UIAlertController(title: nil, message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { _ in
             FirebaseAuthentication.shared.signOut()
-        } else {
-            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            let loginViewController = mainStoryBoard.instantiateViewController(withIdentifier: "LogInViewController")
-            self.present(loginViewController, animated: true, completion: nil)
-            
-        }
-    
+        })
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: false, completion: nil)
+
     }
 }

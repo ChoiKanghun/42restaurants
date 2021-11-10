@@ -19,5 +19,6 @@ struct Comment: Codable {
     let images: [String: Image]?
     let createDate: Double
     var modifyDate: Double
+    var blockedUsers: [String: String]?
 }
 

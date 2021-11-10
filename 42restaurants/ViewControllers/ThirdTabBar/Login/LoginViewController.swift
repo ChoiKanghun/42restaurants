@@ -12,18 +12,14 @@ import CodableFirebase
 
 class LoginViewController: UIViewController {
 
+    static let storyboardId = "logInViewController"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         logOutIfBlockedAuthentication()
+        logInIfAlreadySignedIn()
+        NotificationCenter.default.addObserver(self, selector: #selector(logInIfAlreadySignedIn), name: FirebaseAuthenticationNotification.signInSuccess.notificationName, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(dismissThisView), name: FirebaseAuthenticationNotification.signInSuccess.notificationName, object: nil)
-        
-    }
-    
-    
-    
-    @objc func dismissThisView() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func touchUpSignInWithApple(_ sender: Any) {
@@ -43,15 +39,24 @@ class LoginViewController: UIViewController {
                     for deletedUser in deletedUserPairs.values {
                         if currentUserEmail == deletedUser {
                             FirebaseAuthentication.shared.signOut()
-                            self.showBasicAlert(title: "정지된 계정입니다.", message: "애플아이디로 로그인 기능이 정지됩니다.")
+                            self.showBasicAlertAndHandleCompletion(title: "정지된 계정입니다.", message: "애플 아이디로 로그인 기능이 정지됩니다.") {
+                                UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { exit(0) }
+                            }
                         }
                     }
                 } catch let e {
                     print(e.localizedDescription)
                 }
             }
-            
         })
+    }
+    
+    @objc func logInIfAlreadySignedIn() {
+        if FirebaseAuthentication.shared.checkUserExists() == true {
+            guard let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "mainTabBarController") else { return }
+            self.navigationController?.pushViewController(mainTabBarController, animated: true)
+        }
     }
 }
 

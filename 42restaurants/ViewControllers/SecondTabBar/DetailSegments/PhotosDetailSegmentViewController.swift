@@ -59,10 +59,8 @@ class PhotosDetailSegmentViewController: UIViewController {
                     for data in imageData {
                         self.imageDatas.append(data.value)
                     }
-                    self.imageDatas = self.imageDatas.sorted(by: { $0.createDate > $1.createDate })
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
+                    self.filterImages(storeKey: storeKey)
+                    
                     
                 } catch let err {
                     print(err.localizedDescription)
@@ -71,7 +69,39 @@ class PhotosDetailSegmentViewController: UIViewController {
         })
     }
     
+    private func filterImages(storeKey: String) {
+        let currentUser = FirebaseAuthentication.shared.getUserEmail()
+        guard let userIdBeforeAtSymbol = currentUser.components(separatedBy: "@").first
+        else { print("에러 날 리가 없는 곳;filterImages"); return }
+        
+        self.ref.child("users/\(userIdBeforeAtSymbol)/blockedImages").getData { error, snapshot in
+            if let error = error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+            else if snapshot.exists() {
+                guard let value = snapshot.value else { return }
+                guard let blockedImageDictionary = value as? [String: String]
+                else { print("can't get imageKeyValues "); return }
+                
+                for blockedImageUrl in blockedImageDictionary.values {
+                    self.imageDatas = self.imageDatas.filter({
+                        $0.imageUrl != blockedImageUrl
+                    })
+                }
+                self.imageDatas = self.imageDatas.sorted(by: { $0.createDate > $1.createDate })
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
 }
+
+
 
 extension PhotosDetailSegmentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

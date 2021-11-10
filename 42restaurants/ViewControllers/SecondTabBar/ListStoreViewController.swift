@@ -19,18 +19,7 @@ class ListStoreViewController: UIViewController {
     
     var ref: DatabaseReference!
     let storage = Storage.storage()
-    let categories: [Category] =
-        [Category.all,
-         Category.koreanAsian,
-         Category.japaneseCutlet,
-         Category.chinese,
-         Category.western,
-         Category.chickenPizza,
-         Category.bunsik,
-         Category.mexican,
-         Category.fastFood,
-         Category.meat,
-         Category.cafe]
+    var categories: [Category] = []
     
     
     var stores = [Store]()
@@ -42,45 +31,60 @@ class ListStoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setCategories()
         LoadingService.showLoading()
+        setDelegateDataSource()
+        addNotifications()
+        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        addRefreshControl()
+        getStoresInfoFromDatabase()
+        setCollectionViewLayout()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        setUI() // view will appear에 두는 이유는 다음 화면에서 다시 돌아올 때를 대비하기 위해서.
+        adaptFilter()
+    }
+    
+    private func setCategories() {
+        self.categories = [Category.all,
+                           Category.koreanAsian,
+                           Category.japaneseCutlet,
+                           Category.chinese,
+                           Category.western,
+                           Category.chickenPizza,
+                           Category.bunsik,
+                           Category.mexican,
+                           Category.fastFood,
+                           Category.meat,
+                           Category.cafe]
+    }
+    
+    private func setDelegateDataSource() {
         self.storeTableView.delegate = self
         self.storeTableView.dataSource = self
         self.categoryCollectionView.delegate = self
         self.categoryCollectionView.dataSource = self
-        
+    }
+
+    private func addNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didReceiveCategorySelectedNotification(_:)),
                                                name: Notification.Name("categorySelected"), object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didReceiveFilterSelectedNotification(_:)),
                                                name: Notification.Name("filterSelected"), object: nil)
-        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-
-        self.refreshControl.attributedTitle = NSAttributedString(string: "")
-        self.refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
-        self.storeTableView.addSubview(refreshControl)
-        
-        getStoresInfoFromDatabase()
-        setCollectionViewLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        setUI() // view will appear에 두는 이유는 다음 화면에서 다시 돌아올 때를 대비하기 위해서.
-        NotificationCenter.default.post(name: Notification.Name("changeToCurrentFilter"),
-                                        object: nil)
-    }
-    
-
     @objc func didReceiveCategorySelectedNotification(_ noti: Notification) {
         guard let category = noti.userInfo?["category"] as? String,
               let currentCategory = self.titleLabel?.text
         else { print("can't handle didReceiveCategory Notification"); return; }
         
         if category != currentCategory { executeCategoryFiltering(category) }
-        
         DispatchQueue.main.async { self.titleLabel.text = category }
     }
     
@@ -123,7 +127,7 @@ class ListStoreViewController: UIViewController {
     
     @objc func didReceiveFilterSelectedNotification(_ noti: Notification) {
         guard let filter = noti.userInfo?["filter"] as? String
-        else { print("can't handle didReceiveFilter Notification"); return }
+        else { print("can't handle didReceiveFilter noti"); return }
         
         switch filter {
         case Filter.latest.filterName:
@@ -147,7 +151,7 @@ class ListStoreViewController: UIViewController {
         
         DispatchQueue.main.async { self.storeTableView.reloadData() }
     }
-    
+
     private func getDistanceFromCurrentLocation(_ targetLatitude: Double, _ targetLongitude: Double) -> CLLocationDistance {
         let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
         let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLongitude")
@@ -158,39 +162,19 @@ class ListStoreViewController: UIViewController {
         return targetLocation.distance(from: currentLocation)
     }
     
-    private func executeFilterCategoryFiltering(_ filter: String) {
-        
-    }
-
-    private func setUI() {
-        self.setStatusBarBackgroundColor()
-        self.setNavigationBarBackgroundColor()
-        self.storeTableView.backgroundColor = Config.shared.application60Color
-        self.setNavigationBarHidden(isHidden: true)
-        
-    }
-
-
-
-    private func setCollectionViewLayout() {
-        if let layout = categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            //this value represents the minimum spacing between items in the same column.
-            layout.minimumInteritemSpacing = 30
-            //this value represents the minimum spacing between successive columns.
-            layout.minimumLineSpacing = 30
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        }
+    private func addRefreshControl() {
+        self.refreshControl.attributedTitle = NSAttributedString(string: "")
+        self.refreshControl.addTarget(self, action: #selector(onPullToRefreshFetchDataWhenNoData), for: .valueChanged)
+        self.storeTableView.addSubview(refreshControl)
     }
     
-    @objc func onPullToRefresh() {
+    @objc func onPullToRefreshFetchDataWhenNoData() {
         if self.filteredStores.isEmpty == true {
             getStoresInfoFromDatabase()
         }
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
         }
-        
-        
     }
     
     private func getStoresInfoFromDatabase() {
@@ -220,8 +204,29 @@ class ListStoreViewController: UIViewController {
         
     }
     
-   
-
+    private func setCollectionViewLayout() {
+        if let layout = categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            //this value represents the minimum spacing between items in the same column.
+            layout.minimumInteritemSpacing = 30
+            //this value represents the minimum spacing between successive columns.
+            layout.minimumLineSpacing = 30
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }
+    }
+    
+    private func setUI() {
+        self.setStatusBarBackgroundColor()
+        self.setNavigationBarBackgroundColor()
+        self.storeTableView.backgroundColor = Config.shared.application60Color
+        self.setNavigationBarHidden(isHidden: true)
+        
+    }
+    
+    private func adaptFilter() {
+        NotificationCenter.default.post(name: Notification.Name("changeToCurrentFilter"),
+                                        object: nil)
+    }
+    
 }
 
 extension ListStoreViewController: UITableViewDelegate {
@@ -235,11 +240,9 @@ extension ListStoreViewController: UITableViewDelegate {
         
         let store = self.filteredStores[indexPath.row]
         
-        cell.nameLabel?.text = store.storeInfo.name
-        cell.addressLabel?.text = store.storeInfo.address
-        cell.rateLabel?.text = "\(store.storeInfo.rating)(\(store.storeInfo.commentCount))"
-        cell.categoryLabel?.text = store.storeInfo.category
+        cell.store = store
         
+        // cell 안에 Firebase를 import하면 용량이 훨씬 커지지 않을까..
         let storageRef = storage.reference()
         let reference = storageRef.child("\(store.storeInfo.mainImage)")
         let placeholderImage = UIImage(named: "placeholder.jpg")
@@ -248,6 +251,8 @@ extension ListStoreViewController: UITableViewDelegate {
         hideLoadingWhenTableViewDidAppear(indexPath)
         return cell
     }
+    
+    
     
     private func hideLoadingWhenTableViewDidAppear(_ indexPath: IndexPath) {
         if indexPath.row == self.filteredStores.count - 1 { LoadingService.hideLoading() }

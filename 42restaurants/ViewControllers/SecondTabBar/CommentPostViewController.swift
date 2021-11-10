@@ -279,7 +279,9 @@ class CommentPostViewController: UIViewController {
                                         LoadingService.hideLoading()
                                         return TransactionResult.success(withValue: currentData)
                                     
-                                    })
+                                }) { error, committed, snapshot in
+                                    self.setCommentCountAndRating(storeKey: storeKey)
+                                    }
                                 }
                             }
                         }
@@ -302,9 +304,15 @@ class CommentPostViewController: UIViewController {
                  "createDate": Date().toDouble(),
                  "modifyDate": Date().toDouble()
                 ]
-            )
+            ) { error, ref in
+                self.setCommentCountAndRating(storeKey: storeKey)
+            }
         }
         
+        
+    }
+    
+    private func setCommentCountAndRating(storeKey: String) {
         DispatchQueue.main.async {
             if self.imageSet.count != 0 {
                 self.ref.child("stores").child("\(storeKey)").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -312,8 +320,8 @@ class CommentPostViewController: UIViewController {
                         guard let value = snapshot.value else { return }
                         do {
                             let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
-                            let commentCount = storeData.comments.count + 1
-                            print("commentCount: \(commentCount)")
+                            let commentCount = storeData.comments.count
+                            
                             var sumOfRatings: Double = 0
                             for comment in storeData.comments {
                                 sumOfRatings += comment.value.rating
@@ -338,7 +346,7 @@ class CommentPostViewController: UIViewController {
                         do {
                             let storeData = try FirebaseDecoder().decode(StoreInfo.self, from: value)
                             let commentCount = storeData.comments.count
-                            print("commentCount: \(commentCount)")
+                            
                             var sumOfRatings: Double = 0
                             for comment in storeData.comments {
                                 sumOfRatings += comment.value.rating

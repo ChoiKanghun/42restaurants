@@ -181,7 +181,7 @@ extension FirebaseAuthentication {
            let email = user.email {
             return email
         }
-        else { return "can't get user email" }
+        else { return "cant get user email" }
     }
     
     

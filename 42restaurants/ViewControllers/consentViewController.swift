@@ -34,10 +34,11 @@ class ConsentViewController: UIViewController {
         \n
         42 restaurants(이하 '해당 앱')의 사용자는 다음 사항을 동의합니다.
         \t 1. 불쾌하거나 기분 나쁜 컨텐츠( 노출, 외설물, 비속어와 같은 부적절한 콘텐츠 등)를 접할 수도 있다.\n
-        \t 2. 사용자는 언제든지 불쾌한 컨텐츠를 신고할 수 있다.\n
-        \t 3. 사용자들로부터 10회 이상 불쾌하다고 신고받은 컨텐츠는 그 즉시 삭제한다.\n
-        \t 4. 사용자들로부터 10회 이상 불쾌하다고 신고받은 컨텐츠를 올린 사람에 대해 더 이상 글을 쓸 수 없도록 조치하는 것을 24시간 이내에 수행한다.\n
-        \t 5. 사용자가 올린 이미지 및 텍스트, 별점 등의 정보는 앱 이외의 사항에 사용하지 않는다.\n
+        \t 2. 42 restaurants는 (사소한 사항이라도) 불쾌하다고 신고 받은 컨텐츠 및 컨텐츠를 올린 사용자를 관용 없이 제재할 것입니다.\n
+        \t 3. 사용자는 언제든지 불쾌한 컨텐츠를 신고할 수 있다.\n
+        \t 4. 사용자들로부터 10회 이상 불쾌하다고 신고받은 컨텐츠는 그 즉시 삭제한다.\n
+        \t 5. 사용자들로부터 10회 이상 불쾌하다고 신고받은 컨텐츠를 올린 사람에 대해 더 이상 글을 쓸 수 없도록 조치하는 것을 24시간 이내에 수행한다.\n
+        \t 6. 사용자가 올린 이미지 및 텍스트, 별점 등의 정보는 앱 이외의 사항에 사용하지 않는다.\n
         
         \n
         제 2조
@@ -68,8 +69,9 @@ class ConsentViewController: UIViewController {
     }
     
     private func goToMainPage() {
-        guard let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "mainTabBarController") else { return }
-        self.navigationController?.pushViewController(mainTabBarController, animated: true)
+        guard let loginViewController = self.storyboard?.instantiateViewController(
+                withIdentifier: LoginViewController.storyboardId) else { return }
+        self.navigationController?.pushViewController(loginViewController, animated: true)
     }
 
 }

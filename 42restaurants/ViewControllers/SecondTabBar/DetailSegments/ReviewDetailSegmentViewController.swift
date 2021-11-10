@@ -69,7 +69,6 @@ class ReviewDetailSegmentViewController: UIViewController {
         }
     }
     
-    
     @objc func didReceiveReviewSubmitDone(_ noti: Notification) {
         self.showBasicAlert(title: "제출 완료", message: "리뷰가 성공적으로 등록되었습니다 !")
     }
@@ -104,19 +103,32 @@ class ReviewDetailSegmentViewController: UIViewController {
     
     private func setTableView() {
         self.reviewTableView.estimatedRowHeight = 270
-        self.updateTableView()
+        self.getDataAndUpdateTableView()
     }
     
-    private func updateTableView() {
+    private func getDataAndUpdateTableView() {
         if let tabBarIndex = self.tabBarController?.selectedIndex,
            let storeKey = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey : StoreSingleton.shared.store?.storeKey {
             self.ref.child("stores/\(storeKey)/comments").observe(DataEventType.value, with: {
                 (snapshot) in
                 if snapshot.exists() {
                     guard let value = snapshot.value else { return }
+                    let currentUser = FirebaseAuthentication.shared.getUserEmail()
                     do {
                         let commentsData = try FirebaseDecoder().decode([String: Comment].self, from: value)
-                        self.comments = commentsData.map( { Comments.init(commentKey: $0.key, comment: $0.value) } )
+                        self.comments = commentsData
+                            .map( { Comments.init(commentKey: $0.key, comment: $0.value) } )
+                            .filter({
+                                guard let blockedUsers = $0.comment.blockedUsers
+                                else { return true }
+                                for blockedUser in blockedUsers.values {
+                                    if blockedUser == currentUser {
+                                        return false
+                                    }
+                                }
+                                return true
+                            })
+
                         self.comments = self.comments.sorted(by: { $0.comment.createDate > $1.comment.createDate })
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(name: Notification.Name("getCurrentReviewFilter"),
@@ -173,13 +185,19 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
             (alert: UIAlertAction!) -> Void in
             self.onReport(comment: comment)
         })
+        let blockAction = UIAlertAction(title: "차단하기", style: .destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.blockUser(comment: comment)
+        })
         let cancelAction = UIAlertAction(title: "취소", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
         })
         
         alertController.addAction(reportAction)
+        alertController.addAction(blockAction)
         alertController.addAction(cancelAction)
+
         
         if UIDevice.current.userInterfaceIdiom == .pad { //디바이스 타입이 iPad일때
             if let popoverController = alertController.popoverPresentationController { // ActionSheet가 표현되는 위치를 저장해줍니다.
@@ -193,8 +211,34 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
         } else {
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    private func blockUser(comment: Comments) {
+        if let tabBarIndex = self.tabBarController?.selectedIndex,
+           let storeKey = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey : StoreSingleton.shared.store?.storeKey {
+            
+            guard let autoId = self.ref.child("stores/\(storeKey)/comments/\(comment.commentKey)/blockedUsers").childByAutoId().key
+            else { print("can't get auto id"); return }
+            let currentUser = FirebaseAuthentication.shared.getUserEmail()
 
-        
+            var childUpdates = [
+                "stores/\(storeKey)/comments/\(comment.commentKey)/blockedUsers/\(autoId)": currentUser
+            ] as [String: Any]
+            
+            if let imagePairs = comment.comment.images {
+                guard let userIdBeforeAtSymbol = currentUser.components(separatedBy: "@").first
+                else { print("오류날리가 없어야 함"); return }
+                for imagePair in imagePairs {
+                    childUpdates["users/\(userIdBeforeAtSymbol)/blockedImages/\(imagePair.key)"] = imagePair.value.imageUrl
+                }
+            }
+            self.ref.updateChildValues(childUpdates)
+            self.showBasicAlert(title: "완료", message: "차단하였습니다.")
+            self.getDataAndUpdateTableView()
+            
+        } else {
+            self.showBasicAlert(title: "실패", message: "차단에 실패했습니다. 다시 시도해주세요.")
+        }
     }
     
     private func onReport(comment: Comments) {
@@ -202,7 +246,6 @@ extension ReviewDetailSegmentViewController: UITableViewDataSource, UITableViewD
             DispatchQueue.main.async {
                 self.showBasicAlert(title: "로그인 후 이용해주세요.", message: "로그인이 필요합니다.")
             }
-            
         }
         
         self.ref.child("reports/\(comment.commentKey)").getData(completion: { error, snapshot in

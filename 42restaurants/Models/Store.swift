@@ -29,3 +29,5 @@ struct StoreInfo: Codable {
     var commentCount: Int
     var comments: [String: Comment]
 }
+
+

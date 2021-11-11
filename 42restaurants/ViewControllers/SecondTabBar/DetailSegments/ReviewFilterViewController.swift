@@ -50,6 +50,7 @@ class ReviewFilterViewController: UIViewController {
     
     private func setUpView() {
         self.view.backgroundColor = .white
+        self.reviewFilterCollectionView.backgroundColor = Config.shared.application60Color
     }
     
     private func setUpReviewFilterCollectionView() {

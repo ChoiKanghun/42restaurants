@@ -31,6 +31,12 @@ class FilterViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = Config.shared.application60Color
+        self.filterCollectionView.backgroundColor = Config.shared.application60Color
+    }
+    
     private func enrollNotification() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didReceiveCategoryDidChangeNotification(_:)),

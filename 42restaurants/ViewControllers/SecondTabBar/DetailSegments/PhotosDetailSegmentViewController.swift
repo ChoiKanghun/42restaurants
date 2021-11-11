@@ -82,7 +82,7 @@ class PhotosDetailSegmentViewController: UIViewController {
                 }
             }
             else if snapshot.exists() {
-                guard let value = snapshot.value else { return }
+                guard let value = snapshot.value else { print("can't get snapshot value"); return }
                 guard let blockedImageDictionary = value as? [String: String]
                 else { print("can't get imageKeyValues "); return }
                 
@@ -92,9 +92,16 @@ class PhotosDetailSegmentViewController: UIViewController {
                     })
                 }
                 self.imageDatas = self.imageDatas.sorted(by: { $0.createDate > $1.createDate })
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:  {
                     self.collectionView.reloadData()
-                }
+                })
+
+            } else {
+                self.imageDatas = self.imageDatas.sorted(by: { $0.createDate > $1.createDate })
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:  {
+                    self.collectionView.reloadData()
+                })
+                
             }
         }
     }

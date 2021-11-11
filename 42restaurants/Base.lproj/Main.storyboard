@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xuz-Lt-gbJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xuz-Lt-gbJ">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -607,7 +607,7 @@
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="manageMyReviewTableViewCell" rowHeight="158" id="Y2a-3d-vpG" customClass="ManageMyReviewTableViewCell" customModule="_2restaurants" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="158"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="158"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y2a-3d-vpG" id="b3c-ZM-nwU">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
@@ -912,7 +912,7 @@
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myStoreTableViewCell" rowHeight="142" id="ohb-di-CBo" customClass="MyStoreTableViewCell" customModule="_2restaurants" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="142"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ohb-di-CBo" id="kJt-k1-upK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="142"/>
@@ -1251,7 +1251,7 @@
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoreTableViewCellReuseIdentifier" rowHeight="150" id="Sqd-8E-DMV" customClass="StoreTableViewCell" customModule="_2restaurants" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="150"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sqd-8E-DMV" id="efe-Xi-y01">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
@@ -1447,7 +1447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74n-ui-gCx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3668.115942028986" y="-417.1875"/>
+            <point key="canvasLocation" x="3516" y="-417"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="k0c-hx-RNV">
@@ -1859,7 +1859,8 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="csV-FT-ib7">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="jyD-Xb-uwT" kind="relationship" relationship="viewControllers" id="gNU-3l-Twj"/>
@@ -2135,10 +2136,11 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IGA-VP-AmM">
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewTableViewCell" rowHeight="425" id="0xJ-ZL-Prl" customClass="ReviewTableViewCell" customModule="_2restaurants" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="425"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="425"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0xJ-ZL-Prl" id="vZk-ZA-nJy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="425"/>
@@ -2147,19 +2149,19 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2H-b9-ah4">
                                                     <rect key="frame" x="74" y="16" width="310" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cry-DG-KeY">
                                                     <rect key="frame" x="30" y="225" width="354" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abQ-ru-HHP">
                                                     <rect key="frame" x="95" y="38" width="289" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oix-F0-XOc">
@@ -2205,6 +2207,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                 </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="WGZ-4l-rne" firstAttribute="top" secondItem="fQz-ec-w9k" secondAttribute="top" id="HDB-14-iGo"/>
                                                                     <constraint firstItem="WGZ-4l-rne" firstAttribute="leading" secondItem="fQz-ec-w9k" secondAttribute="leading" id="NVR-Bq-l8z"/>
@@ -2212,6 +2215,7 @@
                                                                     <constraint firstItem="WGZ-4l-rne" firstAttribute="top" secondItem="fQz-ec-w9k" secondAttribute="top" id="f8h-Jv-VfQ"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <size key="customSize" width="150" height="150"/>
                                                             <connections>
                                                                 <outlet property="reviewImageView" destination="WGZ-4l-rne" id="fRM-KB-ec4"/>
@@ -2250,6 +2254,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="t2H-b9-ah4" secondAttribute="trailing" constant="10" id="zuf-fJ-ugc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="Cry-DG-KeY" id="kaK-7G-wS0"/>
                                             <outlet property="profileImageView" destination="oix-F0-XOc" id="DJE-Mt-yfP"/>
@@ -2274,7 +2279,7 @@
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Aj3-9s-QMf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Aj3-9s-QMf" firstAttribute="trailing" secondItem="pD7-YC-idV" secondAttribute="trailing" id="2ej-sj-2dW"/>
                             <constraint firstItem="IGA-VP-AmM" firstAttribute="top" secondItem="pD7-YC-idV" secondAttribute="bottom" id="8kT-CX-Vtx"/>
@@ -2406,7 +2411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YoR-Sk-PKQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2608.6956521739135" y="-651.5625"/>
+            <point key="canvasLocation" x="4212" y="-627"/>
         </scene>
         <!--Review Filter View Controller-->
         <scene sceneID="fDh-h8-QHs">

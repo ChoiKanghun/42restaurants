@@ -125,7 +125,7 @@ class MainMapViewController: UIViewController {
         self.setNavigationBarHidden(isHidden: true)
         self.setStatusBarBackgroundColor()
         self.popUpView.backgroundColor = Config.shared.application30Color
-        
+        self.tabBarController?.tabBar.barTintColor = Config.shared.application60Color
     }
     
     @IBAction func touchUpStoreNameButton(_ sender: Any) {

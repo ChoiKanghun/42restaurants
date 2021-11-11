@@ -39,8 +39,6 @@ class ReviewTableViewCell: UITableViewCell {
     
     private func setUI() {
         
-        
-        self.backgroundColor = Config.shared.application60Color
         self.userIdLabel.textColor = Config.shared.applicationContrastTextColor
         self.ratingLabel.textColor = Config.shared.applicationSupplimetaryTextColor
         self.descriptionLabel.textColor = Config.shared.applicationContrastTextColor

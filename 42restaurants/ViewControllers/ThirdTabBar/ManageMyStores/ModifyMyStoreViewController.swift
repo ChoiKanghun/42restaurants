@@ -62,7 +62,7 @@ class ModifyMyStoreViewController: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardOnTouchAnywhere)))
         initializeImagePicker()
         initializeCategoryPickerView()
-        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        self.ref = Database.database(url: Config.shared.referenceAddress).reference()
         setStore(self.storeData)
         setUI()
         disableModifying()

@@ -52,7 +52,7 @@ class PhotosDetailSegmentViewController: UIViewController {
     
     private func getImagesFromServer() {
         
-        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        self.ref = Database.database(url: Config.shared.referenceAddress).reference()
         
         guard let currentTabBarIndex = self.tabBarController?.selectedIndex,
               let storeKey = currentTabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeKey :  StoreSingleton.shared.store?.storeKey
@@ -69,7 +69,6 @@ class PhotosDetailSegmentViewController: UIViewController {
                         self.imageDatas.append(data.value)
                     }
                     self.filterImages(storeKey: storeKey)
-                    
                     
                 } catch let err {
                     print(err.localizedDescription)

@@ -50,7 +50,7 @@ class MainMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        ref = Database.database(url: Config.shared.referenceAddress).reference()
         callMessaging()
         self.locationManager.requestWhenInUseAuthorization()
         self.mapView.positionMode = .normal

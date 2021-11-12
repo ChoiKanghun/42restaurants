@@ -26,7 +26,7 @@ class ManageMyReviewViewController: UIViewController {
 
         self.dismissIfNotLoggedIn()
         
-        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        self.ref = Database.database(url: Config.shared.referenceAddress).reference()
         setUI()
         LoadingService.showShortLoading()
         fetchComments()

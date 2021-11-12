@@ -32,7 +32,7 @@ class DetailMapViewController: UIViewController {
         self.locationManager.requestWhenInUseAuthorization()
         self.mapView.positionMode = .normal
         
-        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        ref = Database.database(url: Config.shared.referenceAddress).reference()
     
         if let tabBarIndex = self.tabBarController?.selectedIndex,
            let storeInfo = tabBarIndex == 0 ? MainTabStoreSingleton.shared.store?.storeInfo : StoreSingleton.shared.store?.storeInfo {

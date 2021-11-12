@@ -33,7 +33,7 @@ class CommentPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        self.ref = Database.database(url: Config.shared.referenceAddress).reference()
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardOnTouchAnywhere)))
         self.dismissIfNotLoggedIn()

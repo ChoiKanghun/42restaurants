@@ -38,7 +38,7 @@ class ModifyMyReviewViewController: UIViewController {
         self.imageCollectionView.delegate = self
         self.imageCollectionView.dataSource = self
         
-        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        self.ref = Database.database(url: Config.shared.referenceAddress).reference()
         setDefaultValues()
         
     }

@@ -52,7 +52,7 @@ class EnrollStoreViewController: UIViewController {
         
         setUI()
         setUserIdLabel()
-        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        ref = Database.database(url: Config.shared.referenceAddress).reference()
         
         initializeImagePicker()
         initializeCategoryPickerView()

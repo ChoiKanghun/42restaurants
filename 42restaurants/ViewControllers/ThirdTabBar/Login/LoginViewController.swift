@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     
     private func logOutIfBlockedAuthentication() {
         if FirebaseAuthentication.shared.checkUserExists() == false { return }
-        let ref: DatabaseReference! = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        let ref: DatabaseReference! = Database.database(url: Config.shared.referenceAddress).reference() 
         
         ref.child("reports/deleted").observe(DataEventType.value, with: { snapshot in
             if let value = snapshot.value {

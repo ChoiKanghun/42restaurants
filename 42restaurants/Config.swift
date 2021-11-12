@@ -13,6 +13,11 @@ class Config {
     
     private init() {}
     
+    // 스테이징 서버 주소
+    let referenceAddress = "https://restaurantsvirtual-default-rtdb.asia-southeast1.firebasedatabase.app"
+    ////     실 서버 주소
+    //    let refernceAddress = "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app"
+    
     let applicationThemeColor = UIColor.init(red:44/255, green: 62/255, blue: 80/255, alpha: 1)
     let application60Color = UIColor.white
     // 맨 처음 application30Color로 쓰려던 색

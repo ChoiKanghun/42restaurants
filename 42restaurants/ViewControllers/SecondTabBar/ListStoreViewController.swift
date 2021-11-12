@@ -35,7 +35,7 @@ class ListStoreViewController: UIViewController {
         LoadingService.showLoading()
         setDelegateDataSource()
         addNotifications()
-        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        self.ref = Database.database(url: Config.shared.referenceAddress).reference()
         addRefreshControl()
         getStoresInfoFromDatabase()
         setCollectionViewLayout()

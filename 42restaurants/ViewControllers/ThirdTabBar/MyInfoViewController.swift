@@ -29,10 +29,10 @@ class MyInfoViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.setStatusBarBackgroundColor()
+        self.setStatusBarBackgroundColor(color: Config.shared.application30Color)
         self.setNavigationBarHidden(isHidden: true)
         self.view.backgroundColor = .white
-        self.setNavigationBarBackgroundColor()
+        self.setNavigationBarBackgroundColor(color: Config.shared.application30Color)
     }
     
     @objc func onLogOut() {

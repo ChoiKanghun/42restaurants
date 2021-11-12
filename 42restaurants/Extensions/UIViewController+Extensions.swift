@@ -18,20 +18,20 @@ extension UIViewController {
     }
     
     // statusBar 백그라운드 컬러를 설정.
-    func setStatusBarBackgroundColor() {
+    func setStatusBarBackgroundColor(color: UIColor) {
         if let statusBarView = statusBarView {
             DispatchQueue.main.async {
-                statusBarView.backgroundColor = Config.shared.application30Color
+                statusBarView.backgroundColor = color
             }
         }
     }
     
     
     // navigationBar 백그라운드 컬러 설정
-    func setNavigationBarBackgroundColor() {
+    func setNavigationBarBackgroundColor(color: UIColor) {
         if let navigationBar = navigationController?.navigationBar {
             DispatchQueue.main.async {
-                navigationBar.barTintColor = Config.shared.application30Color
+                navigationBar.barTintColor = color
             }
         }
     }

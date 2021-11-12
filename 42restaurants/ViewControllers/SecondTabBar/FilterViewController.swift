@@ -25,8 +25,8 @@ class FilterViewController: UIViewController {
 
         self.filterCollectionView.delegate = self
         self.filterCollectionView.dataSource = self
-        self.enrollNotification()
-        setUpView()
+        addNotifications()
+        setUI()
         setUpFilterCollectionView()
         
     }
@@ -37,7 +37,7 @@ class FilterViewController: UIViewController {
         self.filterCollectionView.backgroundColor = Config.shared.application60Color
     }
     
-    private func enrollNotification() {
+    private func addNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didReceiveCategoryDidChangeNotification(_:)),
                                                name: Notification.Name("categoryDidChange"), object: nil)
@@ -58,7 +58,7 @@ class FilterViewController: UIViewController {
                                         userInfo: ["filter": filter])
     }
     
-    private func setUpView() {
+    private func setUI() {
         self.view.backgroundColor = .white
     }
     

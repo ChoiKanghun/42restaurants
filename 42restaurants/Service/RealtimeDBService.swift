@@ -12,8 +12,6 @@ import CodableFirebase
 class RealtimeDBService {
     static let shared = RealtimeDBService()
     
-    
-    
     func deleteCommentByCommentKey(commentKey: String) {
         let ref: DatabaseReference = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         

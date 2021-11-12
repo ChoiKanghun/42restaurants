@@ -102,8 +102,12 @@ class ReviewDetailSegmentViewController: UIViewController {
     }
     
     private func setTableView() {
+        setTableViewUI()
+        getDataAndUpdateTableView()
+    }
+    
+    private func setTableViewUI() {
         self.reviewTableView.estimatedRowHeight = 270
-        self.getDataAndUpdateTableView()
     }
     
     private func getDataAndUpdateTableView() {

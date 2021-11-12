@@ -36,17 +36,13 @@ class MainMapViewController: UIViewController {
 
         return manager
     }()
-    
-    
+        
     let userMarker = NMFMarker()
-    
+
     var ref: DatabaseReference!
     let storage = Storage.storage()
-    
     var stores = [Store]()
 
-    
-    
     // 특정 객체를 지도에서 선택했을 때 이벤트
     var handler: NMFOverlayTouchHandler = { overlay -> Bool in
         return true
@@ -54,16 +50,31 @@ class MainMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         callMessaging()
-        
         self.locationManager.requestWhenInUseAuthorization()
         self.mapView.positionMode = .normal
-            
-        ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-        logOutIfBlockedAuthentication()
-
         self.mapView.touchDelegate = self
+        logOutIfBlockedAuthentication()
+        setEventForTouchUpMapContents()
+        getStoreDataAndSetStoresOnMap()
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.popUpView.isHidden = true
+        setUI()
+    }
+
+    private func setUI() {
+        self.setNavigationBarHidden(isHidden: true)
+        self.setStatusBarBackgroundColor(color: Config.shared.application30Color)
+        self.popUpView.backgroundColor = Config.shared.application30Color
+        self.tabBarController?.tabBar.barTintColor = Config.shared.application60Color
+    }
+
+    private func setEventForTouchUpMapContents() {
         self.handler = { (overlay) -> Bool in
             
             self.popUpView.isHidden = false
@@ -92,7 +103,9 @@ class MainMapViewController: UIViewController {
             }
             return true
         }
-        
+    }
+    
+    private func getStoreDataAndSetStoresOnMap() {
         self.ref.child("stores").observe(DataEventType.value, with: { snapshot in
             
             if snapshot.exists() {
@@ -111,96 +124,9 @@ class MainMapViewController: UIViewController {
                 }
             }
         })
-        
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        setUI()
-    }
-
-    private func setUI() {
-        self.setNavigationBarHidden(isHidden: true)
-        self.setStatusBarBackgroundColor()
-        self.popUpView.backgroundColor = Config.shared.application30Color
-        self.tabBarController?.tabBar.barTintColor = Config.shared.application60Color
-    }
-    
-    @IBAction func touchUpStoreNameButton(_ sender: Any) {
-
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController")
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    @IBAction func touchUpMyLocationButton(_ sender: Any) {
-        let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
-        let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLongitude")
-        let currentLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude,
-                                                     longitude: currentLocationLongitude)
-        self.moveCameraToUserLocation(currentLocation)
-    }
-}
-
-extension MainMapViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedAlways, .authorizedWhenInUse:
-            print("GPS 권한 설정됨")
-            if let coordinate = locationManager.location?.coordinate {
-                moveCameraToUserLocation(coordinate)
-            }
-        case .restricted, .notDetermined:
-            print("GPS 권한 설정되지 않음.")
-            self.locationManager.requestWhenInUseAuthorization()
-        case .denied:
-            print("GPS 권한 요청 거부됨")
-            self.locationManager.requestWhenInUseAuthorization()
-        default:
-            print("GPS Default")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location: CLLocation = locations.first
-        else {return}
-//        self.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//
-        let NMGCurrentLocation =
-            NMGLatLng(lat: location.coordinate.latitude,
-                      lng: location.coordinate.longitude)
-
-        UserDefaults.standard.set(location.coordinate.latitude, forKey: "currentLocationLatitude")
-        UserDefaults.standard.set(location.coordinate.longitude, forKey: "currentLocationLongitude")
-        userMarker.position = NMGCurrentLocation
-        userMarker.mapView = mapView
-    }
-    
-    
-    /*
-     위치를 최초로 받아올 때
-     user의 위치에 맞게 카메라를 이동시키고
-     user를 표시하는 marker의 속성을 지정한다.
-     */
-    func moveCameraToUserLocation(_ coordinate: CLLocationCoordinate2D) {
-        let NMGCurrentLocation = NMGLatLng(lat: coordinate.latitude, lng: coordinate.longitude)
-        let cameraPosition = NMGCurrentLocation
-        let cameraUpdate = NMFCameraUpdate(scrollTo: cameraPosition)
-        mapView.moveCamera(cameraUpdate)
-        
-        userMarker.captionText = "ME"
-        userMarker.zIndex = Int.max
-        if let userLocationImage = UIImage(systemName: "circle.fill") {
-            let overlayImage = NMFOverlayImage.init(image: userLocationImage)
-            userMarker.iconImage = overlayImage
-        }
-        userMarker.iconTintColor = UIColor.systemRed
-    }
-    
-    func setStores() {
+    private func setStores() {
         var markers: [NMFMarker] = [NMFMarker]()
         
         for (index, element) in self.stores.enumerated() {
@@ -238,8 +164,76 @@ extension MainMapViewController: CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func touchUpStoreNameButton(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController")
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @IBAction func touchUpMyLocationButton(_ sender: Any) {
+        let currentLocationLatitude = UserDefaults.standard.double(forKey: "currentLocationLatitude")
+        let currentLocationLongitude = UserDefaults.standard.double(forKey: "currentLocationLongitude")
+        let currentLocation = CLLocationCoordinate2D(latitude: currentLocationLatitude,
+                                                     longitude: currentLocationLongitude)
+        self.moveCameraToUserLocation(currentLocation)
+    }
 }
 
+extension MainMapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("GPS 권한 설정됨")
+            if let coordinate = locationManager.location?.coordinate {
+                moveCameraToUserLocation(coordinate)
+            }
+        case .restricted, .notDetermined:
+            print("GPS 권한 설정되지 않음.")
+            self.locationManager.requestWhenInUseAuthorization()
+        case .denied:
+            print("GPS 권한 요청 거부됨")
+            self.locationManager.requestWhenInUseAuthorization()
+        default:
+            print("GPS Default")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location: CLLocation = locations.first
+        else {return}
+
+        let NMGCurrentLocation =
+            NMGLatLng(lat: location.coordinate.latitude,
+                      lng: location.coordinate.longitude)
+
+        UserDefaults.standard.set(location.coordinate.latitude, forKey: "currentLocationLatitude")
+        UserDefaults.standard.set(location.coordinate.longitude, forKey: "currentLocationLongitude")
+        userMarker.position = NMGCurrentLocation
+        userMarker.mapView = mapView
+    }
+    
+    
+    /*
+     위치를 최초로 받아올 때
+     user의 위치에 맞게 카메라를 이동시키고
+     user를 표시하는 marker의 속성을 지정한다.
+     */
+    func moveCameraToUserLocation(_ coordinate: CLLocationCoordinate2D) {
+        let NMGCurrentLocation = NMGLatLng(lat: coordinate.latitude, lng: coordinate.longitude)
+        let cameraPosition = NMGCurrentLocation
+        let cameraUpdate = NMFCameraUpdate(scrollTo: cameraPosition)
+        mapView.moveCamera(cameraUpdate)
+        
+        userMarker.captionText = "ME"
+        userMarker.zIndex = Int.max
+        if let userLocationImage = UIImage(systemName: "circle.fill") {
+            let overlayImage = NMFOverlayImage.init(image: userLocationImage)
+            userMarker.iconImage = overlayImage
+        }
+        userMarker.iconTintColor = UIColor.systemRed
+    }
+}
 
 extension MainMapViewController: NMFMapViewTouchDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
@@ -248,6 +242,30 @@ extension MainMapViewController: NMFMapViewTouchDelegate {
         }
     }
 }
+
+extension MainMapViewController {
+    func logOutIfBlockedAuthentication() {
+        if FirebaseAuthentication.shared.checkUserExists() == false { return }
+        self.ref.child("reports/deleted").observe(DataEventType.value, with: { snapshot in
+            if let value = snapshot.value {
+                do {
+                    let currentUserEmail = FirebaseAuthentication.shared.getUserEmail()
+                    let deletedUserPairs = try FirebaseDecoder().decode([String: String].self, from: value)
+                    for deletedUser in deletedUserPairs.values {
+                        if currentUserEmail == deletedUser {
+                            FirebaseAuthentication.shared.signOut()
+                            self.showBasicAlert(title: "정지된 계정입니다.", message: "애플아이디로 로그인 기능이 정지됩니다.")
+                        }
+                    }
+                } catch let e {
+                    print(e.localizedDescription)
+                }
+            }
+            
+        })
+    }
+}
+
 
 // delete this method later.
 // this method is just to test node.js server works fine.
@@ -274,13 +292,9 @@ extension MainMapViewController: MessagingDelegate {
         else { print("error on getting token "); return}
         let userName = "kchoi"
         let queryString = "?" + "registrationToken=" + token + "&userName=" + userName
-        
         let url: URL = URL(string: "http://192.168.0.25:3000/\(queryString)")!
-        
-        
-        
+    
         httpGet(url: url, completionHandler: { d, r, e in
-            
             guard let data = d else { return }
             print(String(data: data, encoding: .utf8)!)
         
@@ -293,31 +307,6 @@ extension MainMapViewController: MessagingDelegate {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         URLSession.shared.dataTask(with:request, completionHandler: completionHandler).resume()
     }
-    
-    
-    
 }
 
 
-extension MainMapViewController {
-    func logOutIfBlockedAuthentication() {
-        if FirebaseAuthentication.shared.checkUserExists() == false { return }
-        self.ref.child("reports/deleted").observe(DataEventType.value, with: { snapshot in
-            if let value = snapshot.value {
-                do {
-                    let currentUserEmail = FirebaseAuthentication.shared.getUserEmail()
-                    let deletedUserPairs = try FirebaseDecoder().decode([String: String].self, from: value)
-                    for deletedUser in deletedUserPairs.values {
-                        if currentUserEmail == deletedUser {
-                            FirebaseAuthentication.shared.signOut()
-                            self.showBasicAlert(title: "정지된 계정입니다.", message: "애플아이디로 로그인 기능이 정지됩니다.")
-                        }
-                    }
-                } catch let e {
-                    print(e.localizedDescription)
-                }
-            }
-            
-        })
-    }
-}

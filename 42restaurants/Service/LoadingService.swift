@@ -29,7 +29,7 @@ class LoadingService {
             loadingIndicatorView.startAnimating()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
             self.hideLoading()
         }
     }
@@ -61,7 +61,7 @@ class LoadingService {
             loadingIndicatorView.startAnimating()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.hideLoading()
         }
     }

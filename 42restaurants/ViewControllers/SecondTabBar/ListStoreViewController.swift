@@ -215,8 +215,8 @@ class ListStoreViewController: UIViewController {
     }
     
     private func setUI() {
-        self.setStatusBarBackgroundColor()
-        self.setNavigationBarBackgroundColor()
+        self.setStatusBarBackgroundColor(color: Config.shared.application30Color)
+        self.setNavigationBarBackgroundColor(color: Config.shared.application30Color)
         self.categoryCollectionView.backgroundColor = Config.shared.application60Color
         self.storeTableView.backgroundColor = Config.shared.application60Color
         self.setNavigationBarHidden(isHidden: true)

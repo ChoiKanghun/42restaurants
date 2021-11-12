@@ -31,8 +31,6 @@ class SegmentedDetailViewController: UIViewController {
         return viewController
     }()
     
-    
-    
     lazy var detailMapViewController: DetailMapViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let viewController = storyboard.instantiateViewController(withIdentifier: "detailMapVC") as? DetailMapViewController
@@ -49,15 +47,6 @@ class SegmentedDetailViewController: UIViewController {
         setUpChildViews()
     }
     
-    private func updateView() {
-        
-        photosViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 0)
-        
-        reviewViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 1)
-        
-        detailMapViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 2)
-    }
-
     private func setUpChildViews() {
         self.segmentedControl.removeAllSegments()
         self.segmentedControl.insertSegment(withTitle: "사진", at: 0, animated: true)
@@ -72,7 +61,12 @@ class SegmentedDetailViewController: UIViewController {
     @objc func selectionDidChange(sender: UISegmentedControl) {
         updateView()
     }
-
+    
+    private func updateView() {
+        photosViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 0)
+        reviewViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 1)
+        detailMapViewController.view.isHidden = !(segmentedControl.selectedSegmentIndex == 2)
+    }
     
     private func addViewControllerAsChildViewController(_ childViewController: UIViewController) {
         self.addChild(childViewController)

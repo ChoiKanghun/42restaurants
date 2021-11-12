@@ -21,9 +21,25 @@ class PhotosDetailSegmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setDelegates()
+        setCollectionViewFlowLayout()
+        
+        self.getImagesFromServer()
+        setUI()
+    }
+
+    private func setUI() {
+        self.collectionView.backgroundColor = .white
+    }
+    
+    private func setDelegates() {
+            
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
+    }
+    
+    private func setCollectionViewFlowLayout() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(
             width: view.frame.size.width / 3 - 1,
@@ -32,13 +48,6 @@ class PhotosDetailSegmentViewController: UIViewController {
         flowLayout.minimumLineSpacing = 1.5
         flowLayout.minimumInteritemSpacing = 0
         self.collectionView.collectionViewLayout = flowLayout
-        self.getImagesFromServer()
-        setUI()
-    }
-
-    private func setUI() {
-        self.collectionView.backgroundColor = .white
-        
     }
     
     private func getImagesFromServer() {
@@ -92,13 +101,13 @@ class PhotosDetailSegmentViewController: UIViewController {
                     })
                 }
                 self.imageDatas = self.imageDatas.sorted(by: { $0.createDate > $1.createDate })
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:  {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute:  {
                     self.collectionView.reloadData()
                 })
 
             } else {
                 self.imageDatas = self.imageDatas.sorted(by: { $0.createDate > $1.createDate })
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:  {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute:  {
                     self.collectionView.reloadData()
                 })
                 

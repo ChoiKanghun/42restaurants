@@ -23,18 +23,28 @@ class ReviewFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addDelegates()
+        addNotifications()
+        setReviewFilterCollectionViewFlowLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setUI()
+    }
+    
+    private func addDelegates() {
         self.reviewFilterCollectionView.delegate = self
         self.reviewFilterCollectionView.dataSource = self
+    }
+    
+    private func addNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didReceiveGetCurrentReviewFilterNotification),
                                                name: Notification.Name("getCurrentReviewFilter"),
                                                object: nil)
-        
-        setUpView()
-        setUpReviewFilterCollectionView()
-        
     }
-    
     
     @objc func didReceiveGetCurrentReviewFilterNotification() {
         guard let indexPath = self.reviewFilterCollectionView.indexPathsForSelectedItems?.first,
@@ -48,28 +58,18 @@ class ReviewFilterViewController: UIViewController {
     }
  
     
-    private func setUpView() {
+    private func setUI() {
         self.view.backgroundColor = .white
         self.reviewFilterCollectionView.backgroundColor = Config.shared.application60Color
     }
     
-    private func setUpReviewFilterCollectionView() {
+    private func setReviewFilterCollectionViewFlowLayout() {
         self.reviewFilterCollectionView.collectionViewLayout = FilterCollectionViewFlowLayout()
         if let flowLayout = self.reviewFilterCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
-
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
 extension ReviewFilterViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

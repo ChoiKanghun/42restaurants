@@ -49,12 +49,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         addNotifications()
-        
         self.setNavigationBarHidden(isHidden: false)
         setDefaultValues()
         readyToGetNotification()
         setupUI()
-    
+        instantiateSegmentedViewControllers()
     }
     
     private func addNotifications() {
@@ -91,6 +90,7 @@ class DetailViewController: UIViewController {
         self.detailStoreInfoView.isHidden = true
         self.detailStoreInfoViewHeight.constant = 0
     }
+    
     @objc func showDetailView() {
         self.detailStoreInfoView.isHidden = false
         if let detailStoreInfoViewHeightOriginalConstant = self.detailStoreInfoViewHeightOriginalConstant {
@@ -99,29 +99,37 @@ class DetailViewController: UIViewController {
     }
     
     private func setupUI() {
+        guard let currentTabBarIndex = self.tabBarController?.selectedIndex,
+              let store = currentTabBarIndex == 0 ? MainTabStoreSingleton.shared.store : StoreSingleton.shared.store
+        else { print("can't get store Singleton"); return }
+
+        setColors()
+        setText(store: store)
+        setRatingStarUI(store: store)
         
-        self.setStatusBarBackgroundColor()
-        self.setNavigationBarBackgroundColor()
+    }
+    
+    private func setColors() {
+        self.setStatusBarBackgroundColor(color: Config.shared.application30Color)
+        self.setNavigationBarBackgroundColor(color: Config.shared.application30Color)
         self.view.backgroundColor = Config.shared.application60Color
         self.storeNameLabel.textColor = Config.shared.applicationContrastTextColor
         self.categoryLabel.textColor = Config.shared.applicationSupplimetaryTextColor
         self.ratingLabel.textColor = Config.shared.applicationContrastTextColor
         self.addressLabel.textColor = Config.shared.applicationContrastTextColor
+        self.segmentedControl.selectedSegmentTintColor = Config.shared.applicationSupplimentaryBackgroundColor
         
-        guard let currentTabBarIndex = self.tabBarController?.selectedIndex
-        else { return }
-        
-        guard let store = currentTabBarIndex == 0 ? MainTabStoreSingleton.shared.store : StoreSingleton.shared.store
-        else { print("can't get store Singleton"); return }
-        
+    }
+    
+    private func setText(store: Store) {
         self.storeNameLabel?.text = store.storeInfo.name
         self.addressLabel?.text = store.storeInfo.address
         self.categoryLabel?.text = store.storeInfo.category
         self.ratingLabel?.text = "\(store.storeInfo.rating) (\(store.storeInfo.commentCount))"
         
-        
-        self.segmentedControl.selectedSegmentTintColor = Config.shared.applicationSupplimentaryBackgroundColor
-        
+    }
+    
+    private func setRatingStarUI(store: Store) {
         DispatchQueue.main.async {
             let floatValue = Float(store.storeInfo.rating)
             
@@ -138,8 +146,6 @@ class DetailViewController: UIViewController {
             }
         }
         
-        
-        instantiateSegmentedViewControllers()
     }
     
     // segmentedControl과 연결된 ViewController들을 초기화하고,
@@ -176,7 +182,6 @@ class DetailViewController: UIViewController {
             detailMapVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             detailMapVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             detailMapVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-            
         ])
         
         
@@ -187,14 +192,4 @@ class DetailViewController: UIViewController {
         
     }
     
-    /*o
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

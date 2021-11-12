@@ -21,20 +21,19 @@ class MainListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.storeTableView.delegate = self
-        self.storeTableView.dataSource = self
-        
-
         ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-        
+        addDelegates()
         getStoresInfoFromDatabase()
     }
     
-
-    func getStoresInfoFromDatabase() {
-        self.ref.child("stores").getData{ (error, snapshot) in
+    private func addDelegates() {
         
+        self.storeTableView.delegate = self
+        self.storeTableView.dataSource = self
+    }
+
+    private func getStoresInfoFromDatabase() {
+        self.ref.child("stores").getData{ (error, snapshot) in
             if let error = error {
                 print(error.localizedDescription)
             } else if snapshot.exists() {
@@ -56,10 +55,7 @@ class MainListViewController: UIViewController {
                 }
             }
         }
-        
     }
-    
-   
 }
 
 extension MainListViewController: UITableViewDelegate {

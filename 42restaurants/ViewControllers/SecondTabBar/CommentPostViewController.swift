@@ -33,28 +33,34 @@ class CommentPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardOnTouchAnywhere)))
         self.dismissIfNotLoggedIn()
         
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-    
-        self.starRatingSlider.value = 5.0
-        
-        
-        fillBasicInfo()
+        setDelegates()
+        setValues()
+        setText()
         handleKeyboardAppearance()
-        self.ref = Database.database(url: "https://restaurants-e62b0-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
     }
-    
     
     @objc func dismissKeyboardOnTouchAnywhere() {
         view.endEditing(true)
     }
     
-    private func fillBasicInfo() { // 추후 길어질 수도 있으므로 함수로 빼둠.
+    private func setDelegates() {
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+    
+    }
+    
+    private func setText() { // 추후 길어질 수도 있으므로 함수로 빼둠.
         self.userEmailLabel.text = FirebaseAuthentication.shared.getUserEmail()
+    }
+    
+    private func setValues() {
+        self.starRatingSlider.value = 5.0
     }
     
     private func handleKeyboardAppearance() {
